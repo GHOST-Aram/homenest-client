@@ -1,9 +1,10 @@
 import { screen, render } from "@testing-library/react";
-import ButtonFilled from "./ButtonFilled";
+import ButtonOutlined from "./ButtonOutlined";
 
-describe('ButtonFilled component', () => {
+
+describe('ButtonOutlined component', () => {
     test('Renders button' ,() => {
-        render(<ButtonFilled>Start</ButtonFilled>)
+        render(<ButtonOutlined>Start</ButtonOutlined>)
 
         const button = screen.getByRole('button', { name: /start/i})
         expect(button).toBeInTheDocument()

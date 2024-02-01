@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from '../components/Image'
 import Heading from '../components/Heading'
 import ButtonFilled from '../components/ButtonFilled'
 

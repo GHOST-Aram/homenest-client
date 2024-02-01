@@ -24,7 +24,6 @@ body{
 header{
     box-shadow: 4px 4px 4px var(--shadow-color);
     position: sticky;
-    background-color: rgba(0, 0, 0, 0.2);
     top: 0;
     left: 0;
     right: 0;

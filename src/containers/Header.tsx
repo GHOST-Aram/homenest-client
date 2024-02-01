@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 
 const Header = () => {
     return (
-        <header className='flex flex-row justify-between items-center p-4'>
+        <header className='flex flex-row justify-between items-center p-4 bg-slate-400'>
             <GiHamburgerMenu className='text-3xl text-primary' />
             <Logo src={logo}/>
             <FaSearch className='text-3xl text-primary'/>
