@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import Card from "./Card";
+import Card from "./BenefitCard";
 import { Fa500Px } from "react-icons/fa";
 
 
