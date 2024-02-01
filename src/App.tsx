@@ -3,6 +3,7 @@ import Header from './containers/Header';
 import HeroSection from './containers/HeroSection';
 import Benefits from './containers/Benefits';
 import FeaturedListings from './containers/FeaturedListings';
+import Testimonials from './containers/Testimonials';
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<HeroSection />
 				<Benefits />
 				<FeaturedListings />
+				<Testimonials />
 			</main>
 		</div>
 	);
