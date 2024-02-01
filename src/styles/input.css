@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root{
+    --shadow-color: #64748b
+}
+
+body{
+    background-color: #f0fdfa;
+}
+
+header{
+    box-shadow: 4px 4px 4px var(--shadow-color);
+    position: sticky;
+}

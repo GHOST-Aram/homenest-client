@@ -1,9 +1,14 @@
 import React from 'react';
-import logo from './images/homenst.png'
+import Header from './containers/Header';
+import HeroSection from './containers/HeroSection';
+
 function App() {
 	return (
-		<div className="App">
-			<img src={logo} alt="Homenest logo" />
+		<div>
+			<Header />
+			<main>
+				<HeroSection />
+			</main>
 		</div>
 	);
 }
