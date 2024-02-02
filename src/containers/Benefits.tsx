@@ -16,31 +16,31 @@ const Benefits = () => {
                 <BenefitCard 
                     title='Powerful Search'  
                     textContent='Filter thousands of listings by location, price, amenities, and more.'
-                    icon={<FaSearch className='font-extrabold text-5xl m-auto text-slate-300'/>}
+                    icon={<FaSearch className='font-extrabold text-5xl m-auto text-slate-900'/>}
                     buttonLabel='SEARCH LISTINGS'
                 />
                 <BenefitCard 
                     title='Stress Free Browsing'  
                     textContent=' Explore neighborhoods virtually with our interactive map.'
-                    icon={<PiMapPinFill className='font-extrabold text-5xl m-auto text-slate-300'/>}
+                    icon={<PiMapPinFill className='font-extrabold text-5xl m-auto text-slate-900'/>}
                     buttonLabel='OPEN MAP'
                 />
                 <BenefitCard 
                     title='Informed Decisions'  
                     textContent='Read tenant reviews and ratings before you apply.'
-                    icon={<FaStarHalfAlt className='font-extrabold text-5xl m-auto text-slate-300'/>}
+                    icon={<FaStarHalfAlt className='font-extrabold text-5xl m-auto text-slate-900'/>}
                     buttonLabel='READ REVIEWS'
                 />
                 <BenefitCard 
                     title='Seamless Communication'  
                     textContent=' Connect directly with landlords through our secure platform.'
-                    icon={<IoChatbubblesOutline className='font-extrabold text-5xl m-auto text-slate-300'/>}
+                    icon={<IoChatbubblesOutline className='font-extrabold text-5xl m-auto text-slate-900'/>}
                     buttonLabel='SEE LANDLORDS'
                 />
                 <BenefitCard 
                     title='Effortless Apllications'  
                     textContent='Submit your application and upload documents online.'
-                    icon={<VscChecklist className='font-extrabold text-5xl m-auto text-slate-300'/>}
+                    icon={<VscChecklist className='font-extrabold text-5xl m-auto text-slate-900'/>}
                     buttonLabel='SEE AVAILABE PROPERTIES'
                 />
             </div>
