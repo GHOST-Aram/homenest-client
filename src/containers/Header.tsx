@@ -4,16 +4,25 @@ import logo from '../images/homenest-logo.png'
 import SearchButton from '../components/SearchButton';
 import MenuButton from '../components/MenuButton';
 import SearchBox from '../components/SearchBox';
+import SelectBox from '../components/SelectBox';
+import HorizontalDivider from './HorizontalDivider';
 
 const Header = () => {
     return (
-        <header className='flex flex-row justify-between items-start p-4 bg-slate-400
-            gap-4'
+        <header className=' p-4 bg-slate-400 space-y-4'
         >
-            <MenuButton />
-            <Logo src={logo}/>
-            <SearchBox />
-            <SearchButton/>
+            <div className='flex flex-row justify-between items-start gap-4'>
+                <MenuButton />
+                <Logo src={logo}/>
+                <div className="items-center gap-4 w-full hidden md:flex lg:flex 
+                    xl:flex"
+                >
+                    <SelectBox />
+                    <SearchBox />
+                </div>
+                <SearchButton/>
+            </div>
+            <HorizontalDivider />
         </header>
     )
 }
