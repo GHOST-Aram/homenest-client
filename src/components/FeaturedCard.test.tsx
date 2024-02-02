@@ -2,8 +2,34 @@ import { screen, render } from "@testing-library/react";
 import FeaturedCard from "./FeaturedCard";
 
 describe('Featured Card Component', () => {
+
+    test('Renders property Image', () =>{
+        render(<FeaturedCard 
+            rentPm = {'12.5k'} location ='Nakuru' 
+            bedrooms = {'4 bedrooms'} imageSrc = ''
+        />)
+
+        const propertyImage = screen.getByRole('img')
+        expect(propertyImage).toBeInTheDocument()
+        
+    })
+
+    test('Renders Alt text for property Image', () =>{
+        render(<FeaturedCard 
+            rentPm = {'12.5k'} location ='Nakuru' 
+            bedrooms = {'4 bedrooms'} imageSrc = ''
+        />)
+
+        const propertyImage = screen.getByAltText('Nakuru 4 bedrooms house')
+        expect(propertyImage).toBeInTheDocument()
+        
+    })
+
     test('Renders rates per month, locatio and number of bedrooms', () => {
-        render(<FeaturedCard rentPm = {'12.5k'} location ='Nakuru' bedrooms = {'4 bedrooms'} />)
+        render(<FeaturedCard 
+            rentPm = {'12.5k'} location ='Nakuru' 
+            bedrooms = {'4 bedrooms'} imageSrc = ''
+        />)
 
         const rent = screen.getByText(/12\.5K/i)
         const location = screen.getByText(/Nakuru/i)
@@ -15,7 +41,10 @@ describe('Featured Card Component', () => {
     })
 
     test('Renders read more button', () => {
-        render(<FeaturedCard rentPm = {'12.5k'} location ='Nakuru' bedrooms = {'4 bedrooms'} />)
+        render(<FeaturedCard 
+            rentPm = {'12.5k'} location ='Nakuru' 
+            bedrooms = {'4 bedrooms'} imageSrc = ''
+        />)
 
         const readMoreBtn = screen.getByRole('button', { name: /read more/i})
         expect(readMoreBtn).toBeInTheDocument()
