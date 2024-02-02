@@ -4,6 +4,7 @@ import HeroSection from './containers/HeroSection';
 import Benefits from './containers/Benefits';
 import FeaturedListings from './containers/FeaturedListings';
 import Testimonials from './containers/Testimonials';
+import Footer from './containers/Footer';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<FeaturedListings />
 				<Testimonials />
 			</main>
+			<Footer />
 		</div>
 	);
 }
