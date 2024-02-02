@@ -1,12 +1,12 @@
 import { screen, render } from "@testing-library/react";
-import Card from "./BenefitCard";
 import { Fa500Px } from "react-icons/fa";
+import BenefitCard from "./BenefitCard";
 
 
 describe('Card component', () => {
 
     test('Renders card title', () => {
-        render(<Card 
+        render(<BenefitCard 
             title='Card 1' 
             textContent='Main card' 
             icon = {<Fa500Px />}
@@ -19,7 +19,7 @@ describe('Card component', () => {
     })
     
     test('Renders card text content', () =>{
-        render(<Card 
+        render(<BenefitCard 
             title='Card 1' 
             textContent='Main card' 
             icon = {<Fa500Px />}
@@ -32,7 +32,7 @@ describe('Card component', () => {
     })
 
     test('Renders card button with textcontent', () =>{
-        render(<Card 
+        render(<BenefitCard 
             title='Card 1' 
             textContent='Main card' 
             icon = {<Fa500Px />}
