@@ -8,7 +8,7 @@ import Footer from './containers/Footer';
 
 function App() {
 	return (
-		<div>
+		<div className='bg-gray-300'>
 			<Header />
 			<main>
 				<HeroSection />
