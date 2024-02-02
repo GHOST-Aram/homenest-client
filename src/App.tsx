@@ -3,7 +3,7 @@ import Header from './containers/Header';
 import HeroSection from './containers/HeroSection';
 import Benefits from './containers/Benefits';
 import FeaturedListings from './containers/FeaturedListings';
-import Testimonials from './containers/Testimonials';
+import TenantReviews from './containers/TenantReviews';
 import Footer from './containers/Footer';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 				<HeroSection />
 				<Benefits />
 				<FeaturedListings />
-				<Testimonials />
+				<TenantReviews />
 			</main>
 			<Footer />
 		</div>
