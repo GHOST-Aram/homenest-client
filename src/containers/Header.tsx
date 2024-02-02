@@ -6,10 +6,11 @@ import MenuButton from '../components/MenuButton';
 import SearchBox from '../components/SearchBox';
 import SelectBox from '../components/SelectBox';
 import HorizontalDivider from './HorizontalDivider';
+import Navbar from './Navbar';
 
 const Header = () => {
     return (
-        <header className=' p-4 bg-slate-400 space-y-4'
+        <header className=' p-4 bg-blue-700 space-y-4'
         >
             <div className='flex flex-row justify-between items-start gap-4'>
                 <MenuButton />
@@ -23,6 +24,7 @@ const Header = () => {
                 <SearchButton/>
             </div>
             <HorizontalDivider />
+            <Navbar />
         </header>
     )
 }
