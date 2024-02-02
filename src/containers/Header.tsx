@@ -1,15 +1,15 @@
 import React from 'react'
 import Logo from '../components/Logo'
 import logo from '../images/homenest-logo.png'
-import { GiHamburgerMenu } from "react-icons/gi";
-import { FaSearch } from "react-icons/fa";
+import SearchButton from '../components/SearchButton';
+import MenuButton from '../components/MenuButton';
 
 const Header = () => {
     return (
-        <header className='flex flex-row justify-between items-center p-4 bg-slate-400'>
-            <GiHamburgerMenu className='text-3xl text-primary' />
+        <header className='flex flex-row justify-between items-start p-4 bg-slate-400'>
+            <MenuButton />
             <Logo src={logo}/>
-            <FaSearch className='text-3xl text-primary'/>
+            <SearchButton/>
         </header>
     )
 }
