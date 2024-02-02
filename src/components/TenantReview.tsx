@@ -4,7 +4,9 @@ import Image from './Image';
 
 const TenantReview = ({ tenantName, comment, imageSrc }: TenantReviewProps) => {
     return (
-        <div className='bg-slate-400 max-w-80 p-8 space-y-4 text-center min-w-80 rounded-lg'>
+        <div className=' max-w-80 p-8 space-y-4 text-center m-auto
+             min-w-80 rounded-lg'
+        >
             <Image src={imageSrc} alt={tenantName} className='w-32 rounded-full m-auto'/>
             <Heading level={3} className='font-bold text-slate-800 text-lg'>{tenantName}</Heading>
             <p className='font-md text-md text-slate-800'>{comment}</p>
