@@ -641,6 +641,10 @@ video {
   overflow-x: auto;
 }
 
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
@@ -725,6 +729,10 @@ video {
 
 .py-4 {
   padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.pb-4 {
   padding-bottom: 1rem;
 }
 
@@ -842,6 +850,25 @@ video {
 .active{
   background-color: var(--light-color);
   color: var(--primary-color);
+}
+
+body::-webkit-scrollbar-track{
+  background: var(--primary-color);
+}
+
+::-webkit-scrollbar{
+  height: .5rem;
+  width: .5rem;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track{
+  background: var(--shadow-color);
+  border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb{
+  background: var(--secondary-color);
+  border-radius: 2rem;
 }
 
 .bg-primary{

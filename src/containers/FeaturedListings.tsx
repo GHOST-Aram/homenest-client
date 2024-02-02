@@ -14,7 +14,7 @@ const FeaturedListings = () => {
   return (
     <Section>
         <SectionHeading>Featured Listings</SectionHeading>
-        <div className="flex flex-row gap-4 overflow-x-auto">
+        <div className="flex flex-row gap-4 overflow-x-auto pb-4 horizontal-scroll">
           	<FeaturedCard 
 				rentPm='13.7k' 
 				location='Mombasa' 

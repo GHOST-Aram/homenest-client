@@ -12,6 +12,29 @@
     background-color: var(--light-color);
     color: var(--primary-color);
 }
+
+body::-webkit-scrollbar-track{
+    background: var(--primary-color);
+}
+::-webkit-scrollbar{
+    height: .5rem;
+    width: .5rem;
+
+}
+
+.horizontal-scroll::-webkit-scrollbar-track{
+    background: var(--shadow-color);
+    border-radius: 2rem;
+}
+
+
+
+::-webkit-scrollbar-thumb{
+   background: var(--secondary-color);
+   border-radius: 2rem;
+}
+
+
 .bg-primary{
     background-color: var(--primary-color);
 }

@@ -12,7 +12,7 @@ const Benefits = () => {
     return (
         <Section>
             <SectionHeading>The Fun Part of Using Homenest.</SectionHeading>
-            <div className="flex flex-row gap-4 overflow-x-auto">
+            <div className="flex flex-row gap-4 overflow-x-scroll pb-4 horizontal-scroll">
                 <BenefitCard 
                     title='Powerful Search'  
                     textContent='Filter thousands of listings by location, price, amenities, and more.'
