@@ -8,6 +8,10 @@
     --light-color: #f0fdfa;
 }
 
+.active{
+    background-color: var(--light-color);
+    color: var(--primary-color);
+}
 .bg-primary{
     background-color: var(--primary-color);
 }
