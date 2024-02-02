@@ -4,16 +4,22 @@ import ButtonFilled from '../components/ButtonFilled'
 
 const HeroSection = () => {
 		return (
-		<section className='hero'>
-			<div className="text-center absolute space-y-4 w-full mt-24 lg:mt-32">
-				<Heading level={1} className='font-extrabold text-4xl text-primary text-center'>
-					Find Your Happy Place Effortlessly.
+		<section className='hero h-[70vh]'>
+			<div className=" hero-texts text-center absolute space-y-8 w-full pt-24 
+				lg:pt-24 h-[70vh]"
+			>
+				<Heading level={1} className='font-bold text-4xl text-slate-300
+					 text-center'
+				>
+					Find Your Next Rental Apartment from Your Comfort Zone.
 				</Heading>
-				<Heading level={1} className='font-medium text-xl text-light text-center'>
-					Homenest takes stress out of finding your perfect rental.
+				<Heading level={2} className='font-md text-2xl text-slate-300 
+					text-center lg:px-16 mb-24'
+				>
+					Homenest takes stress out of finding your perfect rental. 
 				</Heading>
-
-				<ButtonFilled>Start Your Search</ButtonFilled>
+				
+				<ButtonFilled>START YOUR SEARCH</ButtonFilled>
 			</div>
 		</section>
 		)

@@ -35,13 +35,17 @@ header{
 }
 
 .hero{
-    background-color: #0f172a;
-    padding-block: 2rem;
-    height: 80vh;
+    background-image: url('../images/city-apartment.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 70vh; */
     text-align: center;
 }
+
 .hero div{
-    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* height: 70vh; */
 }
 
 .text-light{

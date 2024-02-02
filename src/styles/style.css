@@ -543,16 +543,16 @@ video {
   margin: auto;
 }
 
+.mb-24 {
+  margin-bottom: 6rem;
+}
+
 .mb-8 {
   margin-bottom: 2rem;
 }
 
 .mt-12 {
   margin-top: 3rem;
-}
-
-.mt-24 {
-  margin-top: 6rem;
 }
 
 .flex {
@@ -565,6 +565,10 @@ video {
 
 .h-52 {
   height: 13rem;
+}
+
+.h-\[70vh\] {
+  height: 70vh;
 }
 
 .w-48 {
@@ -599,10 +603,6 @@ video {
   align-items: center;
 }
 
-.justify-center {
-  justify-content: center;
-}
-
 .justify-between {
   justify-content: space-between;
 }
@@ -615,6 +615,12 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
 .overflow-x-auto {
@@ -704,6 +710,10 @@ video {
   padding-top: 4rem;
 }
 
+.pt-24 {
+  padding-top: 6rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -758,10 +768,6 @@ video {
 
 .font-light {
   font-weight: 300;
-}
-
-.font-medium {
-  font-weight: 500;
 }
 
 .text-slate-300 {
@@ -830,14 +836,17 @@ header{
 }
 
 .hero{
-  background-color: #0f172a;
-  padding-block: 2rem;
-  height: 80vh;
+  background-image: url('../images/city-apartment.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 70vh; */
   text-align: center;
 }
 
 .hero div{
-  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* height: 70vh; */
 }
 
 .text-light{
@@ -882,6 +891,14 @@ header{
     display: none;
   }
 
+  .md\:h-\[60vh\] {
+    height: 60vh;
+  }
+
+  .md\:h-\[65vh\] {
+    height: 65vh;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -896,10 +913,6 @@ header{
 }
 
 @media (min-width: 1024px) {
-  .lg\:mt-32 {
-    margin-top: 8rem;
-  }
-
   .lg\:block {
     display: block;
   }
@@ -922,6 +935,15 @@ header{
 
   .lg\:gap-4 {
     gap: 1rem;
+  }
+
+  .lg\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .lg\:pt-24 {
+    padding-top: 6rem;
   }
 }
 
