@@ -1,66 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Section from '../components/Section'
 import SectionHeading from '../components/SectionHeading'
 import FeaturedCard from '../components/FeaturedCard'
-import apartment1 from '../images/apartment1.avif'
-import apartment2 from '../images/apartment2.avif'
-import apartment3 from '../images/apartment3.avif'
-import apartment4 from '../images/apartment4.avif'
-import apartment5 from '../images/apartment5.avif'
-import apartment6 from '../images/apartment6.avif'
-import apartment7 from '../images/apartment7.avif'
+import Heading from '../components/Heading'
 
 const FeaturedListings = () => {
-  return (
-    <Section>
-        <SectionHeading>Featured Listings</SectionHeading>
-        <div className="flex flex-row gap-4 overflow-x-auto pb-4 horizontal-scroll">
-          	<FeaturedCard 
-				rentPm='13.7k' 
-				location='Mombasa' 
-				bedrooms='2 bedrooms' 
-				imageSrc={apartment1}
-            />
-          	<FeaturedCard 
-				rentPm='13.7k' 
-				location='Mombasa' 
-				bedrooms='2 bedrooms' 
-				imageSrc={apartment2}
-            />
-          	<FeaturedCard 
-				rentPm='13.7k' 
-				location='Mombasa' 
-				bedrooms='2 bedrooms' 
-				imageSrc={apartment3}
-            />
-          	<FeaturedCard 
-				rentPm='13.7k' 
-				location='Mombasa' 
-				bedrooms='2 bedrooms' 
-				imageSrc={apartment4}
-            />
-          	<FeaturedCard 
-				rentPm='13.7k' 
-				location='Mombasa' 
-				bedrooms='2 bedrooms' 
-				imageSrc={apartment5}
-            />
-          	<FeaturedCard 
-				rentPm='13.7k' 
-				location='Mombasa' 
-				bedrooms='2 bedrooms' 
-				imageSrc={apartment6}
-            />
-          	<FeaturedCard 
-				rentPm='13.7k' 
-				location='Mombasa' 
-				bedrooms='2 bedrooms' 
-				imageSrc={apartment7}
-            />
-        </div>
-    </Section>
-    
-  )
+	const [apartments, setApartments] = useState([])
+
+	useEffect(() =>{
+
+		const getData = async(url: string) =>{
+			const response = await fetch(url)
+			return await response.json()
+		}
+
+		getData('http://localhost:8000/rentals').then(data =>{
+			setApartments(data.resource)
+		})
+
+	},[])
+	
+	return (
+		<Section>
+			<SectionHeading>Featured Listings</SectionHeading>
+			<div className="flex flex-row gap-4 overflow-x-auto pb-4 horizontal-scroll">
+				{
+					apartments.length > 0 ?
+						apartments.map((apartment:any) =>(
+							<FeaturedCard 
+								rentPm={apartment.price} 
+								location={apartment.location} 
+								bedrooms={apartment.bedrooms} 
+								imageSrc={apartment.imageUrl}
+								key={apartment.id}
+							/>
+						))
+					: <Heading level={1}className='text-center font-light'>No Apartments to list</Heading>
+				}
+			</div>
+		</Section>
+		
+	)
 }
 
 export default FeaturedListings
