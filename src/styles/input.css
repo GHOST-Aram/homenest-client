@@ -8,6 +8,17 @@
     --light-color: #f0fdfa;
 }
 
+.about-us li{
+    font-size: 1.2rem;
+
+}
+
+.about-us p:last-of-type{
+    padding-block-start: 1.8rem;
+    text-align: center;
+    font-weight: 500;
+    font-size: 2rem;
+}
 .active{
     background-color: var(--light-color);
     color: var(--primary-color);
@@ -66,11 +77,11 @@ header{
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-.how-it-works{
+.how-it-works, .about-us{
     padding-inline: 2rem;
 }
 
-.how-it-works h1{
+.how-it-works h1, .about-us h1{
     font-weight: 700;
     font-size: 2rem;
     color: var(--primary-color);
@@ -78,13 +89,13 @@ header{
     padding-block: 1rem;
 }
 
-.how-it-works p{
+.how-it-works p, .about-us p{
     font-weight: 300;
     font-size: 1.5rem;
     color: #0f172a;
 }
 
-.how-it-works h2{
+.how-it-works h2, .about-us h2{
     font-size: 1.8rem;
     font-weight: 500;
     color: var(--primary-color);
@@ -93,12 +104,12 @@ header{
     margin-block-end: 1rem;
 }
 
-.how-it-works p:first-of-type{
+.how-it-works p:first-of-type, .about-us p:first-of-type{
     text-align: center;
     font-weight: 400;
 }
 
-.how-it-works p:last-of-type{
+.how-it-works p:last-of-type, .about-us p:last-of-type{
     margin-block-end: 4rem;
 }
 
