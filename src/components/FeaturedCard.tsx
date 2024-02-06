@@ -2,16 +2,14 @@ import React from 'react'
 import ButtonFilled from './ButtonFilled'
 import Image from './Image'
 
-const FeaturedCard = ({ rentPm, location, bedrooms, imageSrc }: FeaturedCardProps) => {
+const FeaturedCard = ({ rentPm, location, bedrooms, imageSrc, key }: FeaturedCardProps) => {
   return (
-        <div className="min-w-80 rounded-md border-2">
-            <div className=''>
-                <Image 
-                    src={imageSrc} 
-                    alt={`${location} ${bedrooms} house`}
-                    className='h-52 rounded-t-md'
-                />
-            </div>
+        <div className="min-w-80 rounded-md border-2 flex flex-col justify-between" key={key}>
+            <Image 
+                src={imageSrc} 
+                alt={`${location} ${bedrooms} bedroom house`}
+                className='rounded-t-md'
+            />           
             <div className="bg-slate-400 px-4 w-full rounded-b-md">
                 <p className='space-x-2'> 
                     <span className='font-bold text-slate-700'>Rent per Month:</span> 
@@ -35,6 +33,7 @@ interface FeaturedCardProps{
     location: string
     bedrooms: string
     imageSrc: string
+    key?: string
 }
 
 export default FeaturedCard

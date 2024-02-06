@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { getData } from '../utils/fetch'
 import Section from '../components/Section'
-import SectionHeading from '../components/SectionHeading'
 import FeaturedCard from '../components/FeaturedCard'
 import Heading from '../components/Heading'
-import { getData } from '../utils/fetch'
 
-const FeaturedListings = () => {
-	const [apartments, setApartments] = useState<[]>([])
+const Listings = () => {
+    const [apartments, setApartments] = useState<[]>([])
 	
 	useEffect(() =>{
 		getData('http://localhost:8000/rentals').then(data =>{
@@ -15,10 +14,9 @@ const FeaturedListings = () => {
 
 	},[])
 
-	return (
-		<Section>
-			<SectionHeading>Featured Listings</SectionHeading>
-			<div className="flex flex-row gap-4 overflow-x-auto pb-4 horizontal-scroll">
+    return (
+        <Section>
+			<div className="py-4 listings-grid">
 				{
 					apartments.length > 0 ?
 						apartments.map((apartment:any) =>(
@@ -34,8 +32,7 @@ const FeaturedListings = () => {
 				}
 			</div>
 		</Section>
-		
-	)
+    )
 }
 
-export default FeaturedListings
+export default Listings
