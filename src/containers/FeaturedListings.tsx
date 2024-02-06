@@ -10,7 +10,9 @@ const FeaturedListings = () => {
 	
 	useEffect(() =>{
 		getData('http://localhost:8000/rentals').then(data =>{
-			setApartments(data.resource)
+			if(data.resource){
+				setApartments(data.resource)
+			}
 		}).catch(error => console.log(error))
 
 	},[])
