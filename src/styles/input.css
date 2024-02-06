@@ -44,6 +44,7 @@ body::-webkit-scrollbar-track{
     transition: all 1s;
 }
 
+
 header{
     box-shadow: 4px 4px 4px var(--shadow-color);
     position: sticky;
@@ -63,6 +64,42 @@ header{
 
 .hero div{
     background-color: rgba(0, 0, 0, 0.7);
+}
+
+.how-it-works{
+    padding-inline: 2rem;
+}
+
+.how-it-works h1{
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+    padding-block: 1rem;
+}
+
+.how-it-works p{
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: #0f172a;
+}
+
+.how-it-works h2{
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-align: center;
+    margin-block-start: 2rem;
+    margin-block-end: 1rem;
+}
+
+.how-it-works p:first-of-type{
+    text-align: center;
+    font-weight: 400;
+}
+
+.how-it-works p:last-of-type{
+    margin-block-end: 4rem;
 }
 
 .listings-grid{
