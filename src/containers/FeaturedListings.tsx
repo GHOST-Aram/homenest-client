@@ -22,7 +22,7 @@ const FeaturedListings = () => {
 			<SectionHeading>Featured Listings</SectionHeading>
 			<div className="flex flex-row gap-4 overflow-x-auto pb-4 horizontal-scroll">
 				{
-					apartments.length > 0 ?
+					apartments.length > 0 &&
 						apartments.map((apartment:any) =>(
 							<FeaturedCard 
 								rentPm={apartment.price} 
@@ -32,7 +32,6 @@ const FeaturedListings = () => {
 								key={apartment.id}
 							/>
 						))
-					: <Heading level={1}className='text-center font-light'>No Apartments to list</Heading>
 				}
 			</div>
 		</Section>
