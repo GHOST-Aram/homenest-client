@@ -21,7 +21,7 @@ const FeaturedCard = ({ rentPm, location, bedrooms, imageSrc }: FeaturedCardProp
                     <span className='font-bold text-slate-700'>Bedrooms:</span> 
                     <span className='font-bold'>{bedrooms}</span> </p>
                 <div className="text-center py-4">
-                    <ButtonFilled className='w-full'>READ MORE</ButtonFilled>
+                    <ButtonFilled className='w-full'>VIEW DETAILS</ButtonFilled>
                 </div>
             </div>
         </div>
