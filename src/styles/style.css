@@ -567,10 +567,6 @@ video {
   height: 70vh;
 }
 
-.w-3\/5 {
-  width: 60%;
-}
-
 .w-32 {
   width: 8rem;
 }
@@ -803,11 +799,6 @@ video {
 .text-blue-700 {
   --tw-text-opacity: 1;
   color: rgb(29 78 216 / var(--tw-text-opacity));
-}
-
-.text-red-700 {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
 .text-slate-300 {

@@ -1,25 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TenantReview from '../components/TenantReview'
 import Section from '../components/Section'
 import SectionHeading from '../components/SectionHeading'
-import ButtonPrevious from '../components/ButtonPrevious'
-import ButtonNext from '../components/ButtonNext'
+import uniqid from 'uniqid'
 
 const TenantReviews = () => {
+    const [reviews, setReviews] = useState(tenantReviews)
+
     return (
         <Section>
             <SectionHeading>What Other Tenants Say.</SectionHeading>
-            <div className="flex flex-row justify-between items-center w-3/5 m-auto">
-                <ButtonPrevious />
-                <TenantReview imageSrc='https://randomuser.me/api/portraits/women/92.jpg'
-                    tenantName='Phillip Jonas' 
-                    comment='Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-                />
-                <ButtonNext />
+            <div className="flex flex-row gap-4 pb-4 overflow-x-scroll horizontal-scroll">
+                {
+                    reviews.length> 0 && tenantReviews.map(review =>(
+                        <TenantReview key={review.id} imageSrc={review.tenantImageUrl}
+                            tenantName={review.tenantName}
+                            comment= {review.comment}
+                        />
+                    )) 
+                } 
             </div>
         </Section>
+        
     )
 }
+
+const tenantReviews = [
+    {
+        id: uniqid(),
+        tenantName: 'Philipp Jonas',
+        comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        tenantImageUrl: 'https://randomuser.me/api/portraits/men/92.jpg'
+    },
+    {
+        id: uniqid(),
+        tenantName: 'Philipp Jonas',
+        comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        tenantImageUrl: 'https://randomuser.me/api/portraits/men/92.jpg'
+    },
+    {
+        id: uniqid(),
+        tenantName: 'Philipp Jonas',
+        comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        tenantImageUrl: 'https://randomuser.me/api/portraits/men/92.jpg'
+    },
+    {
+        id: uniqid(),
+        tenantName: 'Philipp Jonas',
+        comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        tenantImageUrl: 'https://randomuser.me/api/portraits/men/92.jpg'
+    },
+    {
+        id: uniqid(),
+        tenantName: 'Philipp Jonas',
+        comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        tenantImageUrl: 'https://randomuser.me/api/portraits/men/92.jpg'
+    },
+    {
+        id: uniqid(),
+        tenantName: 'Philipp Jonas',
+        comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        tenantImageUrl: 'https://randomuser.me/api/portraits/men/92.jpg'
+    },
+    {
+        id: uniqid(),
+        tenantName: 'Philipp Jonas',
+        comment: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        tenantImageUrl: 'https://randomuser.me/api/portraits/men/92.jpg'
+    },
+]
 
 
 export default TenantReviews
