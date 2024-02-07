@@ -12,15 +12,6 @@ const Navbar = () => {
             <NavLink to={'/listings'} className={'p-4 text-slate-300 font-bold'}>
                 LISTINGS
             </NavLink>
-            <NavLink to={'/how-it-works'} className={'p-4 text-slate-300 font-bold'}>
-                HOW IT WORKS
-            </NavLink>
-            <NavLink to={'/about-us'} className={'p-4 text-slate-300 font-bold'}>
-                ABOUT US
-            </NavLink>
-            <NavLink to={'/contact-us'} className={'p-4 text-slate-300 font-bold'}>
-                CONTACT US
-            </NavLink>
         </nav>
     )
 }
