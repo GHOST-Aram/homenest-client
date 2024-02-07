@@ -2,9 +2,9 @@ import React from 'react'
 import ButtonFilled from './ButtonFilled'
 import Image from './Image'
 
-const FeaturedCard = ({ rentPm, location, bedrooms, imageSrc, key }: FeaturedCardProps) => {
+const FeaturedCard = ({ rentPm, location, bedrooms, imageSrc }: FeaturedCardProps) => {
   return (
-        <div className="min-w-80 rounded-md border-2 flex flex-col justify-between" key={key}>
+        <div className="min-w-80 rounded-md border-2 flex flex-col justify-between">
             <Image 
                 src={imageSrc} 
                 alt={`${location} ${bedrooms} bedroom house`}
@@ -33,7 +33,6 @@ interface FeaturedCardProps{
     location: string
     bedrooms: string
     imageSrc: string
-    key?: string
 }
 
 export default FeaturedCard

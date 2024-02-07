@@ -25,7 +25,7 @@ const Listings = () => {
 								location={apartment.location} 
 								bedrooms={apartment.bedrooms} 
 								imageSrc={apartment.imageUrl}
-								key={apartment.id}
+								key={apartment._id.toString()}
 							/>
 						))
 					: <Heading level={1}className='text-center font-light'>No Apartments to list</Heading>

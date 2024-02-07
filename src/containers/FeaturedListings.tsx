@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Section from '../components/Section'
 import SectionHeading from '../components/SectionHeading'
 import FeaturedCard from '../components/FeaturedCard'
-import Heading from '../components/Heading'
 import { getData } from '../utils/fetch'
 
 const FeaturedListings = () => {
@@ -25,11 +24,11 @@ const FeaturedListings = () => {
 					apartments.length > 0 &&
 						apartments.map((apartment:any) =>(
 							<FeaturedCard 
+								key={apartment._id.toString()}
 								rentPm={apartment.price} 
 								location={apartment.location} 
 								bedrooms={apartment.bedrooms} 
 								imageSrc={apartment.imageUrl}
-								key={apartment.id}
 							/>
 						))
 				}
