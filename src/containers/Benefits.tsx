@@ -19,7 +19,6 @@ const Benefits = () => {
                     benefits.length > 0 && benefits.map(benefit =>(
                         <BenefitCard 
                             title={benefit.title} 
-                            buttonLabel={benefit.buttonLabel}
                             textContent={benefit.textContent}
                             icon={benefit.icon}
                         />
@@ -38,34 +37,29 @@ const benefitsArr: Benefit[] = [
         title: 'Powerful Search',  
         textContent: 'Filter thousands of listings by location, price, amenities, and more.',
         icon: <FaSearch className='font-extrabold text-5xl m-auto text-slate-900'/>,
-        buttonLabel: 'SEARCH LISTINGS'
     },
     {
         id: uniqid(),
         title: 'Stress Free Browsing'  ,
         textContent: ' Explore neighborhoods virtually with our interactive map.',
         icon: <PiMapPinFill className='font-extrabold text-5xl m-auto text-slate-900'/>,
-        buttonLabel: 'OPEN MAP',
     },
     {
         id: uniqid(),
         title: 'Informed Decisions'  ,
         textContent: 'Read tenant reviews and ratings before you apply.',
         icon: <FaStarHalfAlt className='font-extrabold text-5xl m-auto text-slate-900'/>,
-        buttonLabel: 'READ REVIEWS'
     },{
         id: uniqid(),
         title: 'Seamless Communication'  ,
         textContent: ' Connect directly with landlords through our secure platform.',
         icon: <IoChatbubblesOutline className='font-extrabold text-5xl m-auto text-slate-900'/>,
-        buttonLabel: 'SEE LANDLORDS'
     },
     {
         id: uniqid(),
         title: 'Effortless Apllications'  ,
         textContent: 'Submit your application and upload documents online.',
         icon: <VscChecklist className='font-extrabold text-5xl m-auto text-slate-900'/>,
-        buttonLabel:'SEE AVAILABE PROPERTIES'
     }
 ]
 
@@ -74,7 +68,6 @@ interface Benefit{
     title: string,
     textContent: string,
     icon: ReactComponentElement<any>,
-    buttonLabel: string
 }
 
 export default Benefits

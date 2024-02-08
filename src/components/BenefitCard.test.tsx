@@ -10,7 +10,6 @@ describe('Card component', () => {
             title='Card 1' 
             textContent='Main card' 
             icon = {<Fa500Px />}
-            buttonLabel = 'view listings'
             />
         )
     
@@ -23,7 +22,6 @@ describe('Card component', () => {
             title='Card 1' 
             textContent='Main card' 
             icon = {<Fa500Px />}
-            buttonLabel = 'view listings'
             />
         )
 
@@ -36,7 +34,6 @@ describe('Card component', () => {
             title='Card 1' 
             textContent='Main card' 
             icon = {<Fa500Px />}
-            buttonLabel = 'view listings'
         />)
 
         const button = screen.getByRole('button', { name: /view listings/})
