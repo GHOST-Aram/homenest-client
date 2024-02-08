@@ -1,8 +1,8 @@
-import React from 'react'
 import DetailsHero from '../containers/DetailsHero'
 import PropertyDescription from '../containers/PropertyDescription'
 import ContactLandlord from '../containers/ContactLandlord'
 import NeighboringAmenities from '../containers/NeighboringAmenities'
+import PropertyGallery from '../containers/PropertyGallery'
 
 const PropertyDetails = () => {
     return (
@@ -12,9 +12,9 @@ const PropertyDetails = () => {
                 <PropertyDescription />
                 <ContactLandlord />
             </section>
-            <section className='px-8'>
-                <NeighboringAmenities />
-            </section>
+            <NeighboringAmenities />
+            <PropertyGallery />
+            
         </>
     )
 }

@@ -5,20 +5,23 @@ import ButtonFilled from '../components/ButtonFilled'
 
 const NeighboringAmenities = () => {
     return (
-        <div className='mb-8 space-y-2'>
-            <Heading level={1} className="text-xl font-bold text-slate-800 mb-4">
-                Neighboring Amenities
-            </Heading>
-            <div className='grid-auto gap-8'>
-                <AmenityCard title='Education' amenities={schools}/>
-                <AmenityCard title='Health' amenities={medicals}/>
-                <AmenityCard title='Shopping' amenities={shoppings}/>
-                <AmenityCard title='Recreation' amenities={recreations}/>
+        <section className="px-8">
+            <div className='mb-8 space-y-2'>
+                <Heading level={1} className="text-xl font-bold text-slate-800 mb-4">
+                    Neighboring Amenities
+                </Heading>
+                <div className='grid-auto gap-8'>
+                    <AmenityCard title='Education' amenities={schools}/>
+                    <AmenityCard title='Health' amenities={medicals}/>
+                    <AmenityCard title='Shopping' amenities={shoppings}/>
+                    <AmenityCard title='Recreation' amenities={recreations}/>
+                </div>
+    
+                <ButtonFilled>VIEW MORE ON MAP</ButtonFilled>
             </div>
+        </section>
+        )
 
-            <ButtonFilled>VIEW MORE ON MAP</ButtonFilled>
-        </div>
-    )
 }
 
 const schools = [
