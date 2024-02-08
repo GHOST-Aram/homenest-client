@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import Image from '../components/Image'
-import { images } from '../image-urls'
+import { images } from '../data/image-urls'
 import Heading from '../components/Heading'
 import ButtonFilled from '../components/ButtonFilled'
 
