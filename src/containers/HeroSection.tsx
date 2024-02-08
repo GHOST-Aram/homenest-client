@@ -6,7 +6,7 @@ const HeroSection = () => {
 		return (
 		<section className='hero h-[70vh]'>
 			<div className=" hero-texts text-center absolute space-y-8 w-full pt-24 
-				lg:pt-24 h-[70vh]"
+				lg:pt-24 h-[70vh] overlay"
 			>
 				<Heading level={1} className='font-bold text-4xl text-slate-300
 					 text-center'

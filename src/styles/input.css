@@ -73,7 +73,7 @@ header{
     text-align: center;
 }
 
-.hero div{
+.hero .overlay{
     background-color: rgba(0, 0, 0, 0.7);
 }
 

@@ -12,6 +12,9 @@ const Navbar = () => {
             <NavLink to={'/listings'} className={'p-4 text-slate-300 font-bold'}>
                 LISTINGS
             </NavLink>
+            <NavLink to={'/details'} className={'p-4 text-slate-300 font-bold'}>
+                DETAILS
+            </NavLink>
         </nav>
     )
 }
