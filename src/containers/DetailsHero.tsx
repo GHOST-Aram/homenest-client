@@ -37,13 +37,6 @@ const DetailsHero = () => {
                     Parklands Nairobi, near Naivas Food Market.
                 </Heading>
             </div>
-            <div className="flex flex-row gap-4 justify-center pt-8">
-                <button className ='px-8 py-4 bg-blue-700 text-slate-300 text-lg font-bold 
-                    flex items-center justify-between gap-4 rounded-md'>
-                    <span>READ MORE</span>
-                    <FaArrowAltCircleDown className='text-slate-300 text-lg font-bold '/>
-                </button>
-            </div>
         </div>        
     </section>
   )
