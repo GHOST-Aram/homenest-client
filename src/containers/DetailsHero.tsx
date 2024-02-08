@@ -4,7 +4,6 @@ import { GiMoneyStack } from "react-icons/gi";
 import { IoBedSharp } from "react-icons/io5";
 import { FaMap } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
-import ButtonFilled from '../components/ButtonFilled';
 import { FaArrowAltCircleDown } from "react-icons/fa";
 
 const DetailsHero = () => {
