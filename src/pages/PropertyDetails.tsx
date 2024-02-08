@@ -4,6 +4,7 @@ import ContactLandlord from '../containers/ContactLandlord'
 import NeighboringAmenities from '../containers/NeighboringAmenities'
 import PropertyGallery from '../containers/PropertyGallery'
 import KeyFeatures from '../containers/KeyFeatures'
+import FloorPlan from '../containers/FloorPlan'
 
 const PropertyDetails = () => {
     return (
@@ -16,6 +17,7 @@ const PropertyDetails = () => {
             <NeighboringAmenities />
             <PropertyGallery />
             <KeyFeatures />
+            <FloorPlan />
         </>
     )
 }

@@ -547,6 +547,11 @@ video {
   margin: auto;
 }
 
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
 .mb-24 {
   margin-bottom: 6rem;
 }
