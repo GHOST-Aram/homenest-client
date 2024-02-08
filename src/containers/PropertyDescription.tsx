@@ -3,7 +3,7 @@ import Heading from '../components/Heading'
 import Paragraph from '../components/Paragraph'
 const PropertyDescription = () => {
   return (
-    <div className='px-8 w-full md:w-3/5 lg:w-3/5 xlg:w-3/5'>
+    <div className='w-full md:w-3/5 lg:w-3/5 xlg:w-3/5'>
         <Heading level={3} className='font-bold text-slate-800 text-xl mt-2 py-2'>About the Property</Heading>
         <Paragraph>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
