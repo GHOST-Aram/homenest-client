@@ -9,7 +9,7 @@ const TenantReviews = () => {
 
     return (
         <Section>
-            <SectionHeading>What Other Tenants Say.</SectionHeading>
+            <SectionHeading>What Previous Tenants Say.</SectionHeading>
             <div className="flex flex-row gap-4 pb-4 overflow-x-scroll horizontal-scroll">
                 {
                     reviews.length> 0 && tenantReviews.map(review =>(

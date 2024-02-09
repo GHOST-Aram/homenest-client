@@ -5,6 +5,8 @@ import NeighboringAmenities from '../containers/NeighboringAmenities'
 import PropertyGallery from '../containers/PropertyGallery'
 import KeyFeatures from '../containers/KeyFeatures'
 import FloorPlan from '../containers/FloorPlan'
+import Map from '../containers/Map'
+import TenantReviews from '../containers/TenantReviews'
 
 const PropertyDetails = () => {
     return (
@@ -17,7 +19,11 @@ const PropertyDetails = () => {
             <NeighboringAmenities />
             <PropertyGallery />
             <KeyFeatures />
-            <FloorPlan />
+            <div className='lg:flex lg:gap-8'>
+                <FloorPlan />
+                <Map />
+            </div>
+            <TenantReviews />
         </>
     )
 }
