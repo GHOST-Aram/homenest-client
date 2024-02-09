@@ -1,9 +1,17 @@
 import React from 'react'
 import ButtonFilled from './ButtonFilled'
 import Image from './Image'
+import { useNavigate } from 'react-router-dom'
 
-const FeaturedCard = ({ rentPm, location, bedrooms, imageSrc }: FeaturedCardProps) => {
-  return (
+const FeaturedCard = ({ id, rentPm, location, bedrooms, imageSrc }: FeaturedCardProps) => {
+    const navigate = useNavigate()
+
+    const navigateToDetails = () =>{
+        console.log('Trying to navifate')
+        navigate(`/listings/${id}`)
+    }
+    
+    return (
         <div className="min-w-80 rounded-md border-2 flex flex-col justify-between">
             <Image 
                 src={imageSrc} 
@@ -21,14 +29,17 @@ const FeaturedCard = ({ rentPm, location, bedrooms, imageSrc }: FeaturedCardProp
                     <span className='font-bold text-slate-700'>Bedrooms:</span> 
                     <span className='font-bold'>{bedrooms}</span> </p>
                 <div className="text-center py-4">
-                    <ButtonFilled className='w-full'>VIEW DETAILS</ButtonFilled>
+                    <ButtonFilled className='w-full'
+                        onClick={navigateToDetails}
+                    >VIEW DETAILS</ButtonFilled>
                 </div>
             </div>
         </div>
-  )
+    )
 }
 
 interface FeaturedCardProps{
+    id: string
     rentPm: string
     location: string
     bedrooms: string

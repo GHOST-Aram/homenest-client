@@ -4,7 +4,7 @@ import FeaturedCard from "./FeaturedCard";
 describe('Featured Card Component', () => {
 
     test('Renders property Image', () =>{
-        render(<FeaturedCard 
+        render(<FeaturedCard id="KI" 
             rentPm = {'12.5k'} location ='Nakuru' 
             bedrooms = {'4 bedrooms'} imageSrc = ''
         />)
@@ -15,7 +15,7 @@ describe('Featured Card Component', () => {
     })
 
     test('Renders Alt text for property Image', () =>{
-        render(<FeaturedCard 
+        render(<FeaturedCard id="KI" 
             rentPm = {'12.5k'} location ='Nakuru' 
             bedrooms = {'4 bedrooms'} imageSrc = ''
         />)
@@ -26,7 +26,7 @@ describe('Featured Card Component', () => {
     })
 
     test('Renders rates per month, locatio and number of bedrooms', () => {
-        render(<FeaturedCard 
+        render(<FeaturedCard id="KI" 
             rentPm = {'12.5k'} location ='Nakuru' 
             bedrooms = {'4 bedrooms'} imageSrc = ''
         />)
@@ -41,7 +41,7 @@ describe('Featured Card Component', () => {
     })
 
     test('Renders read more button', () => {
-        render(<FeaturedCard 
+        render(<FeaturedCard id="KI" 
             rentPm = {'12.5k'} location ='Nakuru' 
             bedrooms = {'4 bedrooms'} imageSrc = ''
         />)

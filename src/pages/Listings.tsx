@@ -21,6 +21,7 @@ const Listings = () => {
 					apartments.length > 0 ?
 						apartments.map((apartment:any) =>(
 							<FeaturedCard 
+								id={apartment._id.toString()}
 								rentPm={apartment.price} 
 								location={apartment.location} 
 								bedrooms={apartment.bedrooms} 

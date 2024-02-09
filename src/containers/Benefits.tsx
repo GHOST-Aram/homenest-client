@@ -21,6 +21,7 @@ const Benefits = () => {
                             title={benefit.title} 
                             textContent={benefit.textContent}
                             icon={benefit.icon}
+                            key={benefit.id}
                         />
 
                     ))
