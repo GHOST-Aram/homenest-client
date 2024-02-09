@@ -7,6 +7,7 @@ import KeyFeatures from '../containers/KeyFeatures'
 import FloorPlan from '../containers/FloorPlan'
 import Map from '../containers/Map'
 import TenantReviews from '../containers/TenantReviews'
+import PropertyCallToAction from '../containers/PropertyCallToAction'
 
 const PropertyDetails = () => {
     return (
@@ -24,6 +25,7 @@ const PropertyDetails = () => {
                 <Map />
             </div>
             <TenantReviews />
+            <PropertyCallToAction />
         </>
     )
 }
