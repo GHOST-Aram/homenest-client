@@ -1,4 +1,3 @@
-import React from 'react'
 import Heading from '../components/Heading'
 
 const Map = () => {
@@ -14,8 +13,8 @@ const Map = () => {
                     height="490"
                     style={{border:0, margin: 'auto'}}
                     loading="lazy"
-                    allowfullscreen
-                    referrerpolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
                     src="https://www.google.com/maps/embed/v1/place?key=
                         &q=Space+Needle,Seattle+WA">
                 </iframe>
