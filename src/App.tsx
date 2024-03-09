@@ -19,10 +19,12 @@ function App() {
 					<Route path='/listings' element = {<Listings/>}/>
 					<Route path='/listings/:id' element = {<PropertyDetails/>}/>
 					<Route path='/details' element = {<PropertyDetails/>}/>
-					<Route path='/sign-up' element ={<SignUp/>}/>
-					<Route path='/login' element = {<Login />}/>
 				</Routes>
 			</AuthProvider>
+			<Routes>
+				<Route path='/sign-up' element ={<SignUp/>}/>
+				<Route path='/login' element = {<Login />}/>
+			</Routes>
 			<Footer />
 		</div>
 	);
