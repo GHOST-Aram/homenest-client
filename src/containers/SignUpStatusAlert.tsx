@@ -1,18 +1,26 @@
 import Alert from '@mui/material/Alert'
+import { Status } from '../types'
 import  CircularProgress  from '@mui/material/CircularProgress'
+import GoToLoginBtn from '../components/GoToLoginBtn'
 
 const StatusAlert = ({ status }: { status: Status }) => {
     return (
         <div>
             {
                 status === 'conflict' ?
-                <Alert variant='filled' severity='warning'>
-                    Email has already been taken
-                </Alert>
+                <div className="space-y-4">
+                    <Alert variant='filled' severity='warning'>
+                        Email has already been taken
+                    </Alert>
+                    <GoToLoginBtn />
+                </div>
                 : status === 'created' ?
-                <Alert variant='filled' severity='success'>
-                    Sign Up successfull
-                </Alert>
+                <div className='space-y-4'>
+                    <Alert variant='filled' severity='success'>
+                        Sign Up successfull
+                    </Alert>
+                    <GoToLoginBtn />
+                </div>
                 :status === 'invalid-input' ?
                 <Alert variant='filled' severity='error'>
                     Invalid Input
@@ -25,5 +33,4 @@ const StatusAlert = ({ status }: { status: Status }) => {
     )
 }
 
-export type Status = 'idle'|'loading'|'created'|'error'|'conflict'|'server-error'|'invalid-input'
 export default StatusAlert

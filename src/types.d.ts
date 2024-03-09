@@ -12,3 +12,5 @@ export type UserData = {
     password: string
     confirmPassword:string
 }
+
+export type Status = 'idle'|'loading'|'created'|'error'|'conflict'|'server-error'|'invalid-input'
