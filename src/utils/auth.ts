@@ -1,5 +1,5 @@
 import { loginProps } from "../types"
-export const authenticateUser = async(
+export const sendAuthenticationRequest = async(
     authUrl: string, loginData: loginProps): Promise<Response> =>{
         const response = await fetch(authUrl, {
             method: 'POST',
