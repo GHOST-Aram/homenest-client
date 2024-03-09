@@ -21,4 +21,10 @@ export type LoginProps = {
     email:string
 }
 
+export type User = {
+    name: string,
+    email: string,
+    role: string
+}
+
 

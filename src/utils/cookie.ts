@@ -7,3 +7,9 @@ export const setAuthenticationCookie = (tokenExpiry: number, authToken: string) 
         expires: new Date(tokenExpiry * 1000)
     })
 }
+
+export const getAuthenticationToken = ():string =>{
+    const cookies = new Cookies(null, { path : '/'})
+    const token = cookies.get('homenestAuthenticationToken')
+    return token
+}
