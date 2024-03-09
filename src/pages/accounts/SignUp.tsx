@@ -12,6 +12,7 @@ const submitUserData = (userData: UserData) =>{
 console.log(userData)
 }
 
+
 export const SignUp = () =>{
     const [userData, setUserData] = useState<UserData>({
         fullName: '',
@@ -30,7 +31,10 @@ export const SignUp = () =>{
         { name:'fullName',label: 'Full name', value: userData.fullName, type: 'text' },
         { name:'email',label: 'Email', value: userData.email , type: 'email'},
         { name:'password',label: 'Password', value: userData.password , type: 'password'},
-        { name:'confirmPassword',label: 'Confirm Password', value: userData.confirmPassword, type: 'password'}, 
+        { 
+            name:'confirmPassword',label: 'Confirm Password', 
+            value: userData.confirmPassword, type: 'password'
+        }, 
     ]
 
    
@@ -59,10 +63,13 @@ export const SignUp = () =>{
                         />
                     ))
                 }
-
+                {
+                    userData.password !== userData.confirmPassword &&
+                    <p className="text-sm text-red-700">Passwords should be identical</p>
+                }
                 <FormControl>
                     <FormLabel id='role' >Sign Up as</FormLabel>
-                    <RadioGroup aria-labelledby='role' value={userData.role} defaultValue={'tenant'} name='role' 
+                    <RadioGroup aria-labelledby='role' value={userData.role} name='role' 
                     onChange={collectUserInput}>
                         <FormControlLabel value={'tenant'} control={<Radio/>} label='Tenant'/>
                         <FormControlLabel value={'landlord'} control={<Radio/>} label='Landlord'/>
