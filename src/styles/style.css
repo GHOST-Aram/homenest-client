@@ -543,14 +543,6 @@ video {
   position: relative;
 }
 
-.top-8 {
-  top: 2rem;
-}
-
-.m-8 {
-  margin: 2rem;
-}
-
 .m-auto {
   margin: auto;
 }
@@ -558,6 +550,11 @@ video {
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .mb-24 {
