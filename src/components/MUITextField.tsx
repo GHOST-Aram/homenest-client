@@ -14,7 +14,9 @@ const MUITextField = (
             required
             name={name}
             className={className}
-            inputProps={type==='password' ? {maxLength: 24, minLength:8}: {}}
+            inputProps={
+                type==='password' ? {maxLength: 24, minLength:8}: 
+                type === 'text' ? { minLength: 2 } :{}}
         />
     )
 }
