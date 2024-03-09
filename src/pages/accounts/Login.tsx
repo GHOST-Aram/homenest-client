@@ -5,6 +5,7 @@ import { LoginProps, Status } from '../../types'
 import { authenticateUser, decodeAuthToken } from '../../utils/auth'
 import { JwtPayload } from 'jwt-decode'
 import { setAuthenticationCookie } from '../../utils/cookie'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
     const [status, setStatus] = useState<Status>('idle')
@@ -13,6 +14,7 @@ const Login = () => {
         email: '',  password: ''
     })
 
+    const navigate = useNavigate()
     const collectLoginDetails = (e: ChangeEvent<HTMLInputElement>) =>{
         const { name, value } = e.target
         setLoginDetails({...loginDetails, [name]: value })
@@ -23,6 +25,7 @@ const Login = () => {
             const decoded:JwtPayload = decodeAuthToken(authToken)
             if(decoded.exp){
                 setAuthenticationCookie(decoded.exp, authToken)
+                navigate('/')
             }
         } catch(error){
             setStatus('error')
