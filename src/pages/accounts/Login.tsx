@@ -1,10 +1,11 @@
 import Paper from '@mui/material/Paper'
 import LoginForm from '../../containers/LoginForm'
 import { ChangeEvent, useState } from 'react'
-import { LoginProps } from '../../types'
-import { sendAuthenticationRequest } from '../../utils/auth'
+import { LoginProps, Status } from '../../types'
+import { authenticateUser } from '../../utils/auth'
 
 const Login = () => {
+    const [status, setStatus] = useState<Status>('idle')
     const [authToken, setAuthToken] = useState<string>('')
     const [loginDetails, setLoginDetails] = useState<LoginProps>({
         email: '',  password: ''
@@ -14,25 +15,8 @@ const Login = () => {
         const { name, value } = e.target
         setLoginDetails({...loginDetails, [name]: value })
     }
-
-    const authenticateUser = async() =>{
-        try {
-            const response = await sendAuthenticationRequest(
-                'http://localhost:8000/auth', loginDetails)
-
-            console.log(response.status)
-
-            const body = await response.json()
-            if(response.status === 201){
-                const token = body.token
-                setAuthToken(token)
-            }
-            console.log(authToken)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-  
+    
+    if(authToken){}
 
     return (
         <div className="my-16">
@@ -43,7 +27,9 @@ const Login = () => {
                 <LoginForm 
                     changeHandler={collectLoginDetails} 
                     loginDetails={loginDetails}
-                    authenticateUser={authenticateUser}
+                    processStatus={status}
+                    authenticateUser={() => authenticateUser(setAuthToken, 
+                        setStatus, loginDetails)}
                 />
             </Paper>
         </div>

@@ -13,9 +13,12 @@ export type UserData = {
     confirmPassword:string
 }
 
-export type Status = 'idle'|'loading'|'created'|'error'|'conflict'|'server-error'|'invalid-input'
+export type Status = 'idle'|'loading'|'created'|'error'|'conflict'|'server-error'
+    |'invalid-input' | 'authenticated' | 'unauthorised'
 
 export type LoginProps = {
     password: string
     email:string
 }
+
+

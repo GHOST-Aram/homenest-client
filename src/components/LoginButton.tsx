@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button'
+import { Status } from '../types'
 
-const LoginButton = () => {
+const LoginButton = ({processStatus}:{processStatus: Status}) => {
   return (
     <Button 
         variant='contained' 
@@ -9,7 +10,9 @@ const LoginButton = () => {
         className='w-full'
         type='submit'
     >
-        Login
+        {
+           processStatus ==='loading' ? 'Loading' : 'Login'
+        }
     </Button>
   )
 }
