@@ -10,21 +10,21 @@ import Navbar from './Navbar';
 
 const Header = () => {
     return (
-        <header className=' px-4 pt-4 bg-blue-700 space-y-4'
+        <header className=' p-4 pt-4 bg-blue-700 space-y-4'
         >
             <div className='flex flex-row justify-between items-start gap-4'>
                 <MenuButton />
                 <Logo src={logo}/>
+                <Navbar />
+            </div>
+            <HorizontalDivider />
                 <div className="items-center gap-4 w-full hidden md:flex lg:flex 
                     xl:flex"
                 >
                     <SelectBox />
                     <SearchBox />
+                    <SearchButton/>
                 </div>
-                <SearchButton/>
-            </div>
-            <HorizontalDivider />
-            <Navbar />
         </header>
     )
 }
