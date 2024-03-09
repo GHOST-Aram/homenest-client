@@ -7,11 +7,12 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import FormLabel from '@mui/material/FormLabel'
 import Button from '@mui/material/Button'
 import { ChangeEvent, useState } from 'react'
+import { createUser } from '../../utils/fetch'
+import Alert from '@mui/material/Alert'
 
-const submitUserData = (userData: UserData) =>{
-console.log(userData)
+const passwordsMatch = (password: string, confirmPassword: string) =>{
+    return password === confirmPassword 
 }
-
 
 export const SignUp = () =>{
     const [userData, setUserData] = useState<UserData>({
@@ -22,15 +23,19 @@ export const SignUp = () =>{
         confirmPassword:''
     })
 
+    const [ status, setStatus] = useState<Status>('idle')
+    
     const collectUserInput = (e: ChangeEvent<HTMLInputElement>) =>{
         const { name, value } = e.target
         setUserData({...userData, [name]: value })
     }
 
+
     const fieldData = [
         { name:'fullName',label: 'Full name', value: userData.fullName, type: 'text' },
         { name:'email',label: 'Email', value: userData.email , type: 'email'},
-        { name:'password',label: 'Password', value: userData.password , type: 'password'},
+        { 
+            name:'password',label: 'Password', value: userData.password , type: 'password'},
         { 
             name:'confirmPassword',label: 'Confirm Password', 
             value: userData.confirmPassword, type: 'password'
@@ -40,9 +45,32 @@ export const SignUp = () =>{
    
 
     return(
-        <form className='py-8' onSubmit={(e) =>{
+        <form className='py-8' onSubmit={async(e) =>{
             e.preventDefault()
-            submitUserData(userData)
+            if(passwordsMatch(userData.password, userData.confirmPassword)){
+                const apiUrl = 'http://localhost:8000/users'
+
+                try{
+                    setStatus('loading')
+                    const response = await createUser(apiUrl, userData)
+                    const statusCode = response.status
+                    if(statusCode === 409){
+                        setStatus('conflict')
+                    } else if(statusCode === 201){
+                        setStatus('created')
+                    } else if(statusCode === 500){
+                        setStatus('server-error')
+                    } else if(statusCode === 400){
+                        setStatus('invalid-input')
+                    }
+                    const text = await response.text()
+                    // const body = await response.json()
+                    console.log(statusCode, text )
+                }catch(error){
+                    setStatus('error')
+                    console.log(error)
+                }
+            }
         }}>
             <Paper 
                 elevation={8}
@@ -64,7 +92,7 @@ export const SignUp = () =>{
                     ))
                 }
                 {
-                    userData.password !== userData.confirmPassword &&
+                    !passwordsMatch(userData.password, userData.confirmPassword) &&
                     <p className="text-sm text-red-700">Passwords should be identical</p>
                 }
                 <FormControl>
@@ -75,7 +103,28 @@ export const SignUp = () =>{
                         <FormControlLabel value={'landlord'} control={<Radio/>} label='Landlord'/>
                     </RadioGroup>
                 </FormControl>
-                <Button variant='contained' className='w-full' type='submit'>Sign Up</Button>
+                <div>
+                    {
+                        status === 'conflict' ?
+                        <Alert variant='filled' severity='warning'>
+                            Email has already been taken
+                        </Alert>
+                        : status === 'created' ?
+                        <Alert variant='filled' severity='success'>
+                            Sign Up successfull
+                        </Alert>
+                        :status === 'invalid-input' ?
+                        <Alert variant='filled' severity='error'>
+                            Invalid Input
+                        </Alert>
+                        :''
+                    }
+                </div>
+                <Button  
+                    disabled = {status === 'loading' }
+                    variant='contained' className='w-full' type='submit'>
+                    {status === 'loading' ? 'Loading' : 'Sign Up' }
+                </Button>
             </Paper>
         </form>
     )
@@ -90,4 +139,7 @@ interface UserData{
     password: string
     confirmPassword:string
 }
+
+type Status = 'idle'|'loading'|'created'|'error'|'conflict'|'server-error'|'invalid-input'
+
 export default SignUp
