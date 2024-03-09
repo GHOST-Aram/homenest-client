@@ -2,7 +2,9 @@ import Paper from '@mui/material/Paper'
 import LoginForm from '../../containers/LoginForm'
 import { ChangeEvent, useState } from 'react'
 import { LoginProps, Status } from '../../types'
-import { authenticateUser } from '../../utils/auth'
+import { authenticateUser, decodeAuthToken } from '../../utils/auth'
+import { JwtPayload } from 'jwt-decode'
+import { setAuthenticationCookie } from '../../utils/cookie'
 
 const Login = () => {
     const [status, setStatus] = useState<Status>('idle')
@@ -15,9 +17,17 @@ const Login = () => {
         const { name, value } = e.target
         setLoginDetails({...loginDetails, [name]: value })
     }
-    
-    if(authToken){}
 
+    if(authToken){        
+        try{
+            const decoded:JwtPayload = decodeAuthToken(authToken)
+            if(decoded.exp){
+                setAuthenticationCookie(decoded.exp, authToken)
+            }
+        } catch(error){
+            setStatus('error')
+        }
+    }
     return (
         <div className="my-16">
             <Paper 
