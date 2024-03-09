@@ -4,6 +4,8 @@ import SignUpButton from '../components/SignUpButton'
 import StatusAlert from './SignUpStatusAlert'
 import { FormProps } from '../types'
 import { FormEvent } from 'react'
+import SecondaryButton from '../components/SecondaryButton'
+import { useNavigate } from 'react-router-dom'
 
 const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps) => {
     const fields = [
@@ -13,6 +15,8 @@ const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps
         { name:'confirmPassword',label: 'Confirm Password', value: userData.confirmPassword, 
             type: 'password'}, 
     ]
+
+    const navigate = useNavigate()
 
     const signUp = async(e:FormEvent ) => {
         e.preventDefault()
@@ -45,6 +49,7 @@ const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps
             <RolesRadioInput value={userData.role} changeHandler={changeHandler} />
             <StatusAlert status={status}/>
             <SignUpButton status={status}/>
+            <SecondaryButton label='Log In' handleClick={() =>navigate('/login')}/>
         </form>
     )
 }

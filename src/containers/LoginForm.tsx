@@ -4,7 +4,9 @@ import { LoginProps, Status } from '../types'
 import { ChangeEventHandler } from 'react'
 import AccountsForm from './AccountForm'
 import Alert from '@mui/material/Alert'
-import { CircularProgress } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress'
+import { useNavigate } from 'react-router-dom'
+import SecondaryButton from '../components/SecondaryButton'
 
 const LoginForm = ( 
     { 
@@ -13,7 +15,7 @@ const LoginForm = (
         authenticateUser,
         processStatus 
     }:formProps ) => {
-    
+    const navigate = useNavigate()
     const fields = [
         { name:'email',label: 'Email', value: loginDetails.email , type: 'email'},
         {  name:'password',label: 'Password', value: loginDetails.password , type: 'password'}
@@ -57,6 +59,7 @@ const LoginForm = (
                 :''
             }
            <LoginButton processStatus = {processStatus} />
+           <SecondaryButton label='Sign Up' handleClick={() =>navigate('/sign-up')}/>
         </AccountsForm>
     )
 }
