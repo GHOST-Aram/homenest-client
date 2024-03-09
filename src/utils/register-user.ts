@@ -1,4 +1,4 @@
-import { UserData } from "../containers/SignUpForm"
+import { UserData } from "../types"
 import { createUser } from "./fetch"
 
 export const registerUser = async(setStatus: Function, userData: UserData) =>{

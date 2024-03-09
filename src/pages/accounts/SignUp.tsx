@@ -1,8 +1,9 @@
 import Paper from '@mui/material/Paper'
 import { ChangeEvent, useState } from 'react'
 import { registerUser } from '../../utils/register-user'
-import SignUpForm, { UserData } from '../../containers/SignUpForm'
+import SignUpForm from '../../containers/SignUpForm'
 import { Status } from '../../containers/SignUpStatusAlert'
+import { UserData } from '../../types'
 
 
 export const SignUp = () =>{
