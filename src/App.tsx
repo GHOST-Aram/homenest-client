@@ -1,4 +1,3 @@
-import Header from './containers/Header';
 import Footer from './containers/Footer';
 import Home from './pages/Home';
 import { Routes, Route } from 'react-router-dom';
