@@ -6,11 +6,40 @@ import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormLabel from '@mui/material/FormLabel'
 import Button from '@mui/material/Button'
+import { ChangeEvent, useState } from 'react'
+
+const submitUserData = (userData: UserData) =>{
+console.log(userData)
+}
 
 export const SignUp = () =>{
+    const [userData, setUserData] = useState<UserData>({
+        fullName: '',
+        role: 'tenant',
+        email: '',
+        password: '',
+        confirmPassword:''
+    })
+
+    const collectUserInput = (e: ChangeEvent<HTMLInputElement>) =>{
+        const { name, value } = e.target
+        setUserData({...userData, [name]: value })
+    }
+
+    const fieldData = [
+        { name:'fullName',label: 'Full name', value: userData.fullName, type: 'text' },
+        { name:'email',label: 'Email', value: userData.email , type: 'email'},
+        { name:'password',label: 'Password', value: userData.password , type: 'password'},
+        { name:'confirmPassword',label: 'Confirm Password', value: userData.confirmPassword, type: 'password'}, 
+    ]
+
+   
 
     return(
-        <form className='py-8' onSubmit={() =>{}}>
+        <form className='py-8' onSubmit={(e) =>{
+            e.preventDefault()
+            submitUserData(userData)
+        }}>
             <Paper 
                 elevation={8}
                 className='p-8 m-8 lg:w-2/5 md:w-3/5 md:m-auto lg:m-auto flex 
@@ -18,13 +47,14 @@ export const SignUp = () =>{
             >
                 <h1 className="text-blue-700 font-bold text-lg text-center">Welcome to Homenest</h1>
                 {
-                    fields.map((field) =>(
+                    fieldData.map((field) =>(
                         <MUITextField
                             key={`${field.label.replaceAll(' ', '-')}-field`} 
                             value={field.value} 
                             label={field.label} 
-                            changeHandler={field.changeHandler}
+                            changeHandler={collectUserInput}
                             type = {field.type}
+                            name={field.name}
                             className='w-full'
                         />
                     ))
@@ -32,8 +62,8 @@ export const SignUp = () =>{
 
                 <FormControl>
                     <FormLabel id='role' >Sign Up as</FormLabel>
-                    <RadioGroup aria-labelledby='role' defaultValue={'tenant'} name='role' 
-                    onChange={(e) => {console.log(e.target.value)}}>
+                    <RadioGroup aria-labelledby='role' value={userData.role} defaultValue={'tenant'} name='role' 
+                    onChange={collectUserInput}>
                         <FormControlLabel value={'tenant'} control={<Radio/>} label='Tenant'/>
                         <FormControlLabel value={'landlord'} control={<Radio/>} label='Landlord'/>
                     </RadioGroup>
@@ -44,10 +74,13 @@ export const SignUp = () =>{
     )
 }
 
-const fields = [
-    { label: 'Full name', value: '', changeHandler: () =>{}, type: 'text' },
-    { label: 'Email', value: '', changeHandler: () =>{} , type: 'email'},
-    { label: 'Password', value: '', changeHandler: () =>{} , type: 'password'},
-    { label: 'Confirm Password', value: '', changeHandler: () =>{} , type: 'password'}, 
-]
+
+
+interface UserData{
+    fullName: string
+    role: string
+    email: string
+    password: string
+    confirmPassword:string
+}
 export default SignUp
