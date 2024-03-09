@@ -2,7 +2,7 @@ import { getAuthenticationToken } from './cookie'
 import { decodeAuthToken } from './auth'
 import { User } from '../types'
 
-const useAuth = (): User | {} => {
+const useAuth = (): User => {
     const token = getAuthenticationToken()
     
     try {
@@ -14,7 +14,7 @@ const useAuth = (): User | {} => {
             role: userDetails.role
         }
     } catch (error) {
-        return {}
+        return {name: '', email:'', role: 'tenant'}
     }
 }
 

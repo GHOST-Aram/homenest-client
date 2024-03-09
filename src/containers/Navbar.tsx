@@ -1,7 +1,11 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { NavLink, Link } from 'react-router-dom'
+import { authContext } from '../utils/auth'
+import Avatar from '@mui/material/Avatar'
 
 const Navbar = () => {
+    const user = useContext(authContext)
+
     return (
         <nav className='hidden flex-row gap-4 items-center md:justify-center 
             md:flex lg:flex xl:flex'
@@ -15,12 +19,22 @@ const Navbar = () => {
             <NavLink to={'/details'} className={'p-4 text-slate-300 font-bold'}>
                 DETAILS
             </NavLink>
-            <NavLink to={'/sign-up'} className={'p-4 text-slate-300 font-bold'}>
-                SIGN UP
-            </NavLink>
-            <NavLink to={'/login'} className={'p-4 text-slate-300 font-bold'}>
-                LOGIN
-            </NavLink>
+            {
+                user && user.name ?
+                 <Link to='/profile' className="flex items-center gap-4 p-2 bg-blue-800 rounded-md">
+                     <h1 className="text-slate-300 font-bold">{user.name}</h1>
+                    <Avatar />
+                 </Link>
+                 :
+                <>
+                    <NavLink to={'/sign-up'} className={'p-4 text-slate-300 font-bold'}>
+                        SIGN UP
+                    </NavLink>
+                    <NavLink to={'/login'} className={'p-4 text-slate-300 font-bold'}>
+                        LOGIN
+                    </NavLink>
+                </>
+            }
         </nav>
     )
 }
