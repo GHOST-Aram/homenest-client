@@ -21,17 +21,19 @@ export const SignUp = () =>{
     }
 
     return(
-        <Paper 
-            elevation={8}
-            className='my-8 lg:w-2/5 md:w-3/5 md:m-auto lg:m-auto'   
-        >
-            <SignUpForm 
-                status={status} 
-                changeHandler={collectUserInput} 
-                registerUser={() => registerUser(setStatus, userData)}
-                userData={userData}
-            />            
-        </Paper>
+        <div className="my-8">
+            <Paper 
+                elevation={8}
+                className='m-8 lg:w-2/5 md:w-3/5 md:m-auto lg:m-auto'   
+            >
+                <SignUpForm 
+                    status={status} 
+                    changeHandler={collectUserInput} 
+                    registerUser={() => registerUser(setStatus, userData)}
+                    userData={userData}
+                />            
+            </Paper>
+        </div>
     )
 }
 
