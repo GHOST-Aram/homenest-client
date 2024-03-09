@@ -1,18 +1,34 @@
 import MUITextField from '../components/MUITextField'
-import Button from '@mui/material/Button'
+import LoginButton from '../components/LoginButton'
 import { loginProps } from '../types'
 import { ChangeEventHandler } from 'react'
+import { authenticateUser } from '../utils/auth'
 
-const LoginForm = (
-    {loginDetails, changeHandler}:{ loginDetails: loginProps, changeHandler: ChangeEventHandler}
-) => {
+const LoginForm = ( {loginDetails, changeHandler, setToken}:formProps ) => {
     
     const fields = [
         { name:'email',label: 'Email', value: loginDetails.email , type: 'email'},
-        {  name:'password',label: 'Password', value: loginDetails.password , type: 'password'},
+        {  name:'password',label: 'Password', value: loginDetails.password , type: 'password'}
     ]
+    
     return (
-        <form aria-labelledby='form-label' className='p-8 flex flex-col space-y-4'>
+        <form aria-labelledby='form-label' className='p-8 flex flex-col space-y-4' 
+            onSubmit={async(e) => {
+                e.preventDefault()
+                try {
+                    const response = await authenticateUser('http://localhost:8000/auth', loginDetails)
+                    console.log(response.status)
+
+                    const body = await response.json()
+                    if(response.status === 201){
+                        const token = body.token
+                        setToken(token)
+                    }
+                    console.log(body)
+                } catch (error) {
+                    console.log(error)
+                }
+            }}>
             <h1 id='form-label' className="text-blue-700 font-bold text-lg text-center">
                 Welcome to Homenest
             </h1>
@@ -29,14 +45,15 @@ const LoginForm = (
                     />
                 ))
             }
-
-            <Button variant='contained' color='primary' size='large' className='w-full'
-                onClick={() =>{console.log(loginDetails)}}
-            >
-                Login
-            </Button>
+           <LoginButton />
         </form>
     )
+}
+
+type formProps = { 
+    loginDetails: loginProps, 
+    changeHandler: ChangeEventHandler
+    setToken: Function
 }
 
 export default LoginForm
