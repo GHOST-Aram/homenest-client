@@ -14,3 +14,8 @@ export type UserData = {
 }
 
 export type Status = 'idle'|'loading'|'created'|'error'|'conflict'|'server-error'|'invalid-input'
+
+export type loginProps = {
+    password: string
+    email:string
+}

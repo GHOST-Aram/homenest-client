@@ -535,12 +535,24 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
 
 .relative {
   position: relative;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.left-0 {
+  left: 0px;
 }
 
 .m-auto {
@@ -555,6 +567,11 @@ video {
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 .mb-24 {
@@ -577,6 +594,10 @@ video {
   margin-top: 0.5rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .flex {
   display: flex;
 }
@@ -587,6 +608,10 @@ video {
 
 .h-\[70vh\] {
   height: 70vh;
+}
+
+.h-\[100vh\] {
+  height: 100vh;
 }
 
 .w-32 {
@@ -1088,6 +1113,11 @@ header{
 @media (min-width: 1024px) {
   .lg\:m-auto {
     margin: auto;
+  }
+
+  .lg\:my-16 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
   }
 
   .lg\:block {

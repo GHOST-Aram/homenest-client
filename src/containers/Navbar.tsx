@@ -18,6 +18,9 @@ const Navbar = () => {
             <NavLink to={'/sign-up'} className={'p-4 text-slate-300 font-bold'}>
                 SIGN UP
             </NavLink>
+            <NavLink to={'/login'} className={'p-4 text-slate-300 font-bold'}>
+                LOGIN
+            </NavLink>
         </nav>
     )
 }
