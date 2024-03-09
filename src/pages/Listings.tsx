@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import Header from '../containers/Header'
 import { getData } from '../utils/fetch'
 import Section from '../components/Section'
 import FeaturedCard from '../components/FeaturedCard'
@@ -15,6 +16,8 @@ const Listings = () => {
 	},[])
 
     return (
+		<>
+		<Header />
         <Section>
 			<div className="py-4 listings-grid">
 				{
@@ -33,6 +36,7 @@ const Listings = () => {
 				}
 			</div>
 		</Section>
+		</>
     )
 }
 

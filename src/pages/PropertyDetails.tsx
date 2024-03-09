@@ -8,10 +8,12 @@ import FloorPlan from '../containers/FloorPlan'
 import Map from '../containers/Map'
 import TenantReviews from '../containers/TenantReviews'
 import PropertyCallToAction from '../containers/PropertyCallToAction'
+import Header from '../containers/Header'
 
 const PropertyDetails = () => {
     return (
         <>
+            <Header />
             <DetailsHero />
             <section className='md:flex lg:flex xl:flex justify-between px-8'>
                 <PropertyDescription />
