@@ -14,13 +14,6 @@ const StatusAlert = ({ status }: { status: Status }) => {
                     </Alert>
                     <GoToLoginBtn />
                 </div>
-                : status === 'created' ?
-                <div className='space-y-4'>
-                    <Alert variant='filled' severity='success'>
-                        Sign Up successfull
-                    </Alert>
-                    <GoToLoginBtn />
-                </div>
                 :status === 'invalid-input' ?
                 <Alert variant='filled' severity='error'>
                     Invalid Input

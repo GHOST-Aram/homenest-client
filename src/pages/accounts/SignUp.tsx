@@ -3,9 +3,11 @@ import { ChangeEvent, useState } from 'react'
 import { registerUser } from '../../utils/register-user'
 import SignUpForm from '../../containers/SignUpForm'
 import { UserData, Status } from '../../types'
-
+import { useNavigate } from 'react-router'
 
 export const SignUp = () =>{
+    const navigate = useNavigate()
+
     const [ status, setStatus] = useState<Status>('idle')
     const [userData, setUserData] = useState<UserData>({
         fullName: '',
@@ -20,6 +22,9 @@ export const SignUp = () =>{
         setUserData({...userData, [name]: value })
     }
 
+    if(status === 'created'){
+        navigate('/login')
+    }
     return(
         <div className="my-8">
             <Paper 
