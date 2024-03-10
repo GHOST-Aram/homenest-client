@@ -6,6 +6,7 @@ import PropertyDetails from './pages/PropertyDetails';
 import SignUp from './pages/accounts/SignUp';
 import Login from './pages/accounts/Login';
 import { AuthProvider } from './utils/authContext';
+import Profile from './pages/Profile';
 
 function App() {	
 	return (
@@ -18,6 +19,7 @@ function App() {
 					<Route path='/details' element = {<PropertyDetails/>}/>
 					<Route path='/sign-up' element ={<SignUp/>}/>
 					<Route path='/login' element = {<Login />}/>
+					<Route path='/profile' element = {<Profile/>}/>
 				</Routes>
 			</AuthProvider>
 			<Footer />

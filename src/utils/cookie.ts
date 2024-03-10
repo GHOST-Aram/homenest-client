@@ -13,3 +13,8 @@ export const getAuthenticationToken = ():string =>{
     const token = cookies.get('homenestAuthenticationToken')
     return token
 }
+
+export const removeAuthenticationToken = () =>{
+    const cookies = new Cookies(null, { path : '/'})
+    cookies.remove('homenestAuthenticationToken')
+}

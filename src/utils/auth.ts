@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode"
 import { LoginProps } from "../types"
+import { removeAuthenticationToken } from "./cookie"
 export const sendAuthenticationRequest = async(
     authUrl: string, loginData: LoginProps): Promise<Response> =>{
         const response = await fetch(authUrl, {
@@ -43,6 +44,10 @@ export const authenticateUser = async(
 export const decodeAuthToken = (token: string) =>{
     const decodedToken = jwtDecode(token)
     return decodedToken
+}
+
+export const logout = () =>{
+    removeAuthenticationToken()
 }
 
 
