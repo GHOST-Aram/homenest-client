@@ -8,7 +8,7 @@ const Listings = () => {
     const [apartments, setApartments] = useState<[]>([])
 	
 	useEffect(() =>{
-		getData('http://localhost:8000/rentals').then(data =>{
+		getData('http://localhost:8000/properties').then(data =>{
 			setApartments(data.resource)
 		}).catch(error => console.log(error))
 

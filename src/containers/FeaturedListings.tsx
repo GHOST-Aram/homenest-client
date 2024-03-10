@@ -8,7 +8,7 @@ const FeaturedListings = () => {
 	const [apartments, setApartments] = useState<[]>([])
 	
 	useEffect(() =>{
-		getData('http://localhost:8000/rentals').then(data =>{
+		getData('http://localhost:8000/properties').then(data =>{
 			if(data.resource){
 				setApartments(data.resource)
 			}
