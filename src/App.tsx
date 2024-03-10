@@ -8,6 +8,7 @@ import Login from './pages/accounts/Login';
 import { AuthProvider } from './utils/authContext';
 import Profile from './pages/Profile';
 import Header from './containers/Header';
+import PropertyForm from './pages/PropertyForm';
 
 function App() {	
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Routes>
 					<Route path='/' element = {<Home />}/>
 					<Route path='/listings' element = {<Listings/>}/>
+					<Route path='/listings/new' element = {<PropertyForm/>}/>
 					<Route path='/listings/:id' element = {<PropertyDetails/>}/>
 					<Route path='/details' element = {<PropertyDetails/>}/>
 					<Route path='/sign-up' element ={<SignUp/>}/>

@@ -1,4 +1,3 @@
-import Header from "../containers/Header"
 import LogoutButton from "../components/LogoutButton"
 import NavButton from "../components/NavButton"
 import UserAvatar from "../components/UserAvatar"

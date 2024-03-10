@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField'
 import { ChangeEventHandler } from 'react'
 
 
-const MUITextField = (
+const MultilineTextField = (
     { label, changeHandler, value, type, name, className }: TextFieldProps) => {
     return (
         <TextField 
@@ -12,9 +12,10 @@ const MUITextField = (
             value={value}
             type={type ? type : 'text'}
             required
-            name={name}
             fullWidth
+            name={name}
             className={className}
+            multiline
             inputProps={
                 type==='password' ? {maxLength: 24, minLength:8}: 
                 type === 'text' ? { minLength: 2 } :{}
@@ -31,4 +32,4 @@ type TextFieldProps = {
     type?:string
     className?: string
 }
-export default MUITextField
+export default MultilineTextField
