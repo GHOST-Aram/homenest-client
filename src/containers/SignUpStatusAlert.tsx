@@ -8,18 +8,18 @@ const StatusAlert = ({ status }: { status: Status }) => {
         <div>
             {
                 status === 'conflict' ?
-                <div className="space-y-4">
-                    <Alert variant='filled' severity='warning'>
-                        Email has already been taken
-                    </Alert>
-                    <GoToLoginBtn />
-                </div>
+                    <div className="space-y-4">
+                        <Alert variant='filled' severity='warning'>
+                            This email has been registered.
+                        </Alert>
+                        <GoToLoginBtn />
+                    </div>
                 :status === 'invalid-input' ?
-                <Alert variant='filled' severity='error'>
-                    Invalid Input
-                </Alert>
+                    <Alert variant='filled' severity='error'>
+                        Invalid Input
+                    </Alert>
                 :status === 'loading' ?
-                <CircularProgress />
+                    <CircularProgress />
                 :''
             }
         </div>
