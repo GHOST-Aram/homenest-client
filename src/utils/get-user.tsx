@@ -2,7 +2,7 @@ import { getAuthenticationToken } from './cookie'
 import { decodeAuthToken } from './auth'
 import { User } from '../types'
 
-const useAuth = (): User => {
+const getUser = (): User => {
     const token = getAuthenticationToken()
     
     try {
@@ -19,4 +19,4 @@ const useAuth = (): User => {
 }
 
 
-export default useAuth
+export default getUser

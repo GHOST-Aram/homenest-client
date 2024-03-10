@@ -1,20 +1,23 @@
 import Paper from '@mui/material/Paper'
 import LoginForm from '../../containers/LoginForm'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import { LoginProps, Status } from '../../types'
 import { authenticateUser, decodeAuthToken } from '../../utils/auth'
-import { JwtPayload } from 'jwt-decode'
 import { setAuthenticationCookie } from '../../utils/cookie'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../utils/authContext'
 
 const Login = () => {
+    const navigate = useNavigate()
+    const authContext = useContext(AuthContext)
+
     const [status, setStatus] = useState<Status>('idle')
     const [authToken, setAuthToken] = useState<string>('')
     const [loginDetails, setLoginDetails] = useState<LoginProps>({
         email: '',  password: ''
     })
 
-    const navigate = useNavigate()
+
     const collectLoginDetails = (e: ChangeEvent<HTMLInputElement>) =>{
         const { name, value } = e.target
         setLoginDetails({...loginDetails, [name]: value })
@@ -22,7 +25,14 @@ const Login = () => {
 
     if(authToken){        
         try{
-            const decoded:JwtPayload = decodeAuthToken(authToken)
+            const decoded:any = decodeAuthToken(authToken)
+            
+            authContext.setUser({
+                email: decoded.email,
+                name: decoded.name,
+                role: decoded.role
+            })
+
             if(decoded.exp){
                 setAuthenticationCookie(decoded.exp, authToken)
                 navigate('/')

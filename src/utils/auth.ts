@@ -1,6 +1,5 @@
 import { jwtDecode } from "jwt-decode"
 import { LoginProps } from "../types"
-import { createContext } from "react"
 export const sendAuthenticationRequest = async(
     authUrl: string, loginData: LoginProps): Promise<Response> =>{
         const response = await fetch(authUrl, {
@@ -46,6 +45,4 @@ export const decodeAuthToken = (token: string) =>{
     return decodedToken
 }
 
-export const authContext = createContext({name: '', email: '', role: 'tenant' })
-export const AuthProvider = authContext.Provider
-export const AuthConsumer = authContext.Consumer
+

@@ -5,26 +5,21 @@ import Listings from './pages/Listings';
 import PropertyDetails from './pages/PropertyDetails';
 import SignUp from './pages/accounts/SignUp';
 import Login from './pages/accounts/Login';
-import useAuth from './utils/useAuth';
-import { AuthProvider } from './utils/auth';
+import { AuthProvider } from './utils/authContext';
 
-function App() {
-	const user = useAuth()
-	
+function App() {	
 	return (
 		<div>
-			<AuthProvider value={user}>
+			<AuthProvider>
 				<Routes>
 					<Route path='/' element = {<Home />}/>
 					<Route path='/listings' element = {<Listings/>}/>
 					<Route path='/listings/:id' element = {<PropertyDetails/>}/>
 					<Route path='/details' element = {<PropertyDetails/>}/>
+					<Route path='/sign-up' element ={<SignUp/>}/>
+					<Route path='/login' element = {<Login />}/>
 				</Routes>
 			</AuthProvider>
-			<Routes>
-				<Route path='/sign-up' element ={<SignUp/>}/>
-				<Route path='/login' element = {<Login />}/>
-			</Routes>
 			<Footer />
 		</div>
 	);

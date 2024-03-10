@@ -5,7 +5,7 @@ export type FormProps = {
     changeHandler: ChangeEventHandler 
 }
 
-export type UserData = {
+export interface UserData{
     fullName: string
     role: string
     email: string
@@ -21,7 +21,7 @@ export type LoginProps = {
     email:string
 }
 
-export type User = {
+export interface User{
     name: string,
     email: string,
     role: string
