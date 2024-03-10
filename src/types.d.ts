@@ -24,7 +24,8 @@ export type LoginProps = {
 export interface User{
     name: string,
     email: string,
-    role: string
+    role: string,
+    id: string
 }
 
 

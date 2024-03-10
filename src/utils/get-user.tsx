@@ -11,10 +11,11 @@ const getUser = (): User => {
         return {
             name: userDetails.name,
             email: userDetails.email,
-            role: userDetails.role
+            role: userDetails.role,
+            id: userDetails.sub
         }
     } catch (error) {
-        return {name: '', email:'', role: 'tenant'}
+        return {name: '', email:'', role: 'tenant', id:''}
     }
 }
 

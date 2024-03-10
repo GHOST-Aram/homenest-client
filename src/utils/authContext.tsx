@@ -6,6 +6,7 @@ import { User } from '../types'
 export const AuthContext = createContext<any>(null)
 
 export const AuthProvider = ({children }: {children: ReactNode}) =>{
+    
     const [user, setUser] = useState<User | null>(null)
 
     useEffect(() =>{

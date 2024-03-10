@@ -7,13 +7,14 @@ import FormControlLabel from "@mui/material/FormControlLabel"
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Button from '@mui/material/Button'
-import { ChangeEvent, useState, ReactNode, useContext, useEffect } from "react"
+import { ChangeEvent, useState, ReactNode, useContext } from "react"
 import { AuthContext } from "../utils/authContext"
+import { createNewProperty } from "../utils/fetch"
 
 
 const PropertyForm = () => {
     const authContext = useContext(AuthContext)
-    const user = authContext.user ? authContext.user : null
+    const user = authContext.user 
 
     const [propertyDetails, setPropertyDetails] = useState<PropertyDetails>(
         { ...intialPropertyDetails }
@@ -29,15 +30,25 @@ const PropertyForm = () => {
         setPropertyDetails( { ...propertyDetails, [name]: value})
     }
 
-    // useEffect(() => {
-    //     setPropertyDetails({ ...propertyDetails,  landlord: user? user.name: "" })
-    // }, [user, propertyDetails])
-
     return (
         <form 
-            onSubmit={(e) =>{
+            onSubmit={async(e) =>{
                 e.preventDefault()
-                console.log({ propertyDetails })
+                const propertyData = { ...propertyDetails, landlord: user.id }
+
+                try {
+                    const response = await createNewProperty('http://localhost:8000/properties', 
+                        propertyData
+                    )
+    
+                    const status = response.status
+                    
+                    console.log(status)
+                    console.log(await response.json())
+                } catch (error) {
+                    console.log(error)
+                }
+
             }}
             aria-labelledby="property-form-title" 
             className="m-auto py-4 space-y-4 w-4/5"
@@ -46,7 +57,7 @@ const PropertyForm = () => {
                 New Property Listing
             </h1>
             <Box className="w-full p-8 border-2 rounded-md space-y-4">
-                <Box className="flex flex-col gap-4 md:flex-row justify-between">
+                <Box className="flex flex-col gap-4  lg:flex-row justify-between">
                     <MUITextField 
                         name="propertyName" 
                         type="text" 
