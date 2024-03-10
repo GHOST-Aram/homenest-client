@@ -28,4 +28,22 @@ export interface User{
     id: string
 }
 
+export interface PropertyData{
+    propertyName: string
+    propertyType: string
+    backgroundImageUrl: string
+    rentPerMonth: number
+    rentPerYear: number
+    locationName: string
+    bedrooms: number
+    bathrooms: number
+    landlord: string
+    squareFootage: number
+    isAvailable: boolean
+    isFurnished: boolean
+    hasParkingSpace: boolean
+    energySources: string[]
+    waterSources: string[]
+}
+
 

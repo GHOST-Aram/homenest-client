@@ -8,7 +8,7 @@ import Login from './pages/accounts/Login';
 import { AuthProvider } from './utils/authContext';
 import Profile from './pages/Profile';
 import Header from './containers/Header';
-import PropertyForm from './pages/PropertyForm';
+import PropertyForm from './pages/NewProperty';
 
 function App() {	
 	return (
