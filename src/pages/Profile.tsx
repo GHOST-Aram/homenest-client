@@ -11,7 +11,6 @@ const Profile = () => {
 
     return (
         <div>
-            <Header />
             <div className="p-8">
                 <div className="flex flex-col w-full md:flex-row lg:w-3/5 m-auto items-center 
                     justify-between gap-4"

@@ -7,11 +7,13 @@ import SignUp from './pages/accounts/SignUp';
 import Login from './pages/accounts/Login';
 import { AuthProvider } from './utils/authContext';
 import Profile from './pages/Profile';
+import Header from './containers/Header';
 
 function App() {	
 	return (
 		<div>
 			<AuthProvider>
+				<Header />
 				<Routes>
 					<Route path='/' element = {<Home />}/>
 					<Route path='/listings' element = {<Listings/>}/>
