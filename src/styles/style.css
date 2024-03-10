@@ -566,10 +566,6 @@ video {
   margin-bottom: 2rem;
 }
 
-.mb-16 {
-  margin-bottom: 4rem;
-}
-
 .mb-24 {
   margin-bottom: 6rem;
 }
@@ -590,12 +586,12 @@ video {
   margin-top: 0.5rem;
 }
 
-.mt-8 {
-  margin-top: 2rem;
-}
-
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .flex {
@@ -1104,10 +1100,6 @@ header{
 
   .md\:w-3\/5 {
     width: 60%;
-  }
-
-  .md\:w-3 {
-    width: 0.75rem;
   }
 
   .md\:flex-row {
