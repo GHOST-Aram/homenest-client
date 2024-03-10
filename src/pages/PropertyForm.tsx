@@ -1,6 +1,5 @@
 import MUITextField from "../components/MUITextField"
-import MultilineTextField from "../components/MultiLineTextField"
-import Select from "@mui/material/Select"
+import Select, { SelectChangeEvent } from "@mui/material/Select"
 import MenuItem from "@mui/material/MenuItem"
 import Box from "@mui/material/Box"
 import  Checkbox from "@mui/material/Checkbox"
@@ -8,45 +7,68 @@ import FormControlLabel from "@mui/material/FormControlLabel"
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Button from '@mui/material/Button'
+import { ChangeEvent, useState, ReactNode, useContext, useEffect } from "react"
+import { AuthContext } from "../utils/authContext"
 
 
 const PropertyForm = () => {
+    const authContext = useContext(AuthContext)
+    const user = authContext.user ? authContext.user : null
+
+    const [propertyDetails, setPropertyDetails] = useState<PropertyDetails>(
+        { ...intialPropertyDetails }
+    )
+
+    const getTypedorCheckedValue = (e: ChangeEvent<HTMLInputElement>) =>{
+        const { value, name } = e.target
+        setPropertyDetails( { ...propertyDetails, [name]: value})
+    }
+
+    const getSelectedValue = (e: SelectChangeEvent<string | string []>, child: ReactNode) =>{
+        const { value, name } = e.target
+        setPropertyDetails( { ...propertyDetails, [name]: value})
+    }
+
+    // useEffect(() => {
+    //     setPropertyDetails({ ...propertyDetails,  landlord: user? user.name: "" })
+    // }, [user, propertyDetails])
+
     return (
-        <form aria-labelledby="property-form-title" className="m-auto py-4 space-y-4 w-4/5">
+        <form 
+            onSubmit={(e) =>{
+                e.preventDefault()
+                console.log({ propertyDetails })
+            }}
+            aria-labelledby="property-form-title" 
+            className="m-auto py-4 space-y-4 w-4/5"
+        >
             <h1 id="property-form-title" className="text-center text-lg font-bold text-blue-700">
                 New Property Listing
             </h1>
             <Box className="w-full p-8 border-2 rounded-md space-y-4">
-                <Box className="flex gap-4 md:flex-row justify-between">
+                <Box className="flex flex-col gap-4 md:flex-row justify-between">
                     <MUITextField 
                         name="propertyName" 
                         type="text" 
                         label="Property Name"
-                        value="Monalisa Real Estates" 
-                        changeHandler={() =>{}}
+                        value={propertyDetails.propertyName} 
+                        changeHandler={getTypedorCheckedValue}
                     />
                     <MUITextField 
                         name="locationName" 
                         type="text" 
                         label="Location Address"
-                        value="Elfanix Road, Opposite PTRX" 
-                        changeHandler={() =>{}}
+                        value={propertyDetails.locationName}
+                        changeHandler={getTypedorCheckedValue}
                     /> 
                     <MUITextField 
                         name="backgroundImageUrl" 
                         type="text" 
                         label="Background Image URL"
-                        value="" 
-                        changeHandler={() =>{}}
+                        value={propertyDetails.backgroundImageUrl} 
+                        changeHandler={getTypedorCheckedValue}
                     /> 
                 </Box>
-                <MultilineTextField 
-                    name="description" 
-                    type="text" 
-                    label="Property Description"
-                    value="" 
-                    changeHandler={() =>{}}
-                />
             </Box>
             <Box className="flex flex-col gap-4 lg:flex-row justify-between p-8 border-2 
                 rounded-md"
@@ -57,8 +79,8 @@ const PropertyForm = () => {
                         fullWidth
                         labelId='property-type-label'
                         name="propertyType" 
-                        value={''} 
-                        onChange={() =>{}}
+                        value={propertyDetails.propertyType} 
+                        onChange={getSelectedValue}
                     >
                         {
                             propertyTypes.map(type =>(
@@ -68,13 +90,17 @@ const PropertyForm = () => {
                     </Select>
                 </FormControl>
                 <MUITextField 
-                    type="number" name="rentPerMonth" 
-                    value = {''} changeHandler={() =>{}} 
+                    type="number" 
+                    name="rentPerMonth" 
+                    value = {`${propertyDetails.rentPerMonth}`} 
+                    changeHandler={getTypedorCheckedValue} 
                     label={'Rent Per Month'} 
                 />
                 <MUITextField 
-                    type="number" name="rentPerYear" 
-                    value = {''} changeHandler={() =>{}} 
+                    type="number" 
+                    name="rentPerYear" 
+                    value = {`${propertyDetails.rentPerYear}`} 
+                    changeHandler={getTypedorCheckedValue} 
                     label={'Rent Per Year'} 
                 />
             </Box>
@@ -82,18 +108,24 @@ const PropertyForm = () => {
                 border-2 rounded-md"
             >
                 <MUITextField 
-                    type="number" name="bedrooms" 
-                    value = {''} changeHandler={() =>{}} 
+                    type="number" 
+                    name="bedrooms" 
+                    value = {`${propertyDetails.bedrooms}`} 
+                    changeHandler={getTypedorCheckedValue} 
                     label={'Bedrooms'} 
                 />  
                 <MUITextField 
-                    type="number" name="bathrooms" 
-                    value = {''} changeHandler={() =>{}} 
+                    type="number" 
+                    name="bathrooms" 
+                    value = {`${propertyDetails.bathrooms}`} 
+                    changeHandler={getTypedorCheckedValue} 
                     label={'Bathrooms'} 
                 />  
                 <MUITextField 
-                    type="number" name="squareFootage" 
-                    value = {''} changeHandler={() =>{}} 
+                    type="number" 
+                    name="squareFootage" 
+                    value = {`${propertyDetails.squareFootage}`} 
+                    changeHandler={getTypedorCheckedValue} 
                     label={'Square Footage'} 
                 />  
             </Box>
@@ -102,15 +134,21 @@ const PropertyForm = () => {
             >
                 <FormControlLabel 
                     label='Available' 
-                    control = {<Checkbox value={true} name="isAvailabe"/> }
+                    control = {
+                        <Checkbox value={propertyDetails.isAvailable} name="isAvailabe"/> 
+                    }
                 />
                 <FormControlLabel 
                     label='Furnished' 
-                    control = {<Checkbox value={false} name="isFurnished"/> }
+                    control = {
+                        <Checkbox value={propertyDetails.isFurnished} name="isFurnished"/> 
+                    }
                 />
                 <FormControlLabel 
                     label='Parking Space' 
-                    control = {<Checkbox value={false} name="hasParkingSpace"/> }
+                    control = {
+                        <Checkbox value={propertyDetails.hasParkingSpace} name="hasParkingSpace"/> 
+                    }
                 />
             </Box>
             <Box className="flex flex-col gap-4 lg:flex-row justify-between p-8 
@@ -122,13 +160,13 @@ const PropertyForm = () => {
                         fullWidth
                         labelId="energy-sources-label"
                         name="energySources" 
-                        value={[]} 
+                        value={propertyDetails.energySources} 
                         label='Energy Sources'
                         multiple 
-                        onChange={() =>{}}
+                        onChange={getSelectedValue}
                     >
                         {
-                            energySources.map(source =>(
+                            energySources.map((source: string) =>(
                                 <MenuItem key={source} value={source}> { source }</MenuItem>
                             ))
                         }
@@ -140,29 +178,18 @@ const PropertyForm = () => {
                         fullWidth
                         labelId='water-sources-label'
                         name="waterSources" 
-                        value={[]} 
+                        value={propertyDetails.waterSources} 
                         label='Water Sources'
                         multiple 
-                        onChange={() =>{}}
+                        onChange={getSelectedValue}
                     >
                         {
-                            waterSources.map(source =>(
+                            waterSources.map((source: string) =>(
                                 <MenuItem key={source} value={source}> { source }</MenuItem>
                             ))
                         }
                     </Select>
                 </FormControl>
-            </Box>
-            <Box className="flex flex-col gap-4 lg:flex-row justify-between p-8 
-                border-2 rounded-md"
-            >   
-                <MultilineTextField 
-                    name="petPolicy" 
-                    type="text" 
-                    label="Pet Policy"
-                    value="" 
-                    changeHandler={() =>{}}
-                />
             </Box>
             <Button variant="contained" fullWidth color="primary" size="large" type="submit">
                 List Property
@@ -176,7 +203,7 @@ const propertyTypes = [
     'Town House', 'Duplex', 'Triplex', 'MultiFamily Home',
     'Mobile Home', 'Vacation Home', 'Commercial Property',
     'Industrial Property', 'Luxury Home', 'Mixed Use Property',
-    'Luxury Home', 'Studio'
+    'Studio'
 ]
 
 const waterSources = [
@@ -186,5 +213,41 @@ const waterSources = [
 const energySources = [
     'KPLC', 'Private Solar System', 'Backup Generator', 'Other'
 ]
+
+interface PropertyDetails{
+    propertyName: string
+    propertyType: string
+    backgroundImageUrl: string
+    rentPerMonth: number
+    rentPerYear: number
+    locationName: string
+    bedrooms: number
+    bathrooms: number
+    landlord: string
+    squareFootage: number
+    isAvailable: boolean
+    isFurnished: boolean
+    hasParkingSpace: boolean
+    energySources: string[]
+    waterSources: string[]
+}
+
+const intialPropertyDetails = {
+    propertyName: '',
+    propertyType: '',
+    backgroundImageUrl: '',
+    rentPerMonth: 0,
+    rentPerYear: 0,
+    locationName: '',
+    bedrooms: 0,
+    bathrooms: 0,
+    landlord: '',
+    squareFootage: 0,
+    isAvailable: true,
+    isFurnished: false,
+    hasParkingSpace: false,
+    energySources: [],
+    waterSources: [],
+}
 
 export default PropertyForm
