@@ -8,11 +8,17 @@ import FormControlLabel from "@mui/material/FormControlLabel"
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Button from '@mui/material/Button'
-import { PropertyData } from '../types'
+import { PropertyData, Status } from '../types'
+import StatusAlert from './StatusAlert'
 
 
 const PropertyForm = ({
-    submitFormData, propertyData, getTypedorCheckedValue, getSelectedValue} : Props) => {
+    submitFormData, 
+    propertyData, 
+    getTypedorCheckedValue, 
+    getSelectedValue,
+    status
+} : Props) => {
     return (
         <div>
             <form 
@@ -172,6 +178,7 @@ const PropertyForm = ({
                         </Select>
                     </FormControl>
                 </Box>
+                <StatusAlert status = {status}/>
                 <Button variant="contained" fullWidth color="primary" size="large" type="submit">
                     List Property
                 </Button>
@@ -185,6 +192,7 @@ interface Props{
     propertyData: PropertyData
     getTypedorCheckedValue: ChangeEventHandler
     getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void
+    status : Status
 }
 
 const propertyTypes = [
