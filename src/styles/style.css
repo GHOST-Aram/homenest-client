@@ -598,6 +598,22 @@ video {
   height: 70vh;
 }
 
+.h-\[80vh\] {
+  height: 80vh;
+}
+
+.h-\[90vh\] {
+  height: 90vh;
+}
+
+.h-\[890vh\] {
+  height: 890vh;
+}
+
+.h-\[85vh\] {
+  height: 85vh;
+}
+
 .w-32 {
   width: 8rem;
 }
@@ -812,6 +828,10 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
 }
 
 .text-center {
@@ -1151,6 +1171,10 @@ header{
 
   .lg\:pt-24 {
     padding-top: 6rem;
+  }
+
+  .lg\:pt-8 {
+    padding-top: 2rem;
   }
 }
 

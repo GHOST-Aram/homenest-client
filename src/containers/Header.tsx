@@ -1,11 +1,7 @@
 import React from 'react'
 import Logo from '../components/Logo'
 import logo from '../images/homenest-logo-bw.png'
-import SearchButton from '../components/SearchButton';
 import MenuButton from '../components/MenuButton';
-import SearchBox from '../components/SearchBox';
-import SelectBox from '../components/SelectBox';
-import HorizontalDivider from './HorizontalDivider';
 import Navbar from './Navbar';
 
 const Header = () => {
@@ -17,14 +13,6 @@ const Header = () => {
                 <Logo src={logo}/>
                 <Navbar />
             </div>
-            <HorizontalDivider />
-                <div className="items-center gap-4 w-full hidden md:flex lg:flex 
-                    xl:flex"
-                >
-                    <SelectBox />
-                    <SearchBox />
-                    <SearchButton/>
-                </div>
         </header>
     )
 }
