@@ -5,11 +5,13 @@ import { createNewProperty } from "../utils/fetch"
 import { PropertyData } from "../types"
 import PropertyForm from "../containers/PropertyForm"
 import { Status } from "../types"
+import { useNavigate } from "react-router-dom"
 
 
 const NewProperty = () => {
     const authContext = useContext(AuthContext)
     const user = authContext.user 
+    const navigate = useNavigate()
 
     const [status, setStatus] = useState<Status>('idle')
     const [propertyData, setPropertyData] = useState<PropertyData>(
@@ -39,7 +41,14 @@ const NewProperty = () => {
             
             switch (statusCode){
                 case 201: {
+
+                    const body = await response.json()
+                    const createdProperty = body.item
+                    const id = createdProperty._id.toString()
+                    
                     setStatus('created')
+                    navigate(`/listings/${id}`)
+
                     break
                 }
                 case 401: {
@@ -64,6 +73,9 @@ const NewProperty = () => {
         }
     }
 
+    // if(status === 'created'){
+    // }
+
     return (
         <Box>
             <PropertyForm 
@@ -71,6 +83,7 @@ const NewProperty = () => {
                 propertyData = {propertyData}
                 getTypedorCheckedValue = {getTypedorCheckedValue} 
                 getSelectedValue = {getSelectedValue}
+                status = {status}
             />
         </Box>
     )
