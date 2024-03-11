@@ -4,10 +4,9 @@ const ListingSkeletons = () => {
     return (
         <>
        { skeletons.map((skeleton:string) =>(
-            <div className='flex flex-col rounded-md'>
+            <div key ={skeleton} className='flex flex-col rounded-md'>
                 <Skeleton 
                     sx={{backgroundColor: '#94a3b8'}}
-                    key={skeleton} 
                     variant='rectangular' 
                     height={200}
                     animation = 'wave'
