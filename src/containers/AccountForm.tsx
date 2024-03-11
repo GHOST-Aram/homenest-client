@@ -1,22 +1,34 @@
 import { ReactNode } from 'react'
+import FormLabel from '../components/FormLabel'
 
-const AccountsForm = ({ children, submitHandler }: Props) => {
-  return (
-    <form aria-labelledby='form-label' className='p-8 flex flex-col space-y-4' 
-    onSubmit={async(e) => {
-        e.preventDefault()
-        await submitHandler()
-    }}>
-    <h1 id='form-label' className="text-blue-700 font-bold text-lg text-center">
-        Welcome to Homenest
-    </h1>
-        { children }
-    </form>
-  )
+const AccountsForm = ({ children, submitHandler, heading }: Props) => {
+
+	const submitForm = (preventDefault:()=>void) => {
+		preventDefault()
+		try {
+			(async() =>{
+				await submitHandler()
+			})()
+		} catch (error) {
+			
+		}
+	}
+
+	return (
+		<form 
+			onSubmit={(e) => {submitForm(e.preventDefault)}}
+			aria-labelledby='form-label' 
+			className='p-8 flex flex-col space-y-4' 
+		>
+			<FormLabel> { heading }</FormLabel>
+			{ children }
+		</form>
+	)
 }
 
 type Props = {
     children: ReactNode
+	heading: string
     submitHandler: ()=>Promise<void>
 }
 export default AccountsForm
