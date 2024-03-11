@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getData } from '../utils/fetch'
 import Section from '../components/Section'
-import FeaturedCard from '../components/FeaturedCard'
+import FeaturedCard from '../components/PropertyCard'
 import Heading from '../components/Heading'
 import { Status } from '../types'
 import ListingSkeletons from '../containers/ListingSkeletons'

@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import FeaturedCard from "./FeaturedCard";
+import FeaturedCard from "./PropertyCard";
 
 describe('Featured Card Component', () => {
 
