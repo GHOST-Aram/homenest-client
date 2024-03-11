@@ -5,14 +5,30 @@ export const getData = async(url: string) =>{
     return response
 }
 
-export const createUser = async(url: string, userData: any) =>{
+export const patchDocument = async(url:string, data: any) =>{
+    const authToken = getAuthenticationToken()
+
+    const response = await fetch(url, {
+        method: 'PATCH',
+        redirect: 'follow',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${ authToken }`
+        },
+        body: JSON.stringify(data)
+    })
+
+    return response
+}
+
+export const createUser = async(url: string, data: any) =>{
     const response = await fetch(url, {
         method: 'POST',
         redirect: 'follow',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(data)
     })
 
     return response

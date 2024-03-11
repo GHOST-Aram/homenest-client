@@ -28,7 +28,6 @@ const GalleryForm = ({ galleryItem, changeHandler, submitHandler}: Props) => {
             <div className="flex flex-col gap-4 lg:flex-col md:flex-row w-full">
                 <Button 
                     variant='contained' 
-                    type='submit'
                     color='primary'
                     fullWidth
                 >

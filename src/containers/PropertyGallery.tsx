@@ -4,8 +4,13 @@ import Heading from '../components/Heading'
 import Button from '@mui/material/Button'
 import GalleryForm from './GalleryForm'
 import { GalleryItem } from '../types'
+import { patchDocument } from '../utils/fetch'
+import { useParams } from 'react-router-dom'
 
 const PropertyGallery = () => {
+    const { id } = useParams()
+
+    console.log(id)
     const [gallery, setGallery] = useState<GalleryItem[]>([])
     const [isFormOpen, setIsFormOpen] = useState<boolean>(false)
     const [galleryItem, setGalleryItem] = useState<GalleryItem>({url:'', alt:''})
@@ -25,7 +30,22 @@ const PropertyGallery = () => {
 
     const addToGalleryList = () =>{
         setGallery([...gallery, galleryItem])
-        closeForm()
+        // closeForm()
+    }
+
+    const updateProperty = () =>{
+        (async() =>{
+            try {
+                const response = await patchDocument(`http://localhost:8000/properties/${id}`, 
+                    { images: gallery }
+                )
+        
+                const statusCode = response.status
+                console.log(statusCode)
+            } catch (error) {
+                console.log(error)
+            }
+        })()
     }
 
   return (
@@ -47,7 +67,10 @@ const PropertyGallery = () => {
             isFormOpen && <GalleryForm 
                 galleryItem={galleryItem} 
                 changeHandler={collectGalleryItemData}
-                submitHandler={addToGalleryList}    
+                submitHandler={() => {
+                    addToGalleryList()
+                    updateProperty()
+                }}    
             />
         }
             
