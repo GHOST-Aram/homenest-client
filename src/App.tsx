@@ -9,15 +9,39 @@ import { AuthProvider } from './utils/authContext';
 import Profile from './pages/Profile';
 import Header from './containers/Header';
 import PropertyForm from './pages/NewProperty';
+import { Status } from './types';
+import { useState, useEffect } from 'react';
+import { getData } from './utils/fetch';
 
-function App() {	
+function App() {
+	const [properties, setProperties] = useState<[]>([])
+	const [processStatus, setProcessStatus] = useState<Status>('idle')
+	
+	useEffect(() =>{
+	
+		(async() =>{
+			setProcessStatus('loading')
+			const response = await getData('http://localhost:8000/properties?page=1&&limit=12')
+
+			if(response.status === 200){
+				setProcessStatus('success')
+				const data = await response.json()
+				setProperties(data)
+			}
+		})()
+
+	},[])	
 	return (
 		<div>
 			<AuthProvider>
 				<Header />
 				<Routes>
-					<Route path='/' element = {<Home />}/>
-					<Route path='/listings' element = {<Listings/>}/>
+					<Route path='/' element = {
+						<Home properties={properties} processStatus={processStatus}/>
+					}/>
+					<Route path='/listings' element = {
+						<Listings properties={properties} processStatus={processStatus}/>
+					}/>
 					<Route path='/listings/new' element = {<PropertyForm/>}/>
 					<Route path='/listings/:id' element = {<PropertyDetails/>}/>
 					<Route path='/sign-up' element ={<SignUp/>}/>

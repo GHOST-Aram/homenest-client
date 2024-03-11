@@ -1,9 +1,9 @@
 import Section from '../components/Section'
 import PropertyCard from '../components/PropertyCard'
 import ListingSkeletons from './ListingSkeletons'
-import { PropertyData, Status } from '../types'
+import { ListingProps } from '../types'
 
-const FeaturedListings = ({ properties, processStatus} : Props) => {
+const FeaturedListings = ({ properties, processStatus} : ListingProps) => {
 
     return (
 		<>
@@ -34,9 +34,6 @@ const FeaturedListings = ({ properties, processStatus} : Props) => {
 	)
 }
 
-interface Props{
-	processStatus: Status
-	properties: PropertyData[]
-}
+
 
 export default FeaturedListings

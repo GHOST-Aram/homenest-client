@@ -53,4 +53,9 @@ export interface PropertyData{
     images: GalleryItem[]
 }
 
+export interface ListingProps{
+	processStatus: Status
+	properties: PropertyData[]
+}
+
 
