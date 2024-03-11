@@ -1,13 +1,13 @@
 import React from 'react'
-import ButtonFilled from '../components/ButtonFilled'
+import Button from '@mui/material/Button'
 
 const PropertyCallToAction = () => {
   return (
     <section className='mx-8 mb-8'>
-        <div className="flex flex-col w-full md:flex-row justify-between">
-            <ButtonFilled className='w-full'>SCHEDULE VIEWING</ButtonFilled>
-            <ButtonFilled className='w-full'>APPLY ONLINE</ButtonFilled>
-            <ButtonFilled className='w-full'>CONTACT LANDLORD</ButtonFilled>
+        <div className="flex gap-8 flex-col w-full md:flex-row justify-between">
+            <Button fullWidth size='large' variant='contained'>SCHEDULE VIEWING</Button>
+            <Button fullWidth size='large' variant='contained'>APPLY ONLINE</Button>
+            <Button fullWidth size='large' variant='contained'>CONTACT LANDLORD</Button>
         </div>
     </section>
   )
