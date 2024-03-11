@@ -4,10 +4,14 @@ import Button from '@mui/material/Button'
 const ContactLandlord = () => {
     return (
         <div>
-            <Heading level={1} className="text-xl font-bold text-slate-800 mt-2 py-2">
+            <Heading level={1} className="text-xl font-bold text-slate-800 mt-2 py-2 ">
                 Contact the Landlord
             </Heading>
-            <Button variant='contained' className='w-full'> SEND DIRECT MESSAGE</Button>
+            <div className='space-y-2 flex flex-col'>
+                <Button size='large' variant='contained'> SEND DIRECT MESSAGE</Button>
+                <Button size='large' variant='contained'>SCHEDULE VIEWING</Button>
+                <Button size='large' variant='contained'>APPLY ONLINE</Button>
+            </div>
         </div>
     )
 }

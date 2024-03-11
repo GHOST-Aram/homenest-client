@@ -4,7 +4,6 @@ import ContactLandlord from '../containers/ContactLandlord'
 import NeighboringAmenities from '../containers/NeighboringAmenities'
 import PropertyGallery from '../containers/PropertyGallery'
 import KeyFeatures from '../containers/KeyFeatures'
-import PropertyCallToAction from '../containers/PropertyCallToAction'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getData } from '../utils/fetch'
@@ -47,7 +46,6 @@ const PropertyDetails = () => {
             </section>
             <NeighboringAmenities />
             <PropertyGallery />
-            <PropertyCallToAction />
         </>
     )
 }
