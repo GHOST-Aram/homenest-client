@@ -30,6 +30,6 @@ const Heading = ({ level, className, children }: HeadingProps) => {
 interface HeadingProps{
     level: number
     className: string
-    children: string
+    children: any
 }
 export default Heading

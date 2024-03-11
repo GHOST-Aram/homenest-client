@@ -11,9 +11,10 @@ import PropertyCallToAction from '../containers/PropertyCallToAction'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getData } from '../utils/fetch'
+import { PropertyData } from '../types'
 
 const PropertyDetails = () => {
-    const [property, setProperty] = useState(null)
+    const [property, setProperty] = useState<PropertyData | null >(null)
     const { id } = useParams()
     
     useEffect(() =>{
@@ -24,7 +25,7 @@ const PropertyDetails = () => {
                 console.log('Status code: ', statusCode)
                 if(statusCode === 200){
                     const data = await response.json()
-                    console.log(data)
+                    setProperty(data)
                 }
             } catch (error) {
                 console.log(error)
@@ -35,7 +36,15 @@ const PropertyDetails = () => {
     })
     return (
         <>
-            <DetailsHero />
+            <DetailsHero 
+                propertyName = { property ? property.propertyName : ''}
+                rentPerMonth = { property ? property.rentPerMonth : ''}
+                rentPerYear = { property ? property.rentPerYear : ''}
+                bedrooms = { property ? property.bedrooms : ''}
+                bathrooms = { property ? property.bathrooms : ''}
+                squareFootage  = { property ? property.squareFootage : ''}
+                locationAddress = { property ? property.locationName : ''}
+            />
             <section className='md:flex lg:flex xl:flex justify-between px-8'>
                 <PropertyDescription />
                 <ContactLandlord />
