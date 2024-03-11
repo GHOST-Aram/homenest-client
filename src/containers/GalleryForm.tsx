@@ -1,7 +1,8 @@
 import { ChangeEventHandler } from 'react'
 import MUITextField from '../components/MUITextField'
-import Button from '@mui/material/Button'
 import { GalleryItem } from '../types'
+import PrimaryButton from '../components/PrimaryButton'
+import SubmitButton from '../components/SubmitButton'
 
 const GalleryForm = ({ galleryItem, changeHandler, submitHandler}: Props) => {
     return (
@@ -26,21 +27,8 @@ const GalleryForm = ({ galleryItem, changeHandler, submitHandler}: Props) => {
                 />
             </div>
             <div className="flex flex-col gap-4 lg:flex-col md:flex-row w-full">
-                <Button 
-                    variant='contained' 
-                    color='primary'
-                    fullWidth
-                >
-                    Preview and Continue
-                </Button>
-                    <Button 
-                    variant='contained' 
-                    color={'success'}
-                    type='submit'
-                    fullWidth
-                >
-                    Save and Exit
-                </Button>
+                    <PrimaryButton onClick={()=>{}} > Preview and Continue </PrimaryButton>
+                    <SubmitButton> Save and Exit </SubmitButton>
             </div>
         </form>
     )

@@ -3,9 +3,9 @@ import RolesRadioInput from './RolesRadioInput'
 import SignUpButton from '../components/SignUpButton'
 import StatusAlert from './SignUpStatusAlert'
 import { FormProps } from '../types'
-import { FormEvent } from 'react'
 import SecondaryButton from '../components/SecondaryButton'
 import { useNavigate } from 'react-router-dom'
+import Form from '../components/Form'
 
 const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps) => {
     const fields = [
@@ -18,17 +18,13 @@ const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps
 
     const navigate = useNavigate()
 
-    const signUp = async(e:FormEvent ) => {
-        e.preventDefault()
+    const signUp = async() => {
         if(userData.password === userData.confirmPassword){
             await registerUser()
         }
     }
     return (
-        <form aria-labelledby='form-label' className='p-8 flex flex-col space-y-4'
-            onSubmit={async(e) =>{ await signUp(e) }}
-        >
-            <h1 id='form-label' className="text-blue-700 font-bold text-lg text-center">Welcome to Homenest</h1>
+        <Form heading='Welcome to Homenest' submitHandler={ signUp }>
             {
                 fields.map((field) =>(
                     <MUITextField
@@ -50,7 +46,7 @@ const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps
             <StatusAlert status={status}/>
             <SignUpButton status={status}/>
             <SecondaryButton label='Log In' handleClick={() =>navigate('/login')}/>
-        </form>
+        </Form>
     )
 }
 

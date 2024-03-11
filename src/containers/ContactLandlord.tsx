@@ -1,5 +1,5 @@
 import Heading from '../components/Heading'
-import Button from '@mui/material/Button'
+import PrimaryButton from '../components/PrimaryButton'
 
 const ContactLandlord = () => {
     return (
@@ -8,9 +8,9 @@ const ContactLandlord = () => {
                 Contact the Landlord
             </Heading>
             <div className='space-y-2 flex flex-col'>
-                <Button size='large' variant='contained'> SEND DIRECT MESSAGE</Button>
-                <Button size='large' variant='contained'>SCHEDULE VIEWING</Button>
-                <Button size='large' variant='contained'>APPLY ONLINE</Button>
+                <PrimaryButton onClick={()=>{}}> SEND DIRECT MESSAGE</PrimaryButton>
+                <PrimaryButton onClick={()=>{}}>SCHEDULE VIEWING</PrimaryButton>
+                <PrimaryButton onClick={()=>{}}>APPLY ONLINE</PrimaryButton>
             </div>
         </div>
     )

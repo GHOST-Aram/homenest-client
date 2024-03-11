@@ -2,7 +2,7 @@ import MUITextField from '../components/MUITextField'
 import LoginButton from '../components/LoginButton'
 import { LoginProps, Status } from '../types'
 import { ChangeEventHandler } from 'react'
-import AccountsForm from '../components/Form'
+import Form from '../components/Form'
 import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useNavigate } from 'react-router-dom'
@@ -22,7 +22,7 @@ const LoginForm = (
     ]
     
     return (
-        <AccountsForm submitHandler={authenticateUser}>
+        <Form submitHandler={authenticateUser} heading='Login to Homenest'>
             {
                 fields.map((field) =>(
                     <MUITextField
@@ -60,7 +60,7 @@ const LoginForm = (
             }
            <LoginButton processStatus = {processStatus} />
            <SecondaryButton label='Sign Up' handleClick={() =>navigate('/sign-up')}/>
-        </AccountsForm>
+        </Form>
     )
 }
 

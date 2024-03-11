@@ -1,7 +1,7 @@
 import SearchBox from '../components/SearchBox';
 import SelectBox from '../components/SelectBox';
 import Heading from '../components/Heading'
-import Button from '@mui/material/Button'
+import SubmitButton from '../components/SubmitButton';
 
 const HeroSection = () => {
 		return (
@@ -23,7 +23,7 @@ const HeroSection = () => {
                 >
                     <SelectBox />
                     <SearchBox />
-					<Button fullWidth size='large' variant ='contained'>START YOUR SEARCH</Button>
+					<SubmitButton>START YOUR SEARCH</SubmitButton>
                 </form>
 				
 			</div>

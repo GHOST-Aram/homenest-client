@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from 'react'
+import { ChangeEventHandler } from 'react'
 import { Radio } from '@mui/material'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControl from '@mui/material/FormControl'
