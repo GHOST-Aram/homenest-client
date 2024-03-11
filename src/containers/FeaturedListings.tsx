@@ -10,8 +10,8 @@ const FeaturedListings = () => {
 		useEffect(() =>{
 
 			(async() =>{
-				const response = await getData('http://localhost:8000/properties')
-	
+				const response = await getData('http://localhost:8000/properties?page=1&&limit=12')
+				
 				if(response.status === 200){
 					const data = await response.json()
 					setProperties(data)
@@ -25,15 +25,15 @@ const FeaturedListings = () => {
 	return (
 		<Section>
 			<SectionHeading>Featured Listings</SectionHeading>
-			<div className="flex flex-row gap-4 overflow-x-auto pb-4 horizontal-scroll">
+			<div className="gap-4 pb-4 grid-auto">
 				{
 					properties.length > 0 &&
 						properties.map((apartment:any) =>(
 							<FeaturedCard 
 								id={apartment._id.toString()}
 								key={apartment._id.toString()}
-								rentPm={apartment.price} 
-								location={apartment.location} 
+								rentPm={apartment.rentPerMonth} 
+								location={apartment.locationName} 
 								bedrooms={apartment.bedrooms} 
 								imageSrc={apartment.imageUrl}
 							/>

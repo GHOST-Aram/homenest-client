@@ -10,7 +10,7 @@ const Listings = () => {
 	useEffect(() =>{
 
 		(async() =>{
-			const response = await getData('http://localhost:8000/properties')
+			const response = await getData('http://localhost:8000/properties?page=1&&limit=12')
 
 			if(response.status === 200){
 				const data = await response.json()
