@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getData } from '../utils/fetch'
-import Section from '../components/Section'
-import PropertyCard from '../components/PropertyCard'
-import Heading from '../components/Heading'
 import { Status } from '../types'
-import ListingSkeletons from '../containers/ListingSkeletons'
+import FeaturedListings from '../containers/FeaturedListings'
 
 
 const Listings = () => {
@@ -27,31 +24,7 @@ const Listings = () => {
 	},[])
 
     return (
-		<>
-        <Section>
-			<div className="py-4 listings-grid">
-				{ processStatus === 'loading' && <ListingSkeletons /> }
-				{
-					processStatus === 'success' ?
-						properties.length > 0 ?
-							properties.map((property:any) =>(
-								<PropertyCard 
-									id={property._id.toString()}
-									rentPm={property.rentPerMonth} 
-									location={property.locationName} 
-									bedrooms={property.bedrooms} 
-									imageSrc={property.backgroundImageUrl}
-									key={property._id.toString()}
-								/>
-							)) 
-						: <Heading level={1}className='text-center font-light'>No propertys to list</Heading>
-					
-					:''	
-					
-				}
-			</div>
-		</Section>
-		</>
+		<FeaturedListings properties={properties} processStatus={processStatus}/>
     )
 }
 
