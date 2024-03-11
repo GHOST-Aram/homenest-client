@@ -1,7 +1,6 @@
 import DetailsHero from '../containers/DetailsHero'
 import PropertyDescription from '../containers/PropertyDescription'
 import ContactLandlord from '../containers/ContactLandlord'
-import NeighboringAmenities from '../containers/NeighboringAmenities'
 import PropertyGallery from '../containers/PropertyGallery'
 import KeyFeatures from '../containers/KeyFeatures'
 import { useParams } from 'react-router-dom'
@@ -46,8 +45,6 @@ const PropertyDetails = () => {
                 <PropertyDescription description = { property ? property.description : '' }/>
                 <ContactLandlord />
             </section>
-            <Divider/>
-            <NeighboringAmenities />
             <Divider/>
             <PropertyGallery />
         </>
