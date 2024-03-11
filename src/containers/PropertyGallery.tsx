@@ -19,10 +19,6 @@ const PropertyGallery = () => {
         setIsFormOpen(!isFormOpen)
     }
 
-    const closeForm = () =>{
-        setIsFormOpen(false)
-    }
-
     const collectGalleryItemData = (e: ChangeEvent<HTMLInputElement>) =>{
         const {name, value } = e.target
         setGalleryItem({ ...galleryItem, [name]: value})
