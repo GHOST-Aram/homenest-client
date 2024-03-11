@@ -12,16 +12,20 @@ const FeaturedListings = () => {
 	
 	useEffect(() =>{
 	
-		(async() =>{
-			setProcessStatus('loading')
-			const response = await getData('http://localhost:8000/properties?page=1&&limit=12')
-
-			if(response.status === 200){
-				setProcessStatus('success')
-				const data = await response.json()
-				setProperties(data)
-			}
-		})()
+		setProcessStatus('loading')
+		try {
+			(async() =>{
+				const response = await getData('http://localhost:8000/properties?page=1&&limit=12')
+	
+				if(response.status === 200){
+					setProcessStatus('success')
+					const data = await response.json()
+					setProperties(data)
+				}
+			})()
+		} catch (error) {
+			console.log(error)
+		}
 
 	},[])
 
