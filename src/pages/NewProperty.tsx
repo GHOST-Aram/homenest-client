@@ -15,7 +15,7 @@ const NewProperty = () => {
 
     const [status, setStatus] = useState<Status>('idle')
     const [propertyData, setPropertyData] = useState<PropertyData>(
-        { ...intialPropertyData }
+         { ...initialPropertyData }
     )
 
     const getTypedorCheckedValue = (e: ChangeEvent<HTMLInputElement>) =>{
@@ -89,7 +89,7 @@ const NewProperty = () => {
     )
 }
 
-const intialPropertyData: PropertyData = {
+export const initialPropertyData: PropertyData = {
     propertyName: '',
     propertyType: '',
     backgroundImageUrl: '',
@@ -106,6 +106,7 @@ const intialPropertyData: PropertyData = {
     hasParkingSpace: false,
     energySources: [],
     waterSources: [],
+    images:[]
 }
 
 export default NewProperty

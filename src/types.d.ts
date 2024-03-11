@@ -50,6 +50,7 @@ export interface PropertyData{
     hasParkingSpace: boolean
     energySources: string[]
     waterSources: string[]
+    images: GalleryItem[]
 }
 
 

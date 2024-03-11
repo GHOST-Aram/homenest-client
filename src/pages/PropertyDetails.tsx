@@ -8,9 +8,10 @@ import { useEffect, useState } from 'react'
 import { getData } from '../utils/fetch'
 import { PropertyData } from '../types'
 import Divider from '../components/HorizontalDivider'
+import { initialPropertyData } from './NewProperty'
 
 const PropertyDetails = () => {
-    const [property, setProperty] = useState<PropertyData | null >(null)
+    const [property, setProperty] = useState<PropertyData>(initialPropertyData)
     const { id } = useParams()
     
     useEffect(() =>{
@@ -21,6 +22,7 @@ const PropertyDetails = () => {
                 if(statusCode === 200){
                     const data = await response.json()
                     setProperty(data)
+                    console.log(data)
                 }
             } catch (error) {
                 console.log(error)
@@ -30,19 +32,19 @@ const PropertyDetails = () => {
     return (
         <>
             <DetailsHero 
-                propertyName = { property ? property.propertyName : ''}
-                rentPerMonth = { property ? property.rentPerMonth : ''}
-                rentPerYear = { property ? property.rentPerYear : ''}
-                bedrooms = { property ? property.bedrooms : ''}
-                bathrooms = { property ? property.bathrooms : ''}
-                squareFootage  = { property ? property.squareFootage : ''}
-                locationAddress = { property ? property.locationName : ''}
-                backgroundImageUrl={ property ? property.backgroundImageUrl: ''}
+                propertyName = {  property.propertyName }
+                rentPerMonth = {  property.rentPerMonth }
+                rentPerYear = {  property.rentPerYear }
+                bedrooms = {  property.bedrooms }
+                bathrooms = {  property.bathrooms }
+                squareFootage  = {  property.squareFootage }
+                locationAddress = {  property.locationName }
+                backgroundImageUrl={  property.backgroundImageUrl}
             />
             <KeyFeatures property = { property }/>
             <Divider/>
             <section className='md:flex lg:flex xl:flex justify-between px-8'>
-                <PropertyDescription description = { property ? property.description : '' }/>
+                <PropertyDescription description = {  property.description }/>
                 <ContactLandlord />
             </section>
             <Divider/>
