@@ -9,7 +9,6 @@ const FeaturedCard = ({ id, rentPm, location, bedrooms, imageSrc }: FeaturedCard
     const navigate = useNavigate()
 
     const navigateToDetails = () =>{
-        console.log('Trying to navifate')
         navigate(`/listings/${id}`)
     }
     
