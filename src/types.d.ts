@@ -28,6 +28,11 @@ export interface User{
     id: string
 }
 
+export interface GalleryItem{
+    alt: string
+    url: string
+}
+
 export interface PropertyData{
     propertyName: string
     propertyType: string
