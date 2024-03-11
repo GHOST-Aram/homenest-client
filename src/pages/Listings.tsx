@@ -40,7 +40,7 @@ const Listings = () => {
 									rentPm={property.price} 
 									location={property.location} 
 									bedrooms={property.bedrooms} 
-									imageSrc={property.imageUrl}
+									imageSrc={property.backgroundImageUrl}
 									key={property._id.toString()}
 								/>
 							)) 
