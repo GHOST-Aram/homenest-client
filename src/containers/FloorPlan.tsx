@@ -1,4 +1,3 @@
-import React from 'react'
 import Heading from '../components/Heading'
 import Image from '../components/Image'
 import plan4 from '../images/floor-plan-4.png'
