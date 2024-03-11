@@ -16,9 +16,6 @@ const Navbar = () => {
             <NavLink to={'/listings'} className={'p-4 text-slate-300 font-bold'}>
                 LISTINGS
             </NavLink>
-            <NavLink to={'/details'} className={'p-4 text-slate-300 font-bold'}>
-                DETAILS
-            </NavLink>
             {
                 context && context.user ?
                  <Link to='/profile' className="flex items-center gap-4 p-2 bg-blue-800 rounded-md">

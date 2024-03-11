@@ -20,7 +20,6 @@ function App() {
 					<Route path='/listings' element = {<Listings/>}/>
 					<Route path='/listings/new' element = {<PropertyForm/>}/>
 					<Route path='/listings/:id' element = {<PropertyDetails/>}/>
-					<Route path='/details' element = {<PropertyDetails/>}/>
 					<Route path='/sign-up' element ={<SignUp/>}/>
 					<Route path='/login' element = {<Login />}/>
 					<Route path='/profile' element = {<Profile/>}/>
