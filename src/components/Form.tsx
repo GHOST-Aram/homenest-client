@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
-import FormLabel from '../components/FormLabel'
+import FormLabel from './FormLabel'
 
-const AccountsForm = ({ children, submitHandler, heading }: Props) => {
+const Form = ({ children, submitHandler, heading }: Props) => {
 
 	const submitForm = (preventDefault:()=>void) => {
 		preventDefault()
@@ -31,4 +31,4 @@ type Props = {
 	heading: string
     submitHandler: ()=>Promise<void>
 }
-export default AccountsForm
+export default Form
