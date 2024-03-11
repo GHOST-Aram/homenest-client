@@ -1,7 +1,5 @@
-import React from 'react'
 import Heading from '../components/Heading'
 import AmenityCard from '../components/AmenityCard'
-import ButtonFilled from '../components/ButtonFilled'
 
 const NeighboringAmenities = () => {
     return (
@@ -16,8 +14,6 @@ const NeighboringAmenities = () => {
                     <AmenityCard title='Shopping' amenities={shoppings}/>
                     <AmenityCard title='Recreation' amenities={recreations}/>
                 </div>
-    
-                <ButtonFilled>VIEW MORE ON MAP</ButtonFilled>
             </div>
         </section>
         )

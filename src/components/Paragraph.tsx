@@ -7,7 +7,7 @@ const Paragraph = ({ children }: ParagraphProps) => {
 }
 
 interface ParagraphProps{
-    children: string
+    children: any
 }
 
 export default Paragraph

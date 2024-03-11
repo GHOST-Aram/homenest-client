@@ -3,7 +3,7 @@ import uniqid from 'uniqid'
 export const features = [
     {
         id: uniqid(),   
-        name: 'Property Types',
+        name: 'Property Type',
         value: 'Apartment'
     },
     {

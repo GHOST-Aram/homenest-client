@@ -31,6 +31,7 @@ export interface User{
 export interface PropertyData{
     propertyName: string
     propertyType: string
+    description?: string
     backgroundImageUrl: string
     rentPerMonth: number
     rentPerYear: number

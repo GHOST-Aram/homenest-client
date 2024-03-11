@@ -1,8 +1,7 @@
-import React, { useState, useEffect} from 'react'
+import { useState, useEffect} from 'react'
 import Image from '../components/Image'
 import { images } from '../data/image-urls'
 import Heading from '../components/Heading'
-import ButtonFilled from '../components/ButtonFilled'
 
 const PropertyGallery = () => {
     const [gallery, setGallery] = useState<GalleryItem[]>([])
@@ -24,8 +23,6 @@ const PropertyGallery = () => {
                 ))
             }
         </div>
-        <ButtonFilled>VIEW MORE FROM GALLERY</ButtonFilled>
-
     </section>
   )
 }
