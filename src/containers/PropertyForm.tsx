@@ -10,6 +10,7 @@ import InputLabel from '@mui/material/InputLabel'
 import Button from '@mui/material/Button'
 import { PropertyData, Status } from '../types'
 import StatusAlert from './StatusAlert'
+import MultilineTextField from '../components/MultiLineTextField'
 
 
 const PropertyForm = ({
@@ -56,6 +57,13 @@ const PropertyForm = ({
                             changeHandler={getTypedorCheckedValue}
                         /> 
                     </Box>
+                    <MultilineTextField 
+                        name="description" 
+                        type="text" 
+                        label="Description"
+                        value={propertyData.description} 
+                        changeHandler={getTypedorCheckedValue}
+                    />
                 </Box>
                 <Box className="flex flex-col gap-4 lg:flex-row justify-between p-8 border-2 
                     rounded-md"

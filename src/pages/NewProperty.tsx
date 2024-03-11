@@ -45,7 +45,7 @@ const NewProperty = () => {
                     const body = await response.json()
                     const createdProperty = body.item
                     const id = createdProperty._id.toString()
-                    
+
                     setStatus('created')
                     navigate(`/listings/${id}`)
 
@@ -89,10 +89,11 @@ const NewProperty = () => {
     )
 }
 
-const intialPropertyData = {
+const intialPropertyData: PropertyData = {
     propertyName: '',
     propertyType: '',
     backgroundImageUrl: '',
+    description: '',
     rentPerMonth: 0,
     rentPerYear: 0,
     locationName: '',
