@@ -6,6 +6,7 @@ import { PropertyData } from "../types"
 import PropertyForm from "../containers/PropertyForm"
 import { Status } from "../types"
 import { useNavigate } from "react-router-dom"
+import { updateProcessStatus } from "../utils/process-status"
 
 
 const NewProperty = () => {
@@ -38,43 +39,19 @@ const NewProperty = () => {
             )
 
             const statusCode = response.status
-            
-            switch (statusCode){
-                case 201: {
+            if(statusCode === 201){
+                const body = await response.json()
+                const createdProperty = body.item
+                const id = createdProperty._id.toString()
 
-                    const body = await response.json()
-                    const createdProperty = body.item
-                    const id = createdProperty._id.toString()
-
-                    setStatus('created')
-                    navigate(`/listings/${id}`)
-
-                    break
-                }
-                case 401: {
-                    setStatus('unauthorised')
-                    break
-                }
-                case 400: {
-                    setStatus('invalid-input')
-                    break
-                }
-                case 500: {
-                    setStatus('server-error')
-                    break
-                }
-                default: {
-                    setStatus('error')
-                }
+                navigate(`/listings/${id}`)
             }
-            console.log(await response.json())
+
+            updateProcessStatus(setStatus, statusCode)
         } catch (error) {
             setStatus('error')
         }
     }
-
-    // if(status === 'created'){
-    // }
 
     return (
         <Box>
