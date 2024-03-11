@@ -2,7 +2,7 @@ import { getAuthenticationToken } from "./cookie"
 
 export const getData = async(url: string) =>{
     const response = await fetch(url)
-    return await response.json()
+    return response
 }
 
 export const createUser = async(url: string, userData: any) =>{

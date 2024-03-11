@@ -5,12 +5,19 @@ import FeaturedCard from '../components/FeaturedCard'
 import Heading from '../components/Heading'
 
 const Listings = () => {
-    const [apartments, setApartments] = useState<[]>([])
+    const [properties, setProperties] = useState<[]>([])
 	
 	useEffect(() =>{
-		getData('http://localhost:8000/properties').then(data =>{
-			setApartments(data.resource)
-		}).catch(error => console.log(error))
+
+		(async() =>{
+			const response = await getData('http://localhost:8000/properties')
+
+			if(response.status === 200){
+				const data = await response.json()
+				setProperties(data)
+			}
+
+		})()
 
 	},[])
 
@@ -19,18 +26,18 @@ const Listings = () => {
         <Section>
 			<div className="py-4 listings-grid">
 				{
-					apartments.length > 0 ?
-						apartments.map((apartment:any) =>(
+					properties.length > 0 ?
+						properties.map((property:any) =>(
 							<FeaturedCard 
-								id={apartment._id.toString()}
-								rentPm={apartment.price} 
-								location={apartment.location} 
-								bedrooms={apartment.bedrooms} 
-								imageSrc={apartment.imageUrl}
-								key={apartment._id.toString()}
+								id={property._id.toString()}
+								rentPm={property.price} 
+								location={property.location} 
+								bedrooms={property.bedrooms} 
+								imageSrc={property.imageUrl}
+								key={property._id.toString()}
 							/>
 						))
-					: <Heading level={1}className='text-center font-light'>No Apartments to list</Heading>
+					: <Heading level={1}className='text-center font-light'>No propertys to list</Heading>
 				}
 			</div>
 		</Section>

@@ -5,24 +5,30 @@ import FeaturedCard from '../components/FeaturedCard'
 import { getData } from '../utils/fetch'
 
 const FeaturedListings = () => {
-	const [apartments, setApartments] = useState<[]>([])
+	const [properties, setProperties] = useState<[]>([])
 	
-	useEffect(() =>{
-		getData('http://localhost:8000/properties').then(data =>{
-			if(data.resource){
-				setApartments(data.resource)
-			}
-		}).catch(error => console.log(error))
+		useEffect(() =>{
 
-	},[])
+			(async() =>{
+				const response = await getData('http://localhost:8000/properties')
+	
+				if(response.status === 200){
+					const data = await response.json()
+					setProperties(data)
+				}
+	
+			})()
+	
+		},[])
+
 
 	return (
 		<Section>
 			<SectionHeading>Featured Listings</SectionHeading>
 			<div className="flex flex-row gap-4 overflow-x-auto pb-4 horizontal-scroll">
 				{
-					apartments.length > 0 &&
-						apartments.map((apartment:any) =>(
+					properties.length > 0 &&
+						properties.map((apartment:any) =>(
 							<FeaturedCard 
 								id={apartment._id.toString()}
 								key={apartment._id.toString()}
