@@ -3,32 +3,12 @@ import PropertyDescription from '../containers/PropertyDescription'
 import ContactLandlord from '../containers/ContactLandlord'
 import PropertyGallery from '../containers/PropertyGallery'
 import KeyFeatures from '../containers/KeyFeatures'
-import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { getData } from '../utils/fetch'
-import { PropertyData } from '../types'
 import Divider from '../components/HorizontalDivider'
-import { initialPropertyData } from './NewProperty'
+import usePropertyDetails from '../utils/useDetails'
 
 const PropertyDetails = () => {
-    const [property, setProperty] = useState<PropertyData>(initialPropertyData)
-    const { id } = useParams()
+    const property = usePropertyDetails()
     
-    useEffect(() =>{
-        (async() =>{
-            try {
-                const response = await getData(`http://localhost:8000/properties/${id}`)
-                const statusCode = response.status
-                if(statusCode === 200){
-                    const data = await response.json()
-                    setProperty(data)
-                    console.log(data)
-                }
-            } catch (error) {
-                console.log(error)
-            }          
-        })() 
-    }, [id])
     return (
         <>
             <DetailsHero 
