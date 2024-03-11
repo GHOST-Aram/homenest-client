@@ -11,10 +11,11 @@ const DetailsHero = ({
     bedrooms,
     bathrooms,
     squareFootage,
-    locationAddress
+    locationAddress,
+    backgroundImageUrl
 }: Props) => {
   return (
-    <section className='hero'>
+    <section className='hero' style={{backgroundImage : `url(${backgroundImageUrl})`}}>
         <div className="w-full bg-slate-400 h-[70vh] py-8 space-y-4 overlay">
             <Heading level={1} className='font-bold text-slate-300 text-4xl text-center'>
                 { propertyName }
@@ -56,6 +57,7 @@ interface Props{
     bathrooms: string | number
     squareFootage: string | number
     locationAddress: string
+    backgroundImageUrl: string
 }
 
 export default DetailsHero

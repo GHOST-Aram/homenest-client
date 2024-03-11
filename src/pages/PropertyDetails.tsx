@@ -38,6 +38,7 @@ const PropertyDetails = () => {
                 bathrooms = { property ? property.bathrooms : ''}
                 squareFootage  = { property ? property.squareFootage : ''}
                 locationAddress = { property ? property.locationName : ''}
+                backgroundImageUrl={ property ? property.backgroundImageUrl: ''}
             />
             <KeyFeatures property = { property }/>
             <section className='md:flex lg:flex xl:flex justify-between px-8'>
