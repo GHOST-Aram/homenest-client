@@ -9,28 +9,11 @@ import { AuthProvider } from './utils/authContext';
 import Profile from './pages/Profile';
 import Header from './containers/Header';
 import PropertyForm from './pages/NewProperty';
-import { Status } from './types';
-import { useState, useEffect } from 'react';
-import { getData } from './utils/fetch';
+import usePropertyData from './utils/useData';
 
 function App() {
-	const [properties, setProperties] = useState<[]>([])
-	const [processStatus, setProcessStatus] = useState<Status>('idle')
-	
-	useEffect(() =>{
-	
-		(async() =>{
-			setProcessStatus('loading')
-			const response = await getData('http://localhost:8000/properties?page=1&&limit=12')
+	const {processStatus, properties } = usePropertyData()
 
-			if(response.status === 200){
-				setProcessStatus('success')
-				const data = await response.json()
-				setProperties(data)
-			}
-		})()
-
-	},[])	
 	return (
 		<div>
 			<AuthProvider>
