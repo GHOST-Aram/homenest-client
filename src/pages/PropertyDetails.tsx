@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getData } from '../utils/fetch'
 import { PropertyData } from '../types'
+import Divider from '../components/HorizontalDivider'
 
 const PropertyDetails = () => {
     const [property, setProperty] = useState<PropertyData | null >(null)
@@ -40,11 +41,14 @@ const PropertyDetails = () => {
                 backgroundImageUrl={ property ? property.backgroundImageUrl: ''}
             />
             <KeyFeatures property = { property }/>
+            <Divider/>
             <section className='md:flex lg:flex xl:flex justify-between px-8'>
                 <PropertyDescription description = { property ? property.description : '' }/>
                 <ContactLandlord />
             </section>
+            <Divider/>
             <NeighboringAmenities />
+            <Divider/>
             <PropertyGallery />
         </>
     )
