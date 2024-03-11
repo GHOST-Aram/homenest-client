@@ -179,8 +179,14 @@ const PropertyForm = ({
                     </FormControl>
                 </Box>
                 <StatusAlert status = {status}/>
-                <Button variant="contained" fullWidth color="primary" size="large" type="submit">
-                    List Property
+                <Button 
+                    variant="contained" 
+                    fullWidth color="primary" 
+                    size="large" 
+                    type="submit"
+                    disabled = {status === 'loading'}
+                >
+                    { status === 'loading' ? 'Loading' : 'List Property'}
                 </Button>
             </form>
         </div>
