@@ -6,7 +6,7 @@ const PropertyProfile = ({
     propertyName, 
     locationName, 
     backgroundImageUrl,
-    getTypedorCheckedValue,
+    getTextFieldValue,
 } : Props ) => {
   return (
     <>
@@ -17,21 +17,21 @@ const PropertyProfile = ({
                 type="text" 
                 label="Property Name"
                 value={propertyName} 
-                changeHandler={getTypedorCheckedValue}
+                changeHandler={getTextFieldValue}
             />
             <MUITextField 
                 name="locationName" 
                 type="text" 
                 label="Location Address"
                 value={locationName}
-                changeHandler={getTypedorCheckedValue}
+                changeHandler={getTextFieldValue}
             /> 
             <MUITextField 
                 name="backgroundImageUrl" 
                 type="text" 
                 label="Background Image URL"
                 value={backgroundImageUrl} 
-                changeHandler={getTypedorCheckedValue}
+                changeHandler={getTextFieldValue}
             /> 
         </Box>
     </>
@@ -42,7 +42,7 @@ interface Props{
     propertyName: string
     locationName: string
     backgroundImageUrl: string
-    getTypedorCheckedValue: ChangeEventHandler<HTMLInputElement>
+    getTextFieldValue: ChangeEventHandler<HTMLInputElement>
 }
 
 export default PropertyProfile

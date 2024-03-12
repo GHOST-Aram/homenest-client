@@ -20,7 +20,7 @@ const PropertyAvailabilityAndMore = ({
                     control = {
                         <Checkbox 
                             onChange={getCheckboxValue} 
-                            value={isAvailable} 
+                            checked={isAvailable} 
                             name="isAvailabe"
                         /> 
                     }
@@ -30,7 +30,7 @@ const PropertyAvailabilityAndMore = ({
                     control = {
                         <Checkbox 
                             onChange={getCheckboxValue} 
-                            value={isFurnished} 
+                            checked={isFurnished}
                             name="isFurnished"
                         /> 
                     }
@@ -40,7 +40,7 @@ const PropertyAvailabilityAndMore = ({
                     control = {
                         <Checkbox 
                             onChange={getCheckboxValue} 
-                            value={hasParkingSpace} 
+                            checked={hasParkingSpace}
                             name="hasParkingSpace"
                         /> 
                     }

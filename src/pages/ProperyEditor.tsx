@@ -18,9 +18,14 @@ const PropertyEditor = () => {
     const [propertyData, setPropertyData] = useState<PropertyData>(initialPropertyData)
 
 
-    const getTypedorCheckedValue = (e: ChangeEvent<HTMLInputElement>) =>{
+    const getTextFieldValue = (e: ChangeEvent<HTMLInputElement>) =>{
         const { value, name } = e.target
         setPropertyData( { ...propertyData, [name]: value})
+    }
+
+    const getCheckboxValue = (e:ChangeEvent<HTMLInputElement>) =>{
+        const { name, checked } = e.target
+        setPropertyData({ ...propertyData, [name]: checked })
     }
 
     const getSelectedValue = (e: SelectChangeEvent<string | string []>, child: ReactNode) =>{
@@ -71,7 +76,8 @@ const PropertyEditor = () => {
             <PropertyForm 
                 submitFormData ={submitFormData} 
                 propertyData = {propertyData}
-                getTypedorCheckedValue = {getTypedorCheckedValue} 
+                getTextFieldValue = {getTextFieldValue} 
+                getCheckboxValue = {getCheckboxValue} 
                 getSelectedValue = {getSelectedValue}
                 setProperty={setPropertyData}
                 status = {status}

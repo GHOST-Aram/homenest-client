@@ -6,7 +6,7 @@ const PropertyMetrics = ({
     bedrooms,
     bathrooms,
     squareFootage,
-    getTypedorCheckedValue,
+    getTextFieldValue,
 }: Props) => {
   return (
     <>
@@ -18,21 +18,21 @@ const PropertyMetrics = ({
                 type="number" 
                 name="bedrooms" 
                 value = {`${bedrooms}`} 
-                changeHandler={getTypedorCheckedValue} 
+                changeHandler={getTextFieldValue} 
                 label={'Bedrooms'} 
             />  
             <MUITextField 
                 type="number" 
                 name="bathrooms" 
                 value = {`${bathrooms}`} 
-                changeHandler={getTypedorCheckedValue} 
+                changeHandler={getTextFieldValue} 
                 label={'Bathrooms'} 
             />  
             <MUITextField 
                 type="number" 
                 name="squareFootage" 
                 value = {`${squareFootage}`} 
-                changeHandler={getTypedorCheckedValue} 
+                changeHandler={getTextFieldValue} 
                 label={'Square Footage'} 
             />  
         </Box>
@@ -44,7 +44,7 @@ interface Props{
     bedrooms: number
     bathrooms: number
     squareFootage: number
-    getTypedorCheckedValue: ChangeEventHandler<HTMLInputElement>
+    getTextFieldValue: ChangeEventHandler<HTMLInputElement>
 }
 
 export default PropertyMetrics

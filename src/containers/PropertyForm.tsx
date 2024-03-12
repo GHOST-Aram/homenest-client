@@ -17,7 +17,8 @@ import { useLocation } from 'react-router-dom'
 const PropertyForm = ({
     submitFormData, 
     propertyData, 
-    getTypedorCheckedValue, 
+    getCheckboxValue,
+    getTextFieldValue, 
     getSelectedValue,
     setProperty,
     status
@@ -47,28 +48,28 @@ const PropertyForm = ({
                         locationName={propertyData.locationName}
                         propertyName={propertyData.propertyName}
                         backgroundImageUrl={propertyData.backgroundImageUrl}
-                        getTypedorCheckedValue={getTypedorCheckedValue}
+                        getTextFieldValue={getTextFieldValue}
                     />
                     <MultilineTextField 
                         name="description" 
                         type="text" 
                         label="Description"
                         value={propertyData.description} 
-                        changeHandler={getTypedorCheckedValue}
+                        changeHandler={getTextFieldValue}
                     />
                 </Box>
                 <PropertyBusinessInfo 
                     propertyType={propertyData.propertyType}
                     rentPerMonth={propertyData.rentPerMonth}
                     rentPerYear={propertyData.rentPerYear}
-                    getTypedorCheckedValue={getTypedorCheckedValue}
+                    getTextFieldValue={getTextFieldValue}
                     getSelectedValue={getSelectedValue}
                 />
                 <PropertyMetrics 
                     bedrooms={propertyData.bedrooms}
                     bathrooms={propertyData.bathrooms}
                     squareFootage={propertyData.squareFootage}
-                    getTypedorCheckedValue={getTypedorCheckedValue}
+                    getTextFieldValue={getTextFieldValue}
                 />
                 <PropertyGallery 
                     property ={propertyData} 
@@ -78,7 +79,7 @@ const PropertyForm = ({
                     isAvailable={propertyData.isAvailable}
                     hasParkingSpace={propertyData.hasParkingSpace}
                     isFurnished={propertyData.isFurnished}
-                    getCheckboxValue={getTypedorCheckedValue}
+                    getCheckboxValue={getCheckboxValue}
                 />
                 <PropertyResources 
                     energySources={propertyData.energySources}
@@ -103,7 +104,8 @@ const PropertyForm = ({
 interface Props{
     submitFormData: ()=>Promise<void>
     propertyData: PropertyData
-    getTypedorCheckedValue: ChangeEventHandler
+    getTextFieldValue: ChangeEventHandler
+    getCheckboxValue: ChangeEventHandler
     getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void
     status : Status
     setProperty: Dispatch<SetStateAction<PropertyData>>

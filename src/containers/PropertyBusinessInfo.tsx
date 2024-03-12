@@ -10,7 +10,7 @@ import { SelectChangeEvent } from '@mui/material/Select'
 const PropertyBusinessInfo = ({
     propertyType,
     getSelectedValue,
-    getTypedorCheckedValue,
+    getTextFieldValue,
     rentPerMonth,
     rentPerYear,
 }: Props) => {
@@ -40,14 +40,14 @@ const PropertyBusinessInfo = ({
                 type="number" 
                 name="rentPerMonth" 
                 value = {`${rentPerMonth}`} 
-                changeHandler={getTypedorCheckedValue} 
+                changeHandler={getTextFieldValue} 
                 label={'Rent Per Month'} 
             />
             <MUITextField 
                 type="number" 
                 name="rentPerYear" 
                 value = {`${rentPerYear}`} 
-                changeHandler={getTypedorCheckedValue} 
+                changeHandler={getTextFieldValue} 
                 label={'Rent Per Year'} 
             />
         </Box>
@@ -58,7 +58,7 @@ const PropertyBusinessInfo = ({
 interface Props{
     propertyType: string
     getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void
-    getTypedorCheckedValue: ChangeEventHandler<HTMLInputElement>
+    getTextFieldValue: ChangeEventHandler<HTMLInputElement>
     rentPerMonth:number
     rentPerYear: number
 }
