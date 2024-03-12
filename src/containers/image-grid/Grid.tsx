@@ -1,16 +1,16 @@
-import { useLocation } from 'react-router-dom'
-import Image from '../components/Image'
-import { GalleryItem } from '../types'
 import IconButton from '@mui/material/IconButton'
+import Image from '../../components/Image'
 import { MdDelete } from 'react-icons/md'
+import { GalleryItem } from '../../types'
 
-const ImageGrid = ({images, deleteImage}:Props) => {
-	const location = useLocation()
-	const pathname = location.pathname
-	const isDisplayingOnForm = pathname.includes('new') || pathname.includes('update')
-
-	return (
-		<div className="grid-auto">
+const Grid = ({
+    images,
+    isDisplayingOnForm,
+    deleteImage
+}:Props) => {
+  return (
+    <div>
+        <div className="grid-auto">
 			{
 				images.length > 0 && 
 					images.map((image, index) => (
@@ -26,17 +26,22 @@ const ImageGrid = ({images, deleteImage}:Props) => {
 									<MdDelete />
 								</IconButton>
 							}
-							<Image src={image.url} alt={image.alt} className='w-full' />
+							<Image src={image.url} alt={image.alt} 
+								className='w-full' 
+							/>
 						</div>
 					))
 			}
 		</div>
-	)
+    </div>
+  )
 }
 
 interface Props {
-	images: GalleryItem[]
-	deleteImage?:(image: GalleryItem)=>void
+    images: GalleryItem[]
+    deleteImage?:(image: GalleryItem)=>void
+    isDisplayingOnForm: boolean
 }
 
-export default ImageGrid
+
+export default Grid

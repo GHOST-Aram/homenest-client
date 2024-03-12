@@ -1,5 +1,5 @@
 import Heading from '../components/Heading'
-import ImageGrid from './ImageGrid'
+import ImageGrid from './image-grid/ImageGrid'
 import { GalleryItem } from '../types'
 
 
