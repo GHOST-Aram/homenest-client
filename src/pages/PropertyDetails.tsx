@@ -1,8 +1,8 @@
-import DetailsHero from '../containers/DetailsHero'
-import PropertyDescription from '../containers/PropertyDescription'
-import ContactLandlord from '../containers/ContactLandlord'
-import PropertyGallery from '../containers/PropertyGallery'
-import KeyFeatures from '../containers/KeyFeatures'
+import DetailsHero from '../containers/property-details/DetailsHero'
+import PropertyDescription from '../containers/property-details/PropertyDescription'
+import ContactLandlord from '../containers/property-details/ContactLandlord'
+import PropertyGallery from '../containers/property-details/PropertyGallery'
+import KeyFeatures from '../containers/property-details/KeyFeatures'
 import Divider from '../components/HorizontalDivider'
 import usePropertyDetails from '../utils/useDetails'
 

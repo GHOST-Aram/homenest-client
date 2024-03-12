@@ -1,4 +1,4 @@
-import { PropertyData } from '../types'
+import { PropertyData } from '../../types'
 
 const KeyFeatures = ({ property }: { property: PropertyData | null }) => {
   return (

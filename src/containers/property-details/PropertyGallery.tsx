@@ -1,6 +1,6 @@
-import Heading from '../components/Heading'
-import ImageGrid from './image-grid/ImageGrid'
-import { GalleryItem } from '../types'
+import Heading from '../../components/Heading'
+import ImageGrid from '../image-grid/ImageGrid'
+import { GalleryItem } from '../../types'
 
 
 const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {

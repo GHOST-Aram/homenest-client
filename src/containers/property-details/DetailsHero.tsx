@@ -1,4 +1,4 @@
-import Heading from '../components/Heading'
+import Heading from '../../components/Heading'
 import { GiMoneyStack } from "react-icons/gi";
 import { IoBedSharp } from "react-icons/io5";
 import { FaMap } from "react-icons/fa";

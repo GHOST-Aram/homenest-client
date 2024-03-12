@@ -1,5 +1,5 @@
-import Heading from '../components/Heading'
-import Paragraph from '../components/Paragraph'
+import Heading from '../../components/Heading'
+import Paragraph from '../../components/Paragraph'
 
 const PropertyDescription = ({ description }: {description: string | undefined }) => {
 

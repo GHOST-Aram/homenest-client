@@ -1,5 +1,5 @@
-import Heading from '../components/Heading'
-import PrimaryButton from '../components/PrimaryButton'
+import Heading from '../../components/Heading'
+import PrimaryButton from '../../components/PrimaryButton'
 
 const ContactLandlord = () => {
     return (

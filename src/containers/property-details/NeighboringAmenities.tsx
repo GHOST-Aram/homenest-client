@@ -1,5 +1,5 @@
-import Heading from '../components/Heading'
-import AmenityCard from '../components/AmenityCard'
+import Heading from '../../components/Heading'
+import AmenityCard from '../../components/AmenityCard'
 
 const NeighboringAmenities = () => {
     return (
