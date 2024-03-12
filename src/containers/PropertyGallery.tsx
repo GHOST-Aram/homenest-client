@@ -3,8 +3,6 @@ import Heading from '../components/Heading'
 import { GalleryItem } from '../types'
 
 
-
-
 const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {
 
     return (

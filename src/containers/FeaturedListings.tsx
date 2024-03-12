@@ -1,7 +1,6 @@
 import Section from '../components/Section'
 import PropertyCard from '../components/PropertyCard'
 import ListingSkeletons from './ListingSkeletons'
-import { PropertyData, Status } from '../types'
 import { ListingProps } from '../types'
 
 const FeaturedListings = ({ properties, processStatus} : ListingProps) => {
