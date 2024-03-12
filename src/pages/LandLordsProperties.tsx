@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import PropertyListItem from '../components/PropertyListItem'
 import { PropertyData } from '../types'
 import { getData } from '../utils/fetch'

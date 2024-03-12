@@ -2,8 +2,14 @@ import { PropertyData } from "../types"
 import Button from '@mui/material/Button'
 import { useNavigate } from "react-router-dom"
 import { deleteDocument } from "../utils/fetch"
+import { useState } from "react"
+import { Status } from "../types"
+import { updateProcessStatus } from "../utils/process-status"
+import { CircularProgress } from "@mui/material"
 
 const PropertyListItem = ({ property }: { property: PropertyData}) => {
+    const [processStatus, setProcessStatus] = useState<Status>('idle')
+
     const navigate = useNavigate()
 
     const goToDetailsPage = () => {
@@ -18,10 +24,16 @@ const PropertyListItem = ({ property }: { property: PropertyData}) => {
     const deleteProperty = () =>{
         const id = property._id?.toString()
         if(id){
+            setProcessStatus('loading')
+            
             try {
                 (async()=>{
                     const response = await deleteDocument(`http://localhost:8000/properties/${id}`)
-                    if(response.status === 200)
+                    const statusCode = response.status
+
+                    updateProcessStatus(setProcessStatus, statusCode)
+
+                    if(processStatus === 'success')
                         console.log(await response.json())
                 })()
             } catch (error) {
@@ -38,6 +50,9 @@ const PropertyListItem = ({ property }: { property: PropertyData}) => {
                 <h2 className="text-gray-500 font-bold text-md">{property.propertyType}</h2>
                 <h2 className="text-gray-500 font-bold text-sm">{property.locationName}</h2>
             </div>
+            {
+                processStatus==='loading' && <CircularProgress sx={{textAlign: "center"}}/>
+            }
             <div className="flex flex-row w-full justify-between gap-4 p-4">
                 <Button 
                     onClick={goToDetailsPage}
@@ -51,10 +66,11 @@ const PropertyListItem = ({ property }: { property: PropertyData}) => {
                 <Button 
                     onClick={deleteProperty}
                     fullWidth variant="contained" color="error"
+                    disabled={processStatus === 'loading'}
                 >
-                    Delete
+                    {processStatus ==='loading' ? 'Deleting' : 'Delete'}
                 </Button>
-            </div>
+            C</div>
         </div>
     )
 }
