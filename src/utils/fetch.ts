@@ -21,6 +21,21 @@ export const patchDocument = async(url:string, data: any) =>{
     return response
 }
 
+export const deleteDocument = async(url:string ) =>{
+    const authToken = getAuthenticationToken()
+
+    const response = await fetch(url, {
+        method: 'DELETE',
+        redirect: 'follow',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${ authToken }`
+        },
+    })
+
+    return response
+}
+
 export const createUser = async(url: string, data: any) =>{
     const response = await fetch(url, {
         method: 'POST',

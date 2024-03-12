@@ -1,14 +1,33 @@
 import { PropertyData } from "../types"
 import Button from '@mui/material/Button'
 import { useNavigate } from "react-router-dom"
+import { deleteDocument } from "../utils/fetch"
 
 const PropertyListItem = ({ property }: { property: PropertyData}) => {
     const navigate = useNavigate()
 
     const goToDetailsPage = () => {
-        navigate(
-            `/listings/${property._id ? property._id.toString(): ''}`
-        )
+        const id = property._id?.toString()
+        if(id){
+            navigate(
+                `/listings/${id}`
+            )
+        }
+    }
+
+    const deleteProperty = () =>{
+        const id = property._id?.toString()
+        if(id){
+            try {
+                (async()=>{
+                    const response = await deleteDocument(`http://localhost:8000/properties/${id}`)
+                    if(response.status === 200)
+                        console.log(await response.json())
+                })()
+            } catch (error) {
+                console.log(error)
+            }
+        }
     }
 
     return (
@@ -29,7 +48,10 @@ const PropertyListItem = ({ property }: { property: PropertyData}) => {
                 <Button fullWidth variant="contained" color="success">
                     Update
                 </Button>
-                <Button fullWidth variant="contained" color="error">
+                <Button 
+                    onClick={deleteProperty}
+                    fullWidth variant="contained" color="error"
+                >
                     Delete
                 </Button>
             </div>
