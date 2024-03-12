@@ -3,7 +3,9 @@ import Button from '@mui/material/Button'
 
 const PrimaryButton = ({ children, onClick }: Props) => {
     return (
-        <Button size='large' variant='contained' onClick={onClick}> { children }</Button>
+        <Button fullWidth size='large' variant='contained' onClick={onClick}>
+            { children }
+        </Button>
     )
 }
 

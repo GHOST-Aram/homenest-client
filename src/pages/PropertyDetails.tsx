@@ -8,7 +8,7 @@ import usePropertyDetails from '../utils/useDetails'
 
 const PropertyDetails = () => {
     const property = usePropertyDetails()
-    
+
     return (
         <>
             <DetailsHero 
@@ -28,7 +28,7 @@ const PropertyDetails = () => {
                 <ContactLandlord />
             </section>
             <Divider/>
-            <PropertyGallery />
+            <PropertyGallery images={property.images} />
         </>
     )
 }
