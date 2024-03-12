@@ -543,6 +543,30 @@ video {
   position: relative;
 }
 
+.top-16 {
+  top: 4rem;
+}
+
+.right-8 {
+  right: 2rem;
+}
+
+.top-8 {
+  top: 2rem;
+}
+
+.right-16 {
+  right: 4rem;
+}
+
+.top-12 {
+  top: 3rem;
+}
+
+.right-32 {
+  right: 8rem;
+}
+
 .m-8 {
   margin: 2rem;
 }

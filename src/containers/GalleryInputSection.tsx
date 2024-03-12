@@ -1,8 +1,8 @@
-import Image from "../components/Image"
 import { GalleryItem, PropertyData } from "../types"
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
+import ImageGrid from "./ImageGrid"
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 
 const GalleryInputSection = ({ property, setProperty }: Props) => {
@@ -21,16 +21,7 @@ const GalleryInputSection = ({ property, setProperty }: Props) => {
     return (
         <>
             <h1 className="text-blue-700 text-lg text-center">Property Gallery</h1>
-            <Box className="grid-auto">
-                {
-                    property.images.length > 0 &&
-                        property.images.map((image, index) => (
-                            <div key={`${image.alt} ${index}`}>
-                                <Image src={image.url} alt={image.alt} className='w-full' />
-                            </div>
-                        ))
-                }
-            </Box>
+            <ImageGrid images={property.images}/>
             <Box className="flex flex-col w-full md:flex-row gap-4">
                 <Box className="flex flex-col w-full md:flex-row gap-4">
                     <TextField 

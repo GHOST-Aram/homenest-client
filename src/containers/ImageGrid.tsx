@@ -1,21 +1,35 @@
+import { useLocation } from 'react-router-dom'
 import Image from '../components/Image'
 import { GalleryItem } from '../types'
-
+import IconButton from '@mui/material/IconButton'
+import { MdDelete } from 'react-icons/md'
 
 const ImageGrid = ({images}: {images: GalleryItem[]}) => {
-  return (
-    <div className="grid-auto">
-        {
-            images.length > 0 && 
-                images.map(image => (
-                    image._id &&
-                    <div key={image?._id} className="relative">
-                        <Image src={image.url} alt={image.alt} className='w-full' />
-                    </div>
-                ))
-            }
-    </div>
-  )
+	const location = useLocation()
+	const pathname = location.pathname
+	const isDisplayingOnForm = pathname.includes('new') || pathname.includes('update')
+
+	return (
+		<div className="grid-auto">
+			{
+				images.length > 0 && 
+					images.map((image, index) => (
+						<div key={image?._id ? image._id : `${image.url}-$${index}`}>
+							{
+								isDisplayingOnForm &&
+								<IconButton color='error'
+								size='large' 
+								className='absolute top-12'
+								>
+									<MdDelete />
+								</IconButton>
+							}
+							<Image src={image.url} alt={image.alt} className='w-full' />
+						</div>
+					))
+				}
+		</div>
+	)
 }
 
 export default ImageGrid
