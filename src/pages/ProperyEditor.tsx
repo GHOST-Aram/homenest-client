@@ -11,11 +11,13 @@ import { useEffect } from "react"
 
 
 const PropertyEditor = () => {
-    const { id } = useParams()
-    const navigate = useNavigate()
-
     const [status, setStatus] = useState<Status>('idle')
-    const [propertyData, setPropertyData] = useState<PropertyData>(initialPropertyData)
+    const [propertyData, setPropertyData] = useState<PropertyData>(
+        initialPropertyData)
+
+    const { id } = useParams()
+
+    const navigate = useNavigate()
 
 
     const getTextFieldValue = (e: ChangeEvent<HTMLInputElement>) =>{
@@ -28,7 +30,10 @@ const PropertyEditor = () => {
         setPropertyData({ ...propertyData, [name]: checked })
     }
 
-    const getSelectedValue = (e: SelectChangeEvent<string | string []>, child: ReactNode) =>{
+    const getSelectedValue = (
+        e: SelectChangeEvent<string | string []>, 
+        child: ReactNode
+    ) =>{
         const { value, name } = e.target
         setPropertyData( { ...propertyData, [name]: value})
     }
@@ -37,13 +42,15 @@ const PropertyEditor = () => {
         const data = { ...propertyData}
 
         setStatus('loading')
+
         try {
-            const response = await updateProperty(`http://localhost:8000/properties/${id}`, 
-                data)
+            const response = await updateProperty(
+                `http://localhost:8000/properties/${id}`, data)
 
             const statusCode = response.status
             if(statusCode === 201 || statusCode === 200){
                 const body = await response.json()
+
                 const createdProperty = body.item
                 const id = createdProperty._id.toString()
 
@@ -59,8 +66,13 @@ const PropertyEditor = () => {
     useEffect(() =>{
         (async() =>{
             try {
-                const response = await getData(`http://localhost:8000/properties/${id}`)
+                const response = await getData(
+                    `http://localhost:8000/properties/${id}`)
+
                 const statusCode = response.status
+
+                updateProcessStatus(setStatus, statusCode)
+                
                 if(statusCode === 200){
                     const data = await response.json()
                     setPropertyData(data)

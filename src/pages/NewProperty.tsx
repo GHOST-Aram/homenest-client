@@ -10,19 +10,19 @@ import { updateProcessStatus } from "../utils/process-status"
 
 
 const NewProperty = () => {
-    const authContext = useContext(AuthContext)
-    const user = authContext.user 
-    const navigate = useNavigate()
-
     const [status, setStatus] = useState<Status>('idle')
     const [propertyData, setPropertyData] = useState<PropertyData>(
-         { ...initialPropertyData }
-    )
+         { ...initialPropertyData })
+         
+    const authContext = useContext(AuthContext)
+    const user = authContext.user 
+
+    const navigate = useNavigate()
+
 
     const getTextFieldValue = (e: ChangeEvent<HTMLInputElement>) =>{
         const { value, name } = e.target
         setPropertyData( { ...propertyData, [name]: value})
-        console.log({ name, value })
     }
 
     const getCheckboxValue = (e:ChangeEvent<HTMLInputElement>) =>{
@@ -30,7 +30,10 @@ const NewProperty = () => {
         setPropertyData({ ...propertyData, [name]: checked })
     }
 
-    const getSelectedValue = (e: SelectChangeEvent<string | string []>, child: ReactNode) =>{
+    const getSelectedValue = (
+        e: SelectChangeEvent<string | string []>, 
+        child: ReactNode
+    ) =>{
         const { value, name } = e.target
         setPropertyData( { ...propertyData, [name]: value})
     }
@@ -39,21 +42,23 @@ const NewProperty = () => {
         const data = { ...propertyData, landlord: user.id }
 
         setStatus('loading')
+
         try {
-            const response = await createNewProperty('http://localhost:8000/properties', 
-                data
-            )
+            const response = await createNewProperty(
+                'http://localhost:8000/properties', data)
 
             const statusCode = response.status
+            updateProcessStatus(setStatus, statusCode)
+
             if(statusCode === 201){
                 const body = await response.json()
+                
                 const createdProperty = body.item
                 const id = createdProperty._id.toString()
 
                 navigate(`/listings/${id}`)
             }
 
-            updateProcessStatus(setStatus, statusCode)
         } catch (error) {
             setStatus('error')
         }
