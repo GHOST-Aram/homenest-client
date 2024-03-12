@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl'
 import Box from '@mui/material/Box'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
-import MUITextField from '../components/MUITextField'
+import MUITextField from '../../components/MUITextField'
 import MenuItem from '@mui/material/MenuItem'
 import { SelectChangeEvent } from '@mui/material/Select'
 

@@ -1,5 +1,5 @@
 import React, { ChangeEventHandler } from 'react'
-import MUITextField from '../components/MUITextField'
+import MUITextField from '../../components/MUITextField'
 import Box from '@mui/material/Box'
 
 const PropertyProfile = ({

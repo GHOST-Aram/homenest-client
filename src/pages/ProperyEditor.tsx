@@ -6,7 +6,7 @@ import { updateProcessStatus } from "../utils/process-status"
 import { updateProperty } from "../utils/fetch"
 import { getData } from "../utils/fetch"
 import { useEffect } from "react"
-import PropertyFormController from "../containers/PropertyFormController"
+import PropertyFormController from "../containers/property-input/PropertyFormController"
 
 
 const PropertyEditor = () => {
