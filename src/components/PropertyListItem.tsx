@@ -6,6 +6,8 @@ import { Dispatch, SetStateAction, useState } from "react"
 import { Status } from "../types"
 import { updateProcessStatus } from "../utils/process-status"
 import { CircularProgress } from "@mui/material"
+import { MdLocationPin } from "react-icons/md";
+
 
 const PropertyListItem = ({ property, setListStatus }: Props) => {
     const [processStatus, setProcessStatus] = useState<Status>('idle')
@@ -52,7 +54,10 @@ const PropertyListItem = ({ property, setListStatus }: Props) => {
             <div className=" p-4 rounded-md w-full mb-2">
                 <h2 className="text-slate-800 font-bold text-md">{property.propertyName}</h2>
                 <h2 className="text-gray-500 font-bold text-md">{property.propertyType}</h2>
-                <h2 className="text-gray-500 font-bold text-sm">{property.locationName}</h2>
+                <h2 className="text-orange-700 text-sm flex items-center">
+                    <MdLocationPin />
+                    <span> {property.locationName}</span>
+                </h2>
             </div>
             {
                 processStatus==='loading' && <CircularProgress sx={{textAlign: "center"}}/>
