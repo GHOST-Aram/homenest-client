@@ -1,7 +1,7 @@
 import Alert from '@mui/material/Alert'
-import { Status } from '../types'
+import { Status } from '../../types'
 import  CircularProgress  from '@mui/material/CircularProgress'
-import GoToLoginBtn from '../components/GoToLoginBtn'
+import GoToLoginBtn from '../../components/GoToLoginBtn'
 
 const StatusAlert = ({ status }: { status: Status }) => {
     return (

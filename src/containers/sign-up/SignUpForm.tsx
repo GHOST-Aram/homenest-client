@@ -1,11 +1,11 @@
-import MUITextField from '../components/MUITextField'
-import RolesRadioInput from './RolesRadioInput'
-import SignUpButton from '../components/SignUpButton'
+import MUITextField from '../../components/MUITextField'
+import RolesRadioInput from '../RolesRadioInput'
+import SignUpButton from '../../components/SignUpButton'
 import StatusAlert from './SignUpStatusAlert'
-import { FormProps } from '../types'
-import SecondaryButton from '../components/SecondaryButton'
+import { FormProps } from '../../types'
+import SecondaryButton from '../../components/SecondaryButton'
 import { useNavigate } from 'react-router-dom'
-import Form from '../components/Form'
+import Form from '../../components/Form'
 
 const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps) => {
     const fields = [

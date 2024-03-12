@@ -1,7 +1,7 @@
 import Paper from '@mui/material/Paper'
 import { ChangeEvent, useState } from 'react'
 import { registerUser } from '../../utils/register-user'
-import SignUpForm from '../../containers/SignUpForm'
+import SignUpForm from '../../containers/sign-up/SignUpForm'
 import { UserData, Status } from '../../types'
 import { useNavigate } from 'react-router'
 
