@@ -18,10 +18,33 @@ const GalleryInputSection = ({ property, setProperty }: Props) => {
             setProperty({...property, images:[...property.images, imageData]})
         }
     }
+
+    const deleteImage = (image:GalleryItem) =>{
+        const id = image._id
+        const url = image.url
+        const alt = image.alt
+
+        if(id){
+            const images:GalleryItem[] = property.images.filter(
+                element => element._id !== id
+            )
+            setProperty({ ...property, images: images})
+        } else {
+            const images: GalleryItem[] = property.images.filter(
+                element => {
+                    if(element.url===url && element.alt===alt)
+                        return false
+                    return true
+                })
+
+            setProperty({ ...property, images: images})
+        }
+    }
+    
     return (
         <>
             <h1 className="text-blue-700 text-lg text-center">Property Gallery</h1>
-            <ImageGrid images={property.images}/>
+            <ImageGrid images={property.images} deleteImage={deleteImage}/>
             <Box className="flex flex-col w-full md:flex-row gap-4">
                 <Box className="flex flex-col w-full md:flex-row gap-4">
                     <TextField 

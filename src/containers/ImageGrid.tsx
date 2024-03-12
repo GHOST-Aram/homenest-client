@@ -4,7 +4,7 @@ import { GalleryItem } from '../types'
 import IconButton from '@mui/material/IconButton'
 import { MdDelete } from 'react-icons/md'
 
-const ImageGrid = ({images}: {images: GalleryItem[]}) => {
+const ImageGrid = ({images, deleteImage}:Props) => {
 	const location = useLocation()
 	const pathname = location.pathname
 	const isDisplayingOnForm = pathname.includes('new') || pathname.includes('update')
@@ -16,10 +16,12 @@ const ImageGrid = ({images}: {images: GalleryItem[]}) => {
 					images.map((image, index) => (
 						<div key={image?._id ? image._id : `${image.url}-$${index}`}>
 							{
-								isDisplayingOnForm &&
-								<IconButton color='error'
-								size='large' 
-								className='absolute top-12'
+								isDisplayingOnForm && deleteImage &&
+								<IconButton 
+									onClick={()=> deleteImage(image)}
+									color='error'
+									size='large' 
+									className='absolute top-12'
 								>
 									<MdDelete />
 								</IconButton>
@@ -27,9 +29,14 @@ const ImageGrid = ({images}: {images: GalleryItem[]}) => {
 							<Image src={image.url} alt={image.alt} className='w-full' />
 						</div>
 					))
-				}
+			}
 		</div>
 	)
+}
+
+interface Props {
+	images: GalleryItem[]
+	deleteImage?:(image: GalleryItem)=>void
 }
 
 export default ImageGrid
