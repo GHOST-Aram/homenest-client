@@ -32,9 +32,9 @@ const LandLordsProperties = () => {
                 {
                     properties.map((property) =>(
                         
-                       property._id &&  
+                       property._id && id &&  
                        <div key={property._id.toString()} >
-                            <PropertyListItem property={property} />
+                            <PropertyListItem property={property} landlordId={id}/>
                             <Divider />
                         </div>
                     ))

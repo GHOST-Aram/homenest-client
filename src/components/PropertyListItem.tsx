@@ -7,7 +7,7 @@ import { Status } from "../types"
 import { updateProcessStatus } from "../utils/process-status"
 import { CircularProgress } from "@mui/material"
 
-const PropertyListItem = ({ property }: { property: PropertyData}) => {
+const PropertyListItem = ({ property, landlordId }: Props) => {
     const [processStatus, setProcessStatus] = useState<Status>('idle')
 
     const navigate = useNavigate()
@@ -19,6 +19,10 @@ const PropertyListItem = ({ property }: { property: PropertyData}) => {
                 `/listings/${id}`
             )
         }
+    }
+
+    const reloadList = () =>{
+        window.location.reload()
     }
 
     const deleteProperty = () =>{
@@ -33,8 +37,8 @@ const PropertyListItem = ({ property }: { property: PropertyData}) => {
 
                     updateProcessStatus(setProcessStatus, statusCode)
 
-                    if(processStatus === 'success')
-                        console.log(await response.json())
+                    if(statusCode === 200)
+                        reloadList()
                 })()
             } catch (error) {
                 console.log(error)
@@ -70,8 +74,14 @@ const PropertyListItem = ({ property }: { property: PropertyData}) => {
                 >
                     {processStatus ==='loading' ? 'Deleting' : 'Delete'}
                 </Button>
-            C</div>
+            </div>
         </div>
     )
+}
+
+
+interface Props{ 
+    property: PropertyData, 
+    landlordId: string
 }
 export default PropertyListItem
