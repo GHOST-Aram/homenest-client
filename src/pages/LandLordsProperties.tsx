@@ -31,13 +31,12 @@ const LandLordsProperties = () => {
             <div className="bg-white mb-8">
                 {
                     properties.map((property) =>(
-                        <>
-                        <PropertyListItem 
-                            key={property._id ? property._id.toString(): property.backgroundImageUrl} 
-                            property={property}
-                        />
-                        <Divider />
-                        </>
+                        
+                       property._id &&  
+                       <div key={property._id.toString()} >
+                            <PropertyListItem property={property} />
+                            <Divider />
+                        </div>
                     ))
                 }
             </div>
