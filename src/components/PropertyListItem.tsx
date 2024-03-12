@@ -1,13 +1,13 @@
-import { PropertyData } from "../types"
+import { ListStatus, PropertyData } from "../types"
 import Button from '@mui/material/Button'
 import { useNavigate } from "react-router-dom"
 import { deleteDocument } from "../utils/fetch"
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { Status } from "../types"
 import { updateProcessStatus } from "../utils/process-status"
 import { CircularProgress } from "@mui/material"
 
-const PropertyListItem = ({ property, landlordId }: Props) => {
+const PropertyListItem = ({ property, setListStatus }: Props) => {
     const [processStatus, setProcessStatus] = useState<Status>('idle')
 
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ const PropertyListItem = ({ property, landlordId }: Props) => {
     }
 
     const reloadList = () =>{
-        window.location.reload()
+        setListStatus('changed')
     }
 
     const deleteProperty = () =>{
@@ -82,6 +82,6 @@ const PropertyListItem = ({ property, landlordId }: Props) => {
 
 interface Props{ 
     property: PropertyData, 
-    landlordId: string
+    setListStatus: Dispatch<SetStateAction<ListStatus>>
 }
 export default PropertyListItem

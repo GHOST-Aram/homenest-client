@@ -54,6 +54,8 @@ export interface PropertyData{
     images: GalleryItem[]
 }
 
+export type ListStatus = 'changed' | 'unchanged'
+
 export interface ListingProps{
 	processStatus: Status
 	properties: PropertyData[]

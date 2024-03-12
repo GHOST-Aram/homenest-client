@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 import PropertyListItem from '../components/PropertyListItem'
 import { PropertyData } from '../types'
 import { getData } from '../utils/fetch'
+import { ListStatus } from '../types'
 import { useParams } from 'react-router-dom'
 import { Divider } from '@mui/material'
 
 const LandLordsProperties = () => {
     const {id} = useParams() 
     const [properties, setProperties] = useState<PropertyData[]>([])
+    const [listStatus, setListStatus] = useState<ListStatus>('unchanged')
 
     useEffect(() => {
         try {
@@ -24,7 +26,7 @@ const LandLordsProperties = () => {
         } catch (error) {
             console.log(error)
         }
-    },[id])
+    },[id, listStatus])
     return (
         <div className='spce-y-4 w-full mx-8 lg:w-3/5 lg:m-auto'>
             <h1 className="text-blue-700 text-lg font-bold text-center py-8">Landlords Properties</h1>
@@ -34,7 +36,10 @@ const LandLordsProperties = () => {
                         
                        property._id && id &&  
                        <div key={property._id.toString()} >
-                            <PropertyListItem property={property} landlordId={id}/>
+                            <PropertyListItem 
+                                property={property} 
+                                setListStatus={setListStatus}
+                            />
                             <Divider />
                         </div>
                     ))
@@ -43,5 +48,7 @@ const LandLordsProperties = () => {
         </div>
     )
 }
+
+
 
 export default LandLordsProperties
