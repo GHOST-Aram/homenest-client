@@ -63,3 +63,18 @@ export const createNewProperty = async(url: string, propertyData: any) => {
 
     return response
 }
+
+export const updateProperty = async(url: string, propertyData: any) => {
+    const token = getAuthenticationToken()
+    const response = await fetch(url, {
+        method: 'PUT',
+        redirect: 'follow',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : `Bearer ${token}`
+        },
+        body: JSON.stringify(propertyData)
+    })
+
+    return response
+}

@@ -80,7 +80,7 @@ const PropertyForm = ({
                 <StatusAlert status = {status}/>
                 <Button 
                     variant="contained" 
-                    fullWidth color="primary" 
+                    fullWidth color="success" 
                     size="large" 
                     type="submit"
                     disabled = {status === 'loading'}

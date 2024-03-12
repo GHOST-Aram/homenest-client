@@ -11,6 +11,7 @@ import Header from './containers/Header';
 import PropertyForm from './pages/NewProperty';
 import usePropertyData from './utils/useData';
 import LandLordsProperties from './pages/LandLordsProperties';
+import PropertyEditor from './pages/ProperyEditor';
 
 function App() {
 	const {processStatus, properties } = usePropertyData()
@@ -27,7 +28,7 @@ function App() {
 						<Listings properties={properties} processStatus={processStatus}/>
 					}/>
 					<Route path='/listings/new' element = {<PropertyForm/>}/>
-                        
+                    <Route path='/listings/:id/update' element={<PropertyEditor/>}/>
 					<Route path='/listings/landlords/:id' element = {
 						<LandLordsProperties/>
 					}/>

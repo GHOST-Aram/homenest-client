@@ -17,9 +17,15 @@ const PropertyListItem = ({ property, setListStatus }: Props) => {
     const goToDetailsPage = () => {
         const id = property._id?.toString()
         if(id){
-            navigate(
-                `/listings/${id}`
-            )
+            navigate(`/listings/${id}`)
+        }
+    }
+
+    const gotoUpdatePage = () =>{
+        const id = property._id?.toString()
+
+        if(id){
+            navigate(`/listings/${id}/update`)
         }
     }
 
@@ -69,7 +75,10 @@ const PropertyListItem = ({ property, setListStatus }: Props) => {
                 >
                     View
                 </Button>
-                <Button fullWidth variant="contained" color="success">
+                <Button
+                    onClick={gotoUpdatePage} 
+                    fullWidth variant="contained" color="success"
+                >
                     Update
                 </Button>
                 <Button 
