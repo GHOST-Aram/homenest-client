@@ -34,6 +34,7 @@ export interface GalleryItem{
 }
 
 export interface PropertyData{
+    _id?:string
     propertyName: string
     propertyType: string
     description: string

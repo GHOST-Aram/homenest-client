@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import Header from './containers/Header';
 import PropertyForm from './pages/NewProperty';
 import usePropertyData from './utils/useData';
+import LandLordsProperties from './pages/LandLordsProperties';
 
 function App() {
 	const {processStatus, properties } = usePropertyData()
@@ -26,6 +27,10 @@ function App() {
 						<Listings properties={properties} processStatus={processStatus}/>
 					}/>
 					<Route path='/listings/new' element = {<PropertyForm/>}/>
+                        
+					<Route path='/listings/landlords/:id' element = {
+						<LandLordsProperties/>
+					}/>
 					<Route path='/listings/:id' element = {<PropertyDetails/>}/>
 					<Route path='/sign-up' element ={<SignUp/>}/>
 					<Route path='/login' element = {<Login />}/>

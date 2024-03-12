@@ -23,10 +23,16 @@ const CurrentUserProfile = ({ user} :{user: User}) => {
                         </div>
                     </div>
                     <div className="space-y-4 flex flex-col w-full">
-                        <NavButton location="/listings/new" label="Add New Property" color='success' />
-                        <NavButton location={'/profile/listings'} label="My Listings" />
+                        <NavButton 
+                            location="/listings/new" 
+                            label="Add New Property" 
+                            color='success' 
+                        />
+                        <NavButton 
+                            location={`/listings/landlords/${user.id}`} 
+                            label="My Listings" 
+                        />
                     </div>
-                   
                 </div>
             </div>
         </div>
