@@ -60,6 +60,7 @@ const NewProperty = () => {
                 propertyData = {propertyData}
                 getTypedorCheckedValue = {getTypedorCheckedValue} 
                 getSelectedValue = {getSelectedValue}
+                setProperty={setPropertyData}
                 status = {status}
             />
         </Box>

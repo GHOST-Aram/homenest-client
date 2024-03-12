@@ -1,4 +1,4 @@
-import { ChangeEventHandler, ReactNode } from 'react'
+import { ChangeEventHandler, ReactNode, Dispatch,SetStateAction } from 'react'
 import { SelectChangeEvent } from "@mui/material/Select"
 import Box from "@mui/material/Box"
 import Button from '@mui/material/Button'
@@ -18,6 +18,7 @@ const PropertyForm = ({
     propertyData, 
     getTypedorCheckedValue, 
     getSelectedValue,
+    setProperty,
     status
 } : Props) => {
     return (
@@ -62,8 +63,8 @@ const PropertyForm = ({
                     getTypedorCheckedValue={getTypedorCheckedValue}
                 />
                 <PropertyGallery 
-                    images ={propertyData.images} 
-                    getImageData = {()=>{}}
+                    property ={propertyData} 
+                    setProperty = {setProperty}
                 />
                 <PropertyAvailabilityAndMore 
                     isAvailable={propertyData.isAvailable}
@@ -97,6 +98,7 @@ interface Props{
     getTypedorCheckedValue: ChangeEventHandler
     getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void
     status : Status
+    setProperty: Dispatch<SetStateAction<PropertyData>>
 }
 
 
