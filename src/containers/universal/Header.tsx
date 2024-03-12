@@ -1,5 +1,5 @@
 import Logo from '../../components/Logo'
-import logo from '../images/homenest-logo-bw.png'
+import logo from '../../images/homenest-logo-bw.png'
 import MenuButton from '../../components/MenuButton';
 import Navbar from './Navbar';
 
