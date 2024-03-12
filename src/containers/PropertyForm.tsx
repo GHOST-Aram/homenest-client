@@ -11,6 +11,7 @@ import PropertyMetrics from './PropertyMetrics'
 import PropertyAvailabilityAndMore from './PropertyAvailabilityAndMore'
 import PropertyResources from './PropertyResources'
 import PropertyGallery from './GalleryInputSection'
+import { useLocation } from 'react-router-dom'
 
 
 const PropertyForm = ({
@@ -21,6 +22,13 @@ const PropertyForm = ({
     setProperty,
     status
 } : Props) => {
+    const location = useLocation()
+    const pathname = location.pathname
+    const isUpdateForm = pathname.includes('update')
+
+    const submitButtonName =   isUpdateForm ? 'Update Property Data' : 'List Property'
+
+    
     return (
         <div>
             <form 
@@ -32,7 +40,7 @@ const PropertyForm = ({
                 className="m-auto py-4 space-y-4 w-4/5"
             >
                 <h1 id="property-form-title" className="text-center text-lg font-bold text-blue-700">
-                    New Property Listing
+                    {isUpdateForm ? 'Update Property Data': 'New Property Listing'}
                 </h1>
                 <Box className="w-full p-8 border-2 rounded-md space-y-4">
                     <PropertyProfile 
@@ -85,7 +93,7 @@ const PropertyForm = ({
                     type="submit"
                     disabled = {status === 'loading'}
                 >
-                    { status === 'loading' ? 'Loading' : 'List Property'}
+                    { status === 'loading' ? 'Loading' : submitButtonName}
                 </Button>
             </form>
         </div>
