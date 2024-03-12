@@ -29,6 +29,7 @@ export interface User{
 }
 
 export interface GalleryItem{
+    _id?: string
     alt: string
     url: string
 }
