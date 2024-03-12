@@ -10,6 +10,7 @@ import PropertyBusinessInfo from './PropertyBusinessInfo'
 import PropertyMetrics from './PropertyMetrics'
 import PropertyAvailabilityAndMore from './PropertyAvailabilityAndMore'
 import PropertyResources from './PropertyResources'
+import PropertyGallery from './GalleryInputSection'
 
 
 const PropertyForm = ({
@@ -59,6 +60,10 @@ const PropertyForm = ({
                     bathrooms={propertyData.bathrooms}
                     squareFootage={propertyData.squareFootage}
                     getTypedorCheckedValue={getTypedorCheckedValue}
+                />
+                <PropertyGallery 
+                    images ={propertyData.images} 
+                    getImageData = {()=>{}}
                 />
                 <PropertyAvailabilityAndMore 
                     isAvailable={propertyData.isAvailable}
