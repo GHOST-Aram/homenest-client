@@ -1,5 +1,5 @@
 import { ListingProps } from '../types'
-import FeaturedListings from '../containers/FeaturedListings'
+import FeaturedListings from '../containers/listings/FeaturedListings'
 
 
 const Listings = ({ processStatus, properties}: ListingProps) => {

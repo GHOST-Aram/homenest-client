@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box"
-import { Status } from "../types"
+import { Status } from "../../types"
 import Alert from "@mui/material/Alert"
 import CircularProgress from "@mui/material/CircularProgress"
 

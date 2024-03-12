@@ -1,5 +1,5 @@
 import Paper from '@mui/material/Paper'
-import LoginForm from '../../containers/LoginForm'
+import LoginForm from '../../containers/login/LoginForm'
 import { ChangeEvent, useContext, useState } from 'react'
 import { LoginProps, Status } from '../../types'
 import { authenticateUser, decodeAuthToken } from '../../utils/auth'

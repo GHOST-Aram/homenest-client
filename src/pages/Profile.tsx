@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { AuthContext } from "../utils/authContext"
-import CurrentUserProfile from "../containers/CurrentUserProfile"
+import CurrentUserProfile from "../containers/user-profile/CurrentUserProfile"
 
 const Profile = () => {
     const authContext = useContext(AuthContext)

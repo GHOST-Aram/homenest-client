@@ -1,7 +1,7 @@
-import SearchBox from '../components/SearchBox';
-import SelectBox from '../components/SelectBox';
-import Heading from '../components/Heading'
-import SubmitButton from '../components/SubmitButton';
+import SearchBox from '../../components/SearchBox';
+import SelectBox from '../../components/SelectBox';
+import Heading from '../../components/Heading'
+import SubmitButton from '../../components/SubmitButton';
 
 const HeroSection = () => {
 		return (

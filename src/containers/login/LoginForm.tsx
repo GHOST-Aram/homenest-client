@@ -1,12 +1,12 @@
-import MUITextField from '../components/MUITextField'
-import LoginButton from '../components/LoginButton'
-import { LoginProps, Status } from '../types'
+import MUITextField from '../../components/MUITextField'
+import LoginButton from '../../components/LoginButton'
+import { LoginProps, Status } from '../../types'
 import { ChangeEventHandler } from 'react'
-import Form from '../components/Form'
+import Form from '../../components/Form'
 import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useNavigate } from 'react-router-dom'
-import SecondaryButton from '../components/SecondaryButton'
+import SecondaryButton from '../../components/SecondaryButton'
 
 const LoginForm = ( 
     { 

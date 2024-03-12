@@ -1,5 +1,5 @@
-import HeroSection from '../containers/HeroSection';
-import FeaturedListings from '../containers/FeaturedListings';
+import HeroSection from '../containers/home/HeroSection';
+import FeaturedListings from '../containers/listings/FeaturedListings';
 import { ListingProps } from '../types';
 import SectionHeading from '../components/SectionHeading';
 

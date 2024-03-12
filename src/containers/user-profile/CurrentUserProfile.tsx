@@ -1,7 +1,7 @@
-import UserAvatar from "../components/UserAvatar"
-import NavButton from "../components/NavButton"
-import LogoutButton from "../components/LogoutButton"
-import { User } from "../types"
+import UserAvatar from "../../components/UserAvatar"
+import NavButton from "../../components/NavButton"
+import LogoutButton from "../../components/LogoutButton"
+import { User } from "../../types"
 
 const CurrentUserProfile = ({ user} :{user: User}) => {
   return (

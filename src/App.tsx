@@ -1,4 +1,4 @@
-import Footer from './containers/Footer';
+import Footer from './containers/universal/Footer';
 import Home from './pages/Home';
 import { Routes, Route } from 'react-router-dom';
 import Listings from './pages/Listings';
@@ -7,7 +7,7 @@ import SignUp from './pages/accounts/SignUp';
 import Login from './pages/accounts/Login';
 import { AuthProvider } from './utils/authContext';
 import Profile from './pages/Profile';
-import Header from './containers/Header';
+import Header from './containers/universal/Header';
 import PropertyForm from './pages/NewProperty';
 import usePropertyData from './utils/useData';
 import LandLordsProperties from './pages/LandLordsProperties';
