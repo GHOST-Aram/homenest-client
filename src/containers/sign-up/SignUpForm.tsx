@@ -1,5 +1,5 @@
 import MUITextField from '../../components/MUITextField'
-import RolesRadioInput from '../RolesRadioInput'
+import RolesRadioInput from './RolesRadioInput'
 import SignUpButton from '../../components/SignUpButton'
 import StatusAlert from './SignUpStatusAlert'
 import { FormProps } from '../../types'
