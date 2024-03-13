@@ -13,7 +13,7 @@ const FeaturedCard = ({ id, rentPm, location, bedrooms, imageSrc }: FeaturedCard
     }
     
     return (
-        <div className="min-w-80 rounded-md flex flex-col justify-between">
+        <div className="min-w-80 rounded-md flex flex-col justify-between bg-white">
             <Image 
                 src={imageSrc} 
                 alt={`${location} ${bedrooms} bedroom house`}
