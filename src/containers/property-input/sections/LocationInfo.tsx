@@ -2,7 +2,7 @@ import { ChangeEventHandler } from 'react'
 import Box from '@mui/material/Box'
 import MUITextField from '../../../components/MUITextField'
 
-const PropertyBusinessInfo = ({
+const LocationInfo = ({
     getTextFieldValue,
     cityOrTown,
     locationName,
@@ -44,4 +44,4 @@ interface Props{
     locationName: string
 }
 
-export default PropertyBusinessInfo
+export default LocationInfo

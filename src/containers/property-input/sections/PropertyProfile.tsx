@@ -1,7 +1,7 @@
 import { ChangeEventHandler, ReactNode } from 'react'
 import MUITextField from '../../../components/MUITextField'
 import Box from '@mui/material/Box'
-import PropertyBusinessInfo from './PropertyBusinessInfo'
+import LocationInfo from './LocationInfo'
 import { SelectChangeEvent } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
@@ -53,7 +53,7 @@ const PropertyProfile = ({
                 label={'Rent Per Month'} 
             />          
         </Box>
-        <PropertyBusinessInfo 
+        <LocationInfo 
             cityOrTown={ cityOrTown }
             estate={ estate}
             locationName={locationName}
