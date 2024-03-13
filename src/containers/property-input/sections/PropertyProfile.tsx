@@ -75,7 +75,7 @@ interface Props{
         | string[]>, child: ReactNode) => void
 }
 
-const propertyTypes = [
+export const propertyTypes = [
     'Apartment Building', 'Condomonium', 'Single-Family Home',
     'Town House', 'Duplex', 'Triplex', 'MultiFamily Home',
     'Mobile Home', 'Vacation Home', 'Commercial Property',

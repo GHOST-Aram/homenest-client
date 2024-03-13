@@ -539,32 +539,8 @@ video {
   position: absolute;
 }
 
-.relative {
-  position: relative;
-}
-
-.top-16 {
-  top: 4rem;
-}
-
-.right-8 {
-  right: 2rem;
-}
-
-.top-8 {
-  top: 2rem;
-}
-
-.right-16 {
-  right: 4rem;
-}
-
 .top-12 {
   top: 3rem;
-}
-
-.right-32 {
-  right: 8rem;
 }
 
 .m-8 {
@@ -592,10 +568,6 @@ video {
 
 .mb-2 {
   margin-bottom: 0.5rem;
-}
-
-.mb-24 {
-  margin-bottom: 6rem;
 }
 
 .mb-4 {
@@ -630,12 +602,12 @@ video {
   display: none;
 }
 
-.h-\[70vh\] {
-  height: 70vh;
+.h-\[60vh\] {
+  height: 60vh;
 }
 
-.h-\[85vh\] {
-  height: 85vh;
+.h-\[70vh\] {
+  height: 70vh;
 }
 
 .w-32 {
@@ -714,16 +686,6 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-
-.space-y-8 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
-}
-
-.overflow-x-scroll {
-  overflow-x: scroll;
 }
 
 .rounded {
@@ -846,20 +808,12 @@ video {
   padding-bottom: 2rem;
 }
 
-.pb-4 {
-  padding-bottom: 1rem;
-}
-
 .pb-8 {
   padding-bottom: 2rem;
 }
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pt-8 {
-  padding-top: 2rem;
 }
 
 .text-center {
@@ -1001,10 +955,6 @@ body::-webkit-scrollbar-track{
   border-radius: 2rem;
 }
 
-.bg-primary{
-  background-color: var(--primary-color);
-}
-
 .button-filled:hover{
   transform: scale(1.2);
   transition: all 1s;
@@ -1026,10 +976,6 @@ header{
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-}
-
-.hero .overlay{
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .how-it-works, .about-us{
@@ -1068,10 +1014,14 @@ header{
   margin-block-end: 4rem;
 }
 
-.listings-grid, .grid-auto{
+.grid-auto, .listings-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 1rem;
+}
+
+.overlay{
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .text-light{
@@ -1130,6 +1080,14 @@ header{
     display: none;
   }
 
+  .md\:h-\[40vh\] {
+    height: 40vh;
+  }
+
+  .md\:w-2\/5 {
+    width: 40%;
+  }
+
   .md\:w-3\/5 {
     width: 60%;
   }
@@ -1150,6 +1108,11 @@ header{
 @media (min-width: 1024px) {
   .lg\:m-auto {
     margin: auto;
+  }
+
+  .lg\:my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .lg\:flex {
@@ -1174,11 +1137,6 @@ header{
 
   .lg\:gap-4 {
     gap: 1rem;
-  }
-
-  .lg\:px-16 {
-    padding-left: 4rem;
-    padding-right: 4rem;
   }
 }
 

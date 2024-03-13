@@ -12,6 +12,7 @@ import PropertyForm from './pages/NewProperty';
 import usePropertyData from './utils/useData';
 import LandLordsProperties from './pages/LandLordsProperties';
 import PropertyEditor from './pages/ProperyEditor';
+import AdvancedSearch from './advanced-search/AdvancedSearch';
 
 function App() {
 	const {processStatus, properties } = usePropertyData()
@@ -24,6 +25,7 @@ function App() {
 					<Route path='/' element = {
 						<Home properties={properties} processStatus={processStatus}/>
 					}/>
+					<Route path='/search' element={<AdvancedSearch/>}/>
 					<Route path='/listings' element = {
 						<Listings properties={properties} processStatus={processStatus}/>
 					}/>
