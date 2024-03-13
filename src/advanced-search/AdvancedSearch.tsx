@@ -96,13 +96,13 @@ const buildSearchQuery = (searchParams: SearchParams):string =>{
 }
 
 const initialSearchParams = {
-    propertyType: 'Apartment Building',
+    propertyType: '',
     propertyName: '',
-    rentMin: 10000,
-    rentMax: 20000,
+    rentMin: 0,
+    rentMax: 0,
     cityOrTown: '',
     estate: '',
-    bedrooms: 1,
+    bedrooms: 0,
     hasParkingSpace: false,
     isFurnished: false,
     isAvailable: true,
