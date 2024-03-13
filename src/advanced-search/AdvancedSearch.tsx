@@ -1,142 +1,112 @@
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
-import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import Select from '@mui/material/Select'
-import { propertyTypes } from '../containers/property-input/sections/PropertyProfile'
-import MenuItem  from '@mui/material/MenuItem'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
-import CloseButton from '../components/CloseButton'
+import { useState, ReactNode, ChangeEvent } from "react"
+import Form from "./Form"
+import { useNavigate } from "react-router-dom"
+import { SelectChangeEvent } from "@mui/material"
 
 
 
 const AdvancedSearch = ({closeAdvancedSearch}:{closeAdvancedSearch: ()=> void}) => {
-  return (
-    <Box className="absolute top-24 bottom-0 right-0 left-0 z-10">
-        <form className='space-y-2 m-8 bg-white p-8 rounded-md lg:w-3/5 
-            lg:m-auto lg:my-8 relative'
-        >
-            <CloseButton onClick={closeAdvancedSearch}/>
-            <Box className="flex flex-row gap-4">
-                <FormControl fullWidth>
-                    <InputLabel id='property-type-label'>Property Type</InputLabel>
-                    <Select 
-                        // fullWidth
-                        labelId='property-type-label'
-                        name="propertyType" 
-                        value={propertyTypes[0]} 
-                        onChange={()=>{}}
-                    >
-                        {
-                            propertyTypes.map(type =>(
-                                <MenuItem key={type} value={type}> { type }</MenuItem>
-                            ))
-                        }
-                    </Select>
-                </FormControl>
-                <TextField 
-                    fullWidth
-                    variant='outlined'
-                    label='Property Name'
-                    value={''}
-                    onChange={()=>{}}
-                    name='propertyTypes'
-                />
+    const navigate = useNavigate()
+    const [searchParams, setSearchParams] = useState<SearchParams>(
+        initialSearchParams)
 
-            </Box>
-            <Box className="flex flex-row gap-4">
-                <TextField 
-                    fullWidth
-                    variant='outlined'
-                    label='City or Town'
-                    value={''}
-                    type='text'
-                    onChange={()=>{}}
-                    name='cityOrTown'
-                />
-                <TextField 
-                    fullWidth
-                    variant='outlined'
-                    label='Estate'
-                    value={''}
-                    type='text'
-                    onChange={()=>{}}
-                    name='estate'
-                />
-            </Box>
-            <Box className="flex flex-row gap-4">
-                <TextField 
-                    fullWidth
-                    variant='outlined'
-                    label='Street Address'
-                    value={''}
-                    type='string'
-                    onChange={()=>{}}
-                    name='locationName'
-                />
-                <TextField 
-                    fullWidth
-                    variant='outlined'
-                    label='Bedrooms'
-                    value={1}
-                    type='number'
-                    onChange={()=>{}}
-                    name='bedrooms'
-                />
-                
-            </Box>
-            <Box className="flex flex-row gap-4">
-                <TextField 
-                    fullWidth
-                    variant='outlined'
-                    label='Rent From'
-                    value={10000}
-                    type='number'
-                    onChange={()=>{}}
-                    name='rentMin'
-                />
-                <TextField 
-                    fullWidth
-                    variant='outlined'
-                    label='Rent To'
-                    value={30000}
-                    type='number'
-                    onChange={()=>{}}
-                    name='rentMax'
-                />
-            </Box>
-            <Box className="flex flex-row gap-4">
-                <FormControlLabel 
-                    label='Furnished' 
-                    control = {
-                        <Checkbox 
-                            onChange={()=>{}} 
-                            // checked={false}
-                            name="isFurnished"
-                        /> 
-                    }
-                />
-                <FormControlLabel 
-                    label='Parking Space' 
-                    control = {
-                        <Checkbox 
-                            onChange={()=>{}} 
-                            // checked={false}
-                            name="hasParkingSpace"
-                        /> 
-                    }
-                />
-            </Box>
-            <Button variant='contained' size='large' type='submit' 
-                sx={{backgroundColor:'#f97316'}}
-            >
-                Search
-            </Button>
-        </form>
-    </Box>
+    const getSelectedValue = (e: SelectChangeEvent<string>, child: ReactNode) =>{
+        const {name, value} = e.target
+        setSearchParams({...searchParams,[name]:value })
+    }
+
+    const getTextFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target
+        setSearchParams({...searchParams,[name]:value })
+    }
+
+    const getCheckboxValue = (e: ChangeEvent<HTMLInputElement>) =>{
+        const {name, checked} = e.target
+        setSearchParams({...searchParams,[name]:checked })
+    }
+
+
+    const search = () =>{
+        const searchQuery = buildSearchQuery(searchParams)
+        navigate(`/listings?${searchQuery}`)
+    }
+    return (
+    <Form 
+        propertyType={searchParams.propertyType}
+        propertyName={searchParams.propertyName}
+        rentMin={searchParams.rentMin}
+        rentMax={searchParams.rentMax}
+        cityOrTown={searchParams.cityOrTown}
+        estate={searchParams.estate}
+        bedrooms={searchParams.bedrooms}
+        hasParkingSpace={searchParams.hasParkingSpace}
+        isFurnished={searchParams.isFurnished}
+        isAvailable={searchParams.isAvailable}
+        locationName={searchParams.locationName}
+        onSubmit= {search}
+        getCheckboxValue={getCheckboxValue}
+        getTextFieldValue={getTextFieldValue}
+        getSelectedValue={getSelectedValue}  
+        closeForm={closeAdvancedSearch}
+    />
   )
+}
+
+interface SearchParams{
+    propertyType: string
+    propertyName: string
+    rentMin: number
+    rentMax: number
+    cityOrTown: string
+    estate: string
+    bedrooms: number
+    hasParkingSpace: boolean
+    isFurnished: boolean
+    isAvailable: boolean
+    locationName: string
+}
+const buildSearchQuery = (searchParams: SearchParams):string =>{
+    const {
+        propertyType,
+        propertyName,
+        rentMin,
+        rentMax,
+        cityOrTown,
+        estate,
+        bedrooms,
+        hasParkingSpace,
+        isFurnished,
+        isAvailable,
+        locationName,
+    } = searchParams
+
+    let searchQuery = propertyType ? `propertyType=${propertyType}`:''
+        searchQuery +=  propertyName ? `propertyName=${propertyName}`: ''
+        searchQuery += rentMin ? `rentMin=${rentMin}`:''
+        searchQuery += rentMax ? `rentMax=${rentMax}`:''
+        searchQuery += cityOrTown ? `cityOrTown=${cityOrTown}`:''
+        searchQuery += estate ? `estate=${estate}`:''
+        searchQuery += bedrooms ? `bedrooms=${bedrooms}`:''
+        searchQuery += hasParkingSpace ? `hasParkingSpace=${hasParkingSpace}`:''
+        searchQuery += isFurnished ? `isFurnished=${isFurnished}`:''
+        searchQuery += isAvailable ? `isAvailable=${isAvailable}`:''
+        searchQuery += locationName ? `locationName=${locationName}`:''
+
+    return searchQuery
+}
+
+const initialSearchParams = {
+    propertyType: 'Apartment Building',
+    propertyName: '',
+    rentMin: 10000,
+    rentMax: 20000,
+    cityOrTown: '',
+    estate: '',
+    bedrooms: 1,
+    hasParkingSpace: false,
+    isFurnished: false,
+    isAvailable: true,
+    locationName: ''
 }
 
 export default AdvancedSearch

@@ -31,7 +31,6 @@ const SearchBar = () => {
             onSubmit={(e)=>{
                 e.preventDefault()
                 search()
-                console.log("SearchParams: ", searchParams)
             }}
             className="flex flex-col md:flex-row items-center gap-4 bg-white p-4  
             w-4/5 m-auto lg:w-3/5 lg:m-auto rounded-md"
