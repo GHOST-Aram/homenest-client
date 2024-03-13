@@ -81,16 +81,16 @@ const buildSearchQuery = (searchParams: SearchParams):string =>{
     } = searchParams
 
     let searchQuery = propertyType ? `propertyType=${propertyType}`:''
-        searchQuery +=  propertyName ? `propertyName=${propertyName}`: ''
-        searchQuery += rentMin ? `rentMin=${rentMin}`:''
-        searchQuery += rentMax ? `rentMax=${rentMax}`:''
-        searchQuery += cityOrTown ? `cityOrTown=${cityOrTown}`:''
-        searchQuery += estate ? `estate=${estate}`:''
-        searchQuery += bedrooms ? `bedrooms=${bedrooms}`:''
-        searchQuery += hasParkingSpace ? `hasParkingSpace=${hasParkingSpace}`:''
-        searchQuery += isFurnished ? `isFurnished=${isFurnished}`:''
-        searchQuery += isAvailable ? `isAvailable=${isAvailable}`:''
-        searchQuery += locationName ? `locationName=${locationName}`:''
+        searchQuery +=  propertyName ? `&&propertyName=${propertyName}`: ''
+        searchQuery += rentMin ? `&&rentMin=${rentMin}`:''
+        searchQuery += rentMax ? `&&rentMax=${rentMax}`:''
+        searchQuery += cityOrTown ? `&&cityOrTown=${cityOrTown}`:''
+        searchQuery += estate ? `&&estate=${estate}`:''
+        searchQuery += bedrooms ? `&&bedrooms=${bedrooms}`:''
+        searchQuery += hasParkingSpace ? `&&hasParkingSpace=${hasParkingSpace}`:''
+        searchQuery += isFurnished ? `&&isFurnished=${isFurnished}`:''
+        searchQuery += isAvailable ? `&&isAvailable=${isAvailable}`:''
+        searchQuery += locationName ? `&&locationName=${locationName}`:''
 
     return searchQuery
 }
