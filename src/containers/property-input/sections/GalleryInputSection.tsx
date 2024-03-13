@@ -1,8 +1,8 @@
-import { GalleryItem, PropertyData } from "../../types"
+import { GalleryItem, PropertyData } from "../../../types"
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
-import ImageGrid from "../image-grid/ImageGrid"
+import ImageGrid from "../../image-grid/ImageGrid"
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 
 const GalleryInputSection = ({ property, setProperty }: Props) => {

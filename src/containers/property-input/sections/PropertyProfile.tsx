@@ -1,5 +1,5 @@
 import { ChangeEventHandler, ReactNode } from 'react'
-import MUITextField from '../../components/MUITextField'
+import MUITextField from '../../../components/MUITextField'
 import Box from '@mui/material/Box'
 import PropertyBusinessInfo from './PropertyBusinessInfo'
 import { SelectChangeEvent } from '@mui/material'

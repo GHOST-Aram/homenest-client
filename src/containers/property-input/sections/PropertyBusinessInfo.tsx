@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react'
 import Box from '@mui/material/Box'
-import MUITextField from '../../components/MUITextField'
+import MUITextField from '../../../components/MUITextField'
 
 const PropertyBusinessInfo = ({
     getTextFieldValue,

@@ -5,7 +5,7 @@ import { PropertyData } from "../types"
 import { Status } from "../types"
 import { useNavigate } from "react-router-dom"
 import { updateProcessStatus } from "../utils/process-status"
-import PropertyFormController from "../containers/property-input/PropertyFormController"
+import PropertyFormController from "../containers/property-input/sections/PropertyFormController"
 
 
 const NewProperty = () => {

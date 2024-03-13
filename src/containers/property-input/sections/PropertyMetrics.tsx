@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import MUITextField from '../../components/MUITextField'
+import MUITextField from '../../../components/MUITextField'
 import { ChangeEventHandler } from 'react'
 
 const PropertyMetrics = ({
