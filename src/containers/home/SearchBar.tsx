@@ -1,15 +1,39 @@
 import MenuItem from "@mui/material/MenuItem"
 import TextField from '@mui/material/TextField'
-import Select from '@mui/material/Select'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Button from '@mui/material/Button'
 import FormControl from "@mui/material/FormControl"
 import InputLabel from "@mui/material/InputLabel"
 import { FaSearch } from "react-icons/fa";
+import { ChangeEvent, ReactNode, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const SearchBar = () => {
+    const navigate = useNavigate()
+    const [searchParams, setSearchParams] = useState<SearchParams>({
+        searchOption: '', keyword: ''})
+
+    const getSelectedValue = (e: SelectChangeEvent<string>, child: ReactNode) =>{
+        setSearchParams({...searchParams, searchOption: e.target.value})
+    }
+
+    const getTextFieldValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchParams({ ...searchParams, keyword: e.target.value })
+    }
+
+    const search = () =>{
+        navigate(`/listings?${searchParams.searchOption}=${searchParams.keyword}`)
+    }
+
 
     return (
-        <form className="flex flex-col md:flex-row items-center gap-4 bg-white p-4  
+        <form 
+            onSubmit={(e)=>{
+                e.preventDefault()
+                search()
+                console.log("SearchParams: ", searchParams)
+            }}
+            className="flex flex-col md:flex-row items-center gap-4 bg-white p-4  
             w-4/5 m-auto lg:w-3/5 lg:m-auto rounded-md"
         >
             <FormControl className="w-full md:w-2/5">
@@ -19,9 +43,9 @@ const SearchBar = () => {
                 <Select 
                     labelId='search-option-label'
                     name="searchOption" 
-                    value={''}
+                    value={searchParams.searchOption}
                     defaultValue={menuList[0].value} 
-                    onChange={()=>{}}
+                    onChange={getSelectedValue}
                 >
                     {
                         menuList.map(menuItem =>(
@@ -36,15 +60,15 @@ const SearchBar = () => {
                 fullWidth
                 variant='outlined'
                 label='Enter Keyword'
-                value={''}
+                value={searchParams.keyword}
                 type='text'
-                onChange={()=>{}}
-                name='keyWord'
+                onChange={getTextFieldValue}
+                name='keyword'
             />
             <Button 
                 size='large'
                 variant='contained' 
-                type='button' 
+                type='submit' 
             >
                 <FaSearch className="text-4xl"/>
             </Button>
@@ -65,10 +89,11 @@ const menuList = [
         name: 'Estate',
         value: 'estate'
     },
-    {
-        name: 'Bedrooms',
-        value: 'bedrooms'
-    }
 ]
+
+interface SearchParams{
+    searchOption: string,
+    keyword: string,
+}
 
 export default SearchBar
