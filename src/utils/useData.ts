@@ -26,7 +26,7 @@ const usePropertyData = () => {
 			}
 		})()
 
-	},[])
+	},[query])
 
   return {processStatus, properties }
 }
