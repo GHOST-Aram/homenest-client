@@ -12,14 +12,12 @@ const PropertyBusinessInfo = ({
     getSelectedValue,
     getTextFieldValue,
     rentPerMonth,
-    rentPerYear,
+    cityOrTown,
+    estate
 }: Props) => {
   return (
     <>
-        <h1 className="text-blue-700 text-lg text-center">Business Info</h1>
-        <Box className="flex flex-col gap-4 lg:flex-row justify-between p-8 border-2 
-            rounded-md"
-        >
+        <Box className="flex flex-col gap-4 lg:flex-row justify-between">
             <FormControl fullWidth>
                 <InputLabel id='property-type-label'>Property Type</InputLabel>
                 <Select 
@@ -44,11 +42,18 @@ const PropertyBusinessInfo = ({
                 label={'Rent Per Month'} 
             />
             <MUITextField 
-                type="number" 
-                name="rentPerYear" 
-                value = {`${rentPerYear}`} 
+                type="text" 
+                name="cityOrTown" 
+                value = {cityOrTown} 
                 changeHandler={getTextFieldValue} 
-                label={'Rent Per Year'} 
+                label={'City/Town'} 
+            />
+            <MUITextField 
+                type="text" 
+                name="estate" 
+                value = {estate} 
+                changeHandler={getTextFieldValue} 
+                label={'Estate'} 
             />
         </Box>
     </>
@@ -60,7 +65,8 @@ interface Props{
     getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void
     getTextFieldValue: ChangeEventHandler<HTMLInputElement>
     rentPerMonth:number
-    rentPerYear: number
+    cityOrTown: string
+    estate: string
 }
 
 const propertyTypes = [

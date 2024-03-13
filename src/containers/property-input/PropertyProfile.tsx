@@ -1,12 +1,19 @@
-import React, { ChangeEventHandler } from 'react'
+import { ChangeEventHandler, ReactNode } from 'react'
 import MUITextField from '../../components/MUITextField'
 import Box from '@mui/material/Box'
+import PropertyBusinessInfo from './PropertyBusinessInfo'
+import { SelectChangeEvent } from '@mui/material'
 
 const PropertyProfile = ({
     propertyName, 
     locationName, 
     backgroundImageUrl,
+    propertyType,
+    rentPerMonth,
+    cityOrTown,
+    estate,
     getTextFieldValue,
+    getSelectedValue,
 } : Props ) => {
   return (
     <>
@@ -34,6 +41,14 @@ const PropertyProfile = ({
                 changeHandler={getTextFieldValue}
             /> 
         </Box>
+        <PropertyBusinessInfo 
+            propertyType={ propertyType}
+            rentPerMonth={ rentPerMonth}
+            cityOrTown={ cityOrTown }
+            estate={ estate}
+            getTextFieldValue={getTextFieldValue}
+            getSelectedValue={getSelectedValue}
+        />
     </>
   )
 }
@@ -42,7 +57,13 @@ interface Props{
     propertyName: string
     locationName: string
     backgroundImageUrl: string
+    propertyType: string
+    rentPerMonth:number
+    cityOrTown: string
+    estate: string
     getTextFieldValue: ChangeEventHandler<HTMLInputElement>
+    getSelectedValue: (e: SelectChangeEvent<string 
+        | string[]>, child: ReactNode) => void
 }
 
 export default PropertyProfile

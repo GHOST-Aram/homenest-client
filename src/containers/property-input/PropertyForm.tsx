@@ -6,7 +6,6 @@ import { PropertyData, Status } from '../../types'
 import StatusAlert from '../login/StatusAlert'
 import PropertyProfile from './PropertyProfile'
 import MultilineTextField from '../../components/MultiLineTextField'
-import PropertyBusinessInfo from './PropertyBusinessInfo'
 import PropertyMetrics from './PropertyMetrics'
 import PropertyAvailabilityAndMore from './PropertyAvailabilityAndMore'
 import PropertyResources from './PropertyResources'
@@ -48,6 +47,11 @@ const PropertyForm = ({
                         locationName={propertyData.locationName}
                         propertyName={propertyData.propertyName}
                         backgroundImageUrl={propertyData.backgroundImageUrl}
+                        propertyType={propertyData.propertyType}
+                        rentPerMonth={propertyData.rentPerMonth}
+                        cityOrTown={propertyData.cityOrTown?propertyData.cityOrTown:''}
+                        estate={propertyData.estate?propertyData.estate:''}
+                        getSelectedValue={getSelectedValue}
                         getTextFieldValue={getTextFieldValue}
                     />
                     <MultilineTextField 
@@ -58,13 +62,6 @@ const PropertyForm = ({
                         changeHandler={getTextFieldValue}
                     />
                 </Box>
-                <PropertyBusinessInfo 
-                    propertyType={propertyData.propertyType}
-                    rentPerMonth={propertyData.rentPerMonth}
-                    rentPerYear={propertyData.rentPerYear}
-                    getTextFieldValue={getTextFieldValue}
-                    getSelectedValue={getSelectedValue}
-                />
                 <PropertyMetrics 
                     bedrooms={propertyData.bedrooms}
                     bathrooms={propertyData.bathrooms}
