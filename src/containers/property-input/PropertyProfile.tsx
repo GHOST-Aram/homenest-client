@@ -3,11 +3,14 @@ import MUITextField from '../../components/MUITextField'
 import Box from '@mui/material/Box'
 import PropertyBusinessInfo from './PropertyBusinessInfo'
 import { SelectChangeEvent } from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
 
 const PropertyProfile = ({
     propertyName, 
     locationName, 
-    backgroundImageUrl,
     propertyType,
     rentPerMonth,
     cityOrTown,
@@ -26,28 +29,35 @@ const PropertyProfile = ({
                 value={propertyName} 
                 changeHandler={getTextFieldValue}
             />
+            <FormControl fullWidth>
+                <InputLabel id='property-type-label'>Property Type</InputLabel>
+                <Select 
+                    fullWidth
+                    labelId='property-type-label'
+                    name="propertyType" 
+                    value={propertyType} 
+                    onChange={getSelectedValue}
+                >
+                    {
+                        propertyTypes.map(type =>(
+                            <MenuItem key={type} value={type}> { type }</MenuItem>
+                        ))
+                    }
+                </Select>
+            </FormControl>
             <MUITextField 
-                name="locationName" 
-                type="text" 
-                label="Location Address"
-                value={locationName}
-                changeHandler={getTextFieldValue}
-            /> 
-            <MUITextField 
-                name="backgroundImageUrl" 
-                type="text" 
-                label="Background Image URL"
-                value={backgroundImageUrl} 
-                changeHandler={getTextFieldValue}
-            /> 
+                type="number" 
+                name="rentPerMonth" 
+                value = {`${rentPerMonth}`} 
+                changeHandler={getTextFieldValue} 
+                label={'Rent Per Month'} 
+            />          
         </Box>
         <PropertyBusinessInfo 
-            propertyType={ propertyType}
-            rentPerMonth={ rentPerMonth}
             cityOrTown={ cityOrTown }
             estate={ estate}
+            locationName={locationName}
             getTextFieldValue={getTextFieldValue}
-            getSelectedValue={getSelectedValue}
         />
     </>
   )
@@ -56,7 +66,6 @@ const PropertyProfile = ({
 interface Props{
     propertyName: string
     locationName: string
-    backgroundImageUrl: string
     propertyType: string
     rentPerMonth:number
     cityOrTown: string
@@ -65,5 +74,13 @@ interface Props{
     getSelectedValue: (e: SelectChangeEvent<string 
         | string[]>, child: ReactNode) => void
 }
+
+const propertyTypes = [
+    'Apartment Building', 'Condomonium', 'Single-Family Home',
+    'Town House', 'Duplex', 'Triplex', 'MultiFamily Home',
+    'Mobile Home', 'Vacation Home', 'Commercial Property',
+    'Industrial Property', 'Luxury Home', 'Mixed Use Property',
+    'Studio'
+]
 
 export default PropertyProfile

@@ -11,6 +11,7 @@ import PropertyAvailabilityAndMore from './PropertyAvailabilityAndMore'
 import PropertyResources from './PropertyResources'
 import PropertyGallery from './GalleryInputSection'
 import { useLocation } from 'react-router-dom'
+import MUITextField from '../../components/MUITextField'
 
 
 const PropertyForm = ({
@@ -46,7 +47,6 @@ const PropertyForm = ({
                     <PropertyProfile 
                         locationName={propertyData.locationName}
                         propertyName={propertyData.propertyName}
-                        backgroundImageUrl={propertyData.backgroundImageUrl}
                         propertyType={propertyData.propertyType}
                         rentPerMonth={propertyData.rentPerMonth}
                         cityOrTown={propertyData.cityOrTown?propertyData.cityOrTown:''}
@@ -54,13 +54,22 @@ const PropertyForm = ({
                         getSelectedValue={getSelectedValue}
                         getTextFieldValue={getTextFieldValue}
                     />
-                    <MultilineTextField 
-                        name="description" 
-                        type="text" 
-                        label="Description"
-                        value={propertyData.description} 
-                        changeHandler={getTextFieldValue}
-                    />
+                    <Box className='space-y-4'>
+                        <MultilineTextField 
+                            name="description" 
+                            type="text" 
+                            label="Description"
+                            value={propertyData.description} 
+                            changeHandler={getTextFieldValue}
+                        />
+                          <MUITextField 
+                            name="backgroundImageUrl" 
+                            type="text" 
+                            label="Background Image URL"
+                            value={propertyData.backgroundImageUrl} 
+                            changeHandler={getTextFieldValue}
+                        /> 
+                    </Box>
                 </Box>
                 <PropertyMetrics 
                     bedrooms={propertyData.bedrooms}
