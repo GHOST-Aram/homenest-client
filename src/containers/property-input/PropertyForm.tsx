@@ -5,14 +5,12 @@ import Button from '@mui/material/Button'
 import { PropertyData, Status } from '../../types'
 import StatusAlert from '../login/StatusAlert'
 import PropertyProfile from './sections/PropertyProfile'
-import MultilineTextField from '../../components/MultiLineTextField'
 import PropertyMetrics from './sections/PropertyMetrics'
 import PropertyAvailabilityAndMore from './sections/PropertyAvailabilityAndMore'
 import PropertyResources from './sections/PropertyResources'
 import PropertyGallery from './sections/GalleryInputSection'
 import { useLocation } from 'react-router-dom'
-import MUITextField from '../../components/MUITextField'
-
+import DescriptionAndBackgroud from './sections/DescriptionAndBackgroud'
 
 const PropertyForm = ({
     submitFormData, 
@@ -54,22 +52,11 @@ const PropertyForm = ({
                         getSelectedValue={getSelectedValue}
                         getTextFieldValue={getTextFieldValue}
                     />
-                    <Box className='space-y-4'>
-                        <MultilineTextField 
-                            name="description" 
-                            type="text" 
-                            label="Description"
-                            value={propertyData.description} 
-                            changeHandler={getTextFieldValue}
-                        />
-                          <MUITextField 
-                            name="backgroundImageUrl" 
-                            type="text" 
-                            label="Background Image URL"
-                            value={propertyData.backgroundImageUrl} 
-                            changeHandler={getTextFieldValue}
-                        /> 
-                    </Box>
+                    <DescriptionAndBackgroud 
+                        backgroundImageUrl={propertyData.backgroundImageUrl}
+                        description={propertyData.description}
+                        getTextFieldValue={getTextFieldValue}
+                    />
                 </Box>
                 <PropertyMetrics 
                     bedrooms={propertyData.bedrooms}
