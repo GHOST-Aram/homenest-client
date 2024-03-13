@@ -8,11 +8,18 @@ import { propertyTypes } from '../containers/property-input/sections/PropertyPro
 import MenuItem  from '@mui/material/MenuItem'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
+import CloseButton from '../components/CloseButton'
 
-const AdvancedSearch = () => {
+
+
+const AdvancedSearch = ({closeAdvancedSearch}:{closeAdvancedSearch: ()=> void}) => {
   return (
-        <form className='space-y-2 m-8 bg-white p-8 rounded-md lg:w-3/5 lg:m-auto lg:my-8'>
-            <Box className="flex flex-row gap-4 ">
+    <Box className="absolute top-24 bottom-0 right-0 left-0 z-10">
+        <form className='space-y-2 m-8 bg-white p-8 rounded-md lg:w-3/5 
+            lg:m-auto lg:my-8 relative'
+        >
+            <CloseButton onClick={closeAdvancedSearch}/>
+            <Box className="flex flex-row gap-4">
                 <FormControl fullWidth>
                     <InputLabel id='property-type-label'>Property Type</InputLabel>
                     <Select 
@@ -128,6 +135,7 @@ const AdvancedSearch = () => {
                 Search
             </Button>
         </form>
+    </Box>
   )
 }
 

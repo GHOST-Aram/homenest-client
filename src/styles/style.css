@@ -539,8 +539,36 @@ video {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
 .top-12 {
   top: 3rem;
+}
+
+.top-16 {
+  top: 4rem;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.top-24 {
+  top: 6rem;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .m-8 {
