@@ -1,14 +1,13 @@
-import Section from '../../../../components/Section'
 import PropertyCard from '../../../../components/PropertyCard'
 import ListingSkeletons from './ListingSkeletons'
 import { ListingProps } from '../../../../types'
+import Box from '@mui/material/Box'
 
 const FeaturedListings = ({ properties, processStatus} : ListingProps) => {
 
     return (
-		<>
-        <Section>
-			<div className="py-4 listings-grid">
+        <section className={section}>
+			<Box className={listings}>
 				{ processStatus === 'loading' && <ListingSkeletons /> }
 				{
 					processStatus === 'success' ?
@@ -23,17 +22,19 @@ const FeaturedListings = ({ properties, processStatus} : ListingProps) => {
 									key={property._id.toString()}
 								/>
 							)) 
-						: <h1 className='text-center font-light'>No propertys to list</h1>
+						: <h1 className={heading}>No propertys to list</h1>
 					
 					:''	
 					
 				}
-			</div>
-		</Section>
-		</>
+			</Box>
+		</section>
 	)
 }
 
+const heading = 'text-center font-light'
+const listings = "py-4 listings-grid"
+const section = "mb-8 pb-8 px-8"
 
 
 export default FeaturedListings
