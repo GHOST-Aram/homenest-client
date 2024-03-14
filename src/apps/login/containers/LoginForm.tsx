@@ -22,7 +22,7 @@ const LoginForm = (
     ]
     
     return (
-        <form className={form} onSubmit={ onSubmit }>
+        <form className={form} onSubmit={(e) => {e.preventDefault(); onSubmit()} }>
         <h1 id='form-label' className={heading}>Welcome to Homenest</h1>
             {
                 fields.map((field) =>(
