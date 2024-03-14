@@ -12,7 +12,7 @@ const KeyFeatures = ({ property }: { property: PropertyData }) => {
                     <Feature name='Propety Type' value={property.propertyType} />
                     <Feature name='Bedrooms' value={ `${property.bedrooms}` } /> 
                     <Feature name='Currently Vacant' 
-                        value={ `${property.isAvailable ? 'Yesy' : 'No'}` } 
+                        value={ `${property.isAvailable ? 'Yes' : 'No'}` } 
                     />  
                 </Box>
                 <Box className={featureContainer}>

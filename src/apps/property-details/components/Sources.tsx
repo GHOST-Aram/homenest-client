@@ -1,4 +1,3 @@
-import Divider from "@mui/material/Divider"
 import Box from '@mui/material/Box'
 
 const Sources = (
@@ -12,9 +11,8 @@ const Sources = (
                 sources.map(source =>(
                     <>
                         <span key={source} className={sourceClassName}> 
-                            { source }  
+                            { source } | {''}
                         </span>
-                        <Divider orientation={'vertical'}/>
                     </>
                 ))
             }
