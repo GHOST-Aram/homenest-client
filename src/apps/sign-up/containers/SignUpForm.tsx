@@ -2,14 +2,14 @@ import TextField from '@mui/material/TextField'
 import RolesRadioInput from '../components/RolesRadioInput'
 import SignUpButton from '../components/SignUpButton'
 import StatusAlert from '../components/SignUpStatusAlert'
-import { FormProps, UserData } from '../../../types'
+import { Status, UserData } from '../../../types'
 import GoToLoginBtn from '../components/GoToLoginBtn'
-import Form from '../../../components/Form'
+import { ChangeEventHandler } from 'react'
 
 const SignUpForm = (
     { 
         userData, 
-        registerUser, 
+        onSubmit, 
         status, 
         changeHandler 
     }: FormProps
@@ -17,14 +17,9 @@ const SignUpForm = (
     
     const fields = createFieldsWithUserData(userData)
 
-    const signUp = async() => {
-        if(userData.password === userData.confirmPassword){
-            await registerUser()
-        }
-    }
-
     return (
-        <Form heading='Welcome to Homenest' submitHandler={ signUp }>
+        <form className={form} onSubmit={ onSubmit }>
+             <h1 id='form-label' className={heading}>Welcome to Homenest</h1>
             {
                 fields.map((field) =>(
                     <TextField
@@ -48,7 +43,7 @@ const SignUpForm = (
             <SignUpButton status={status}/>
             <p className={ boldText }>OR</p>
             <GoToLoginBtn/>
-        </Form>
+        </form>
     )
 }
 
@@ -79,5 +74,14 @@ const createFieldsWithUserData = (userData: UserData) =>{
 
 const errorMsg = "text-sm text-red-700"
 const boldText  = "font-bold text-center text-slate-800"
+const form = 'p-8 flex flex-col space-y-4'
+const heading = "text-blue-700 font-bold text-lg text-center"
+
+interface FormProps{ 
+    userData: UserData 
+    onSubmit: () => void, 
+    status: Status , 
+    changeHandler: ChangeEventHandler 
+}
 
 export default SignUpForm

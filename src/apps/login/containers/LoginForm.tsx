@@ -2,7 +2,6 @@ import TextField from '@mui/material/TextField'
 import LoginButton from '../components/LoginButton'
 import { LoginProps, Status } from '../../../types'
 import { ChangeEventHandler } from 'react'
-import Form from '../../../components/Form'
 import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
 import GoToSignUpBtn from '../components/GoToSignUpBtn'
@@ -11,10 +10,10 @@ import GoToSignUpBtn from '../components/GoToSignUpBtn'
 const LoginForm = ( 
     { 
         loginDetails, 
-        changeHandler, 
-        authenticateUser,
+        onChange, 
+        onSubmit,
         processStatus 
-    }:formProps 
+    }:FormProps 
 ) => {
 
     const fields = [
@@ -23,14 +22,15 @@ const LoginForm = (
     ]
     
     return (
-        <Form submitHandler={authenticateUser} heading='Login to Homenest'>
+        <form className={form} onSubmit={ onSubmit }>
+        <h1 id='form-label' className={heading}>Welcome to Homenest</h1>
             {
                 fields.map((field) =>(
                     <TextField
                         key={`${field.label.replaceAll(' ', '-')}-field`} 
                         value={field.value} 
                         label={field.label} 
-                        onChange={changeHandler}
+                        onChange={onChange}
                         type = {field.type}
                         name={field.name}
                         fullWidth
@@ -62,15 +62,19 @@ const LoginForm = (
            <LoginButton processStatus = {processStatus} />
            <p className="font-bold text-center text-slate-800">OR</p>
            <GoToSignUpBtn />
-        </Form>
+        </form>
     )
 }
 
-type formProps = { 
-    loginDetails: LoginProps, 
-    changeHandler: ChangeEventHandler
-    authenticateUser: () =>Promise<void>
+interface FormProps{ 
+    loginDetails: LoginProps 
     processStatus: Status
+    onChange: ChangeEventHandler
+    onSubmit: ()=>void
 }
+
+
+const form = 'p-8 flex flex-col space-y-4'
+const heading = "text-blue-700 font-bold text-lg text-center"
 
 export default LoginForm
