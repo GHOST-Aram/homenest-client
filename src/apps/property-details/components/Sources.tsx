@@ -8,12 +8,10 @@ const Sources = (
         <Box>
             <span className={ resourceClassName }> { resourceName }: </span>
             {
-                sources.map(source =>(
-                    <>
-                        <span key={source} className={sourceClassName}> 
-                            { source } | {''}
-                        </span>
-                    </>
+                sources.map((source, index) =>(
+                    <span key={source} className={sourceClassName}> 
+                        { source } | {''}
+                    </span>
                 ))
             }
         </Box>
