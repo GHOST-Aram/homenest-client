@@ -8,7 +8,7 @@ import PropertyProfile from './containers/PropertyProfile'
 import PropertyMetrics from './containers/PropertyMetrics'
 import PropertyAvailabilityAndMore from './containers/PropertyAvailabilityAndMore'
 import PropertyResources from './containers/PropertyResources'
-import PropertyGallery from './containers/GalleryInputSection'
+import GalleryInput from './containers/GalleryInputSection'
 import { useLocation } from 'react-router-dom'
 import DescriptionAndBackgroud from './containers/DescriptionAndBackgroud'
 
@@ -64,7 +64,7 @@ const PropertyForm = ({
                     squareFootage={propertyData.squareFootage}
                     getTextFieldValue={getTextFieldValue}
                 />
-                <PropertyGallery 
+                <GalleryInput 
                     property ={propertyData} 
                     setProperty = {setProperty}
                 />

@@ -1,8 +1,6 @@
 import { GalleryItem, PropertyData } from "../../../../types"
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
-import ImageGrid from "../../image-grid/ImageGrid"
+import ImageInput from "../components/ImageInput"
+import Grid from "../../image-grid/Grid"
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 
 const GalleryInputSection = ({ property, setProperty }: Props) => {
@@ -31,11 +29,8 @@ const GalleryInputSection = ({ property, setProperty }: Props) => {
             setProperty({ ...property, images: images})
         } else {
             const images: GalleryItem[] = property.images.filter(
-                element => {
-                    if(element.url===url && element.alt===alt)
-                        return false
-                    return true
-                })
+                element => (element.url!==url && element.alt!==alt)
+            )
 
             setProperty({ ...property, images: images})
         }
@@ -43,27 +38,16 @@ const GalleryInputSection = ({ property, setProperty }: Props) => {
 
     return (
         <>
-            <h1 className="text-blue-700 text-lg text-center">Property Gallery</h1>
-            <ImageGrid images={property.images} deleteImage={deleteImage}/>
-            <Box className="flex flex-col w-full md:flex-row gap-4">
-                <Box className="flex flex-col w-full md:flex-row gap-4">
-                    <TextField 
-                        fullWidth name="alt" 
-                        label='Image Name' 
-                        value={imageData.alt}
-                        onChange={collectImageData}
-                    />
-                    <TextField 
-                        fullWidth name="url" 
-                        label='Image Url' 
-                        value={imageData.url}
-                        onChange={collectImageData}
-                    />
-                </Box>
-                <Button color="primary" variant='contained' onClick={addToPropertyGallery}>
-                    Add
-                </Button>
-            </Box>
+            <h1 className={heading}>Property Gallery</h1>
+            <Grid 
+                images={property.images} 
+                deleteImage={deleteImage}
+            />
+            <ImageInput 
+                imageData={imageData}
+                collectImageData={collectImageData}
+                addToPropertyGallery={addToPropertyGallery}
+            />
         </>
     )
 }
@@ -72,5 +56,7 @@ interface Props{
     property: PropertyData
     setProperty: Dispatch<SetStateAction<PropertyData>>
 }
+
+const heading = "text-blue-700 text-lg text-center"
 
 export default GalleryInputSection
