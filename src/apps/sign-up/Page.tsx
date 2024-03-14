@@ -1,10 +1,11 @@
 import Paper from '@mui/material/Paper'
 import { ChangeEvent, useState } from 'react'
-import { registerUser } from '../../utils/register-user'
 import SignUpForm from './containers/SignUpForm'
 import { UserData, Status } from '../../types'
 import { useNavigate } from 'react-router'
 import Box from '@mui/material/Box'
+import { sendPostRequest } from '../../utils/fetch'
+import { updateProcessStatus } from '../../utils/process-status'
 
 export const SignUp = () =>{
     const navigate = useNavigate()
@@ -23,6 +24,22 @@ export const SignUp = () =>{
         setUserData({...userData, [name]: value })
     }
 
+    const createUser = () =>{
+        setStatus('loading')
+
+        try {
+            (async() =>{
+                const response = await sendPostRequest('http://localhost:8000/users', 
+                userData)
+
+                const statusCode = response.status
+                updateProcessStatus(setStatus, statusCode)
+            })()
+        } catch (error) {
+            setStatus('error')            
+        }
+    }
+
     if(status === 'created'){
         navigate('/login')
     }
@@ -33,7 +50,7 @@ export const SignUp = () =>{
                 <SignUpForm 
                     status={status} 
                     changeHandler={collectUserInput} 
-                    registerUser={() => registerUser(setStatus, userData)}
+                    onSubmit={createUser}
                     userData={userData}
                 />            
             </Paper>
