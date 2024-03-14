@@ -48,10 +48,10 @@ const Login = () => {
                 className='my-8 lg:w-2/5 md:w-3/5 md:m-auto lg:m-auto'   
             >
                 <LoginForm 
-                    changeHandler={collectLoginDetails} 
+                    onChange={collectLoginDetails} 
                     loginDetails={loginDetails}
                     processStatus={status}
-                    authenticateUser={() => authenticateUser(setAuthToken, 
+                    onSubmit={() => authenticateUser(setAuthToken, 
                         setStatus, loginDetails)
                     }
                 />
