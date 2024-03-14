@@ -6,58 +6,65 @@ import MenuItem from '@mui/material/MenuItem'
 import { ReactNode } from 'react'
 import { SelectChangeEvent } from '@mui/material/Select'
 
-const PropertyResources = ({
-    energySources,
-    waterSources,
-    getSelectedValue,
-}: Props) => {
+const PropertyResources = (
+    {
+        energySources,
+        waterSources,
+        getSelectedValue,
+    }: Props
+) => {
+    const fields = [
+        {
+            inputLabel: 'Energy Sources', 
+            labelId: 'energyy-sources-label',
+            label: 'Energy Sources', 
+            name: 'energySources',
+            menuItems: energySourcesMenu, 
+            value: energySources,
+        },
+        {
+            inputLabel: 'Water Sources', 
+            labelId: 'water-sources-label',
+            label: 'Water Sources', 
+            name: 'waterSources',
+            menuItems: waterSourcesMenu, 
+            value: waterSources,
+        },
+    ]
     return (
         <>
-            <h1 className="text-blue-700 text-lg text-center">Resources</h1>
+            <h1 className={heading}>Resources</h1>
+            <Box className={flexContainer}>
+                {
+                    fields.map(field =>(
 
-            <Box className="flex flex-col gap-4 lg:flex-row justify-between p-8 
-                border-2 rounded-md"
-            >
-                <FormControl fullWidth>
-                    <InputLabel id='energyy-sources-label'>Energy Sources</InputLabel>
-                    <Select 
-                        fullWidth
-                        labelId="energy-sources-label"
-                        name="energySources" 
-                        value={energySources} 
-                        label='Energy Sources'
-                        multiple 
-                        onChange={getSelectedValue}
-                    >
-                        {
-                            energySourcesArr.map((source: string) =>(
-                                <MenuItem key={source} value={source}> { source }</MenuItem>
-                            ))
-                        }
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth>
-                    <InputLabel id='water-sources-label'>Water Sources</InputLabel>
-                    <Select 
-                        fullWidth
-                        labelId='water-sources-label'
-                        name="waterSources" 
-                        value={waterSources} 
-                        label='Water Sources'
-                        multiple 
-                        onChange={getSelectedValue}
-                    >
-                        {
-                            waterSourcesArr.map((source: string) =>(
-                                <MenuItem key={source} value={source}> { source }</MenuItem>
-                            ))
-                        }
-                    </Select>
-                </FormControl>
+                        <FormControl key={field.labelId} fullWidth>
+                            <InputLabel id={field.labelId}>{field.inputLabel}</InputLabel>
+                            <Select 
+                                fullWidth
+                                labelId={field.labelId}
+                                name={field.name} 
+                                value={field.value} 
+                                label={field.label}
+                                multiple 
+                                onChange={getSelectedValue}
+                            >
+                                {
+                                    field.menuItems.map((source: string) =>(
+                                        <MenuItem key={source} value={source}> { source }</MenuItem>
+                                    ))
+                                }
+                            </Select>
+                        </FormControl>
+                    ))
+                }
             </Box>
         </>
     )
 }
+const heading = "text-blue-700 text-lg text-center"
+const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 "+
+    "border-2 rounded-md"
 
 interface Props{
     energySources: string[]
@@ -65,11 +72,11 @@ interface Props{
     getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void
 }
 
-const waterSourcesArr = [
+const waterSourcesMenu = [
     'Public Water Supply', 'Private Undergound Water', 'Rain Water', 'Other'
 ]
 
-const energySourcesArr = [
+const energySourcesMenu = [
     'KPLC', 'Private Solar System', 'Backup Generator', 'Other'
 ]
 
