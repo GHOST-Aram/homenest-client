@@ -8,10 +8,10 @@ import Login from './apps/login/Page';
 import { AuthProvider } from './utils/authContext';
 import Profile from './apps/profile/Page';
 import Header from './containers/Header';
-import NewProperty from './apps/properties/property-input/NewProperty'
+import NewProperty from './apps/properties/property-input/CreateProperty'
 import usePropertyData from './utils/useData';
 import LandLordsProperties from './apps/landlords-listings/Page';
-import PropertyEditor from './apps/properties/property-input/ProperyEditor';
+import PropertyEditor from './apps/properties/property-input/EditProperty';
 
 function App() {
 	const {processStatus, properties } = usePropertyData()

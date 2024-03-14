@@ -1,64 +1,48 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { AuthContext } from "../../../utils/authContext"
+import { createNewProperty } from "../../../utils/fetch"
 import { PropertyData, Status } from "../../../types"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { updateProcessStatus } from "../../../utils/process-status"
-import { updateProperty, getData } from "../../../utils/fetch"
-import { useEffect } from "react"
 import PropertyFormController from "./containers/form-sections/PropertyFormController"
 
 
-const PropertyEditor = () => {
+const CreateProperty = () => {
     const [status, setStatus] = useState<Status>('idle')
     const [propertyData, setPropertyData] = useState<PropertyData>(
-        initialPropertyData)
-
-    const { id } = useParams()
+         { ...initialPropertyData })
+         
+    const authContext = useContext(AuthContext)
+    const user = authContext.user 
 
     const navigate = useNavigate()
 
     const submitFormData = async () =>{
-        const data = { ...propertyData}
+        const data = { ...propertyData, landlord: user.id }
 
         setStatus('loading')
 
         try {
-            const response = await updateProperty(
-                `http://localhost:8000/properties/${id}`, data)
+            const response = await createNewProperty(
+                'http://localhost:8000/properties', data)
 
             const statusCode = response.status
-            if(statusCode === 201 || statusCode === 200){
-                const body = await response.json()
+            updateProcessStatus(setStatus, statusCode)
 
+            if(statusCode === 201){
+                const body = await response.json()
+                
                 const createdProperty = body.item
                 const id = createdProperty._id.toString()
 
                 navigate(`/listings/${id}`)
             }
 
-            updateProcessStatus(setStatus, statusCode)
         } catch (error) {
             setStatus('error')
         }
     }
-
-    useEffect(() =>{
-        (async() =>{
-            try {
-                const response = await getData(
-                    `http://localhost:8000/properties/${id}`)
-
-                const statusCode = response.status
-                
-                if(statusCode === 200){
-                    const data = await response.json()
-                    setPropertyData(data)
-                }
-            } catch (error) {
-                console.log(error)
-            }          
-        })() 
-    }, [id])
-
+       
     return(
         <PropertyFormController 
             propertyData={propertyData}
@@ -88,4 +72,5 @@ export const initialPropertyData: PropertyData = {
     waterSources: [],
     images:[]
 }
-export default PropertyEditor
+
+export default CreateProperty
