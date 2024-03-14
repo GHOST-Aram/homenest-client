@@ -1,29 +1,34 @@
 import Box from '@mui/material/Box'
 import { ChangeEventHandler } from 'react'
-import MultilineTextField from '../../../../../components/MultiLineTextField'
-import MUITextField from '../../../../../components/MUITextField'
+import TextField from '@mui/material/TextField'
 
 
-const AboutAndBackgroud = ({
-	description,
-	backgroundImageUrl,
-	getTextFieldValue,
-}: Props) => {
+const AboutAndBackgroud = (
+	{
+		description,
+		backgroundImageUrl,
+		getTextFieldValue,
+	}: Props
+) => {
+
 	return (
 		<Box className='space-y-4'>
-			<MultilineTextField 
+			<TextField 
 				name="description" 
 				type="text" 
 				label="Description"
 				value={description} 
-				changeHandler={getTextFieldValue}
+				multiline
+				fullWidth
+				onChange={getTextFieldValue}
 			/>
-				<MUITextField 
+				<TextField 
 				name="backgroundImageUrl" 
 				type="text" 
 				label="Background Image URL"
+				fullWidth
 				value={backgroundImageUrl} 
-				changeHandler={getTextFieldValue}
+				onChange={getTextFieldValue}
 			/> 
 		</Box>
 	)
