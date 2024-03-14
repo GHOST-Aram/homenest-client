@@ -1,8 +1,8 @@
 import Button from '@mui/material/Button'
 import { useNavigate } from 'react-router'
-import { removeAuthenticationToken } from '../utils/cookie'
+import { removeAuthenticationToken } from '../../../utils/cookie'
 import { useContext } from 'react'
-import { AuthContext } from '../utils/authContext'
+import { AuthContext } from '../../../utils/authContext'
 
 const LogoutButton = () => {
     const navigate = useNavigate()

@@ -10,7 +10,7 @@ import Profile from './apps/profile/Page';
 import Header from './containers/Header';
 import NewProperty from './apps/properties/property-input/NewProperty'
 import usePropertyData from './utils/useData';
-import LandLordsProperties from './apps/profile/containers/LandLordsProperties';
+import LandLordsProperties from './apps/landlords-listings/Page';
 import PropertyEditor from './apps/properties/property-input/ProperyEditor';
 
 function App() {
