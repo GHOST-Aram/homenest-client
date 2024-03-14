@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getData } from './fetch'
 import { PropertyData } from '../types'
+import { getData } from './fetch'
 
 
 const usePropertyDetails = () => {

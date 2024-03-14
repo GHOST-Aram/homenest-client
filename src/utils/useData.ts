@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Status } from '../types'
-import { getData } from './fetch'
 import { useSearchParams } from 'react-router-dom'
+import { getData } from './fetch'
 
 
 const usePropertyData = () => {
@@ -13,8 +13,8 @@ const usePropertyData = () => {
 	const [processStatus, setProcessStatus] = useState<Status>('idle')
 	
 	useEffect(() =>{
-		try {
-			(async() =>{
+		(async() =>{
+			try {
 				setProcessStatus('loading')
 				const response = await getData(
 					`http://localhost:8000/properties?page=1&&limit=12&&${query}`)
@@ -24,11 +24,11 @@ const usePropertyData = () => {
 					const data = await response.json()
 					setProperties(data)
 				}
-			})()
-		} catch (error) {
-			setProcessStatus('error')
-			console.log(error)
-		}
+			} catch (error) {
+				setProcessStatus('error')
+				console.log(error)
+			}
+		})()
 
 	},[query])
 

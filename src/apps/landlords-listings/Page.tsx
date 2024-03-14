@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import PropertyListItem from './components/PropertyListItem'
 import { PropertyData, ListStatus } from '../../types'
-import { getData } from '../../utils/fetch'
 import { useParams } from 'react-router-dom'
 import { Divider } from '@mui/material'
+import { getData } from '../../utils/fetch'
 
 const LandLordsProperties = () => {
     const {id} = useParams() 
@@ -11,8 +11,8 @@ const LandLordsProperties = () => {
     const [listStatus, setListStatus] = useState<ListStatus>('unchanged')
 
     useEffect(() => {
-        try {
-            (async() =>{
+        (async() =>{
+            try {
                 const response = await getData(
                     `http://localhost:8000/properties/landlords/${id}`)
 
@@ -21,10 +21,10 @@ const LandLordsProperties = () => {
                     const data = await response.json()
                     setProperties(data)
                 }
-            })()
-        } catch (error) {
-            console.log(error)
-        }
+            } catch (error) {
+                console.log(error)
+            }
+        })()
     },[id, listStatus])
     
     return (

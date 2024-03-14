@@ -2,7 +2,7 @@ import { useState } from "react"
 import { PropertyData, Status } from "../../../types"
 import { useNavigate, useParams } from "react-router-dom"
 import { updateProcessStatus } from "../../../utils/process-status"
-import { updateProperty, getData } from "../../../utils/fetch"
+import { getData, updateProperty } from "../../../utils/fetch"
 import { useEffect } from "react"
 import PropertyFormController from "./containers/form-sections/PropertyFormController"
 
