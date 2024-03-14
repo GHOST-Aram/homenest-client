@@ -1,18 +1,25 @@
-import Heading from '../../../components/Heading'
-import PrimaryButton from '../../../components/PrimaryButton'
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+
 
 const ContactLandlord = () => {
     return (
-        <div>
-            <Heading level={1} className="text-xl font-bold text-slate-800 mt-2 py-2 ">
+        <Box>
+            <h1 className="text-xl font-bold text-slate-800 mt-2 py-2 ">
                 Contact the Landlord
-            </Heading>
-            <div className='space-y-2 flex flex-col'>
-                <PrimaryButton onClick={()=>{}}> SEND DIRECT MESSAGE</PrimaryButton>
-                <PrimaryButton onClick={()=>{}}>SCHEDULE VIEWING</PrimaryButton>
-                <PrimaryButton onClick={()=>{}}>APPLY ONLINE</PrimaryButton>
-            </div>
-        </div>
+            </h1>
+            <Box className='space-y-2 flex flex-col'>
+                <Button size='large' variant='contained' onClick={()=>{}}>
+                     SEND DIRECT MESSAGE
+                </Button>
+                <Button size='large' variant='contained' onClick={()=>{}}>
+                    SCHEDULE VIEWING
+                </Button>
+                <Button size='large' variant='contained' onClick={()=>{}}>
+                    APPLY ONLINE
+                </Button>
+            </Box>
+        </Box>
     )
 }
 
