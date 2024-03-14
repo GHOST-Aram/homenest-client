@@ -1,16 +1,16 @@
 import { ChangeEventHandler, ReactNode, Dispatch,SetStateAction } from 'react'
 import { SelectChangeEvent } from "@mui/material/Select"
 import Box from "@mui/material/Box"
-import { PropertyData, Status } from '../../../types'
-import StatusAlert from '../../login/components/StatusAlert'
-import SubmitButton from './components/SubmitButton'
-import PropertyProfile from './containers/PropertyProfile'
-import PropertyMetrics from './containers/PropertyMetrics'
-import PropertyAvailabilityAndMore from './containers/PropertyAvailabilityAndMore'
-import PropertyResources from './containers/PropertyResources'
-import GalleryInput from './containers/GalleryInputSection'
+import { PropertyData, Status } from '../../../../types'
+import StatusAlert from '../../../login/components/StatusAlert'
+import SubmitButton from '../components/SubmitButton'
+import PropertyProfile from './form-sections/PropertyProfile'
+import PropertyMetrics from './form-sections/PropertyMetrics'
+import PropertyAvailabilityAndMore from './form-sections/PropertyAvailabilityAndMore'
+import PropertyResources from './form-sections/PropertyResources'
+import GalleryInput from './form-sections/GalleryInputSection'
 import { useLocation } from 'react-router-dom'
-import DescriptionAndBackgroud from './containers/DescriptionAndBackgroud'
+import DescriptionAndBackgroud from './form-sections/DescriptionAndBackgroud'
 
 const PropertyForm = (
     {

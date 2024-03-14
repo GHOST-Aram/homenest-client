@@ -1,6 +1,6 @@
-import { GalleryItem, PropertyData } from "../../../../types"
-import ImageInput from "../components/ImageInput"
-import Grid from "../../image-grid/Grid"
+import { GalleryItem, PropertyData } from "../../../../../types"
+import ImageInput from "../../components/ImageInput"
+import Grid from "../../../image-grid/Grid"
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 
 const GalleryInputSection = ({ property, setProperty }: Props) => {

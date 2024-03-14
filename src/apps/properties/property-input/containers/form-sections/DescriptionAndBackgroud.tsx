@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import { ChangeEventHandler } from 'react'
-import MultilineTextField from '../../../../components/MultiLineTextField'
-import MUITextField from '../../../../components/MUITextField'
+import MultilineTextField from '../../../../../components/MultiLineTextField'
+import MUITextField from '../../../../../components/MUITextField'
 
 
 const AboutAndBackgroud = ({

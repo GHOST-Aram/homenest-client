@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { updateProcessStatus } from "../../../utils/process-status"
 import { updateProperty, getData } from "../../../utils/fetch"
 import { useEffect } from "react"
-import PropertyFormController from "./containers/PropertyFormController"
+import PropertyFormController from "./containers/form-sections/PropertyFormController"
 
 
 const PropertyEditor = () => {
