@@ -3,21 +3,18 @@ import IconButton from '@mui/material/IconButton'
 import { MdDelete } from 'react-icons/md'
 import { GalleryItem } from '../../../types'
 
-const Grid = ({
-    images,
-    deleteImage
-}:Props) => {
+const Grid = (
+	{
+		images,
+		deleteImage
+	}:Props
+) => {
 	return (
 		<Box className="grid-auto">
 			{
 				images.length > 0 && 
 					images.map((image, index) => (
-						<Box key={
-								image?._id ? image._id 
-								: `${image.url}-$${index}`
-							}
-						>
-							
+						<Box key={ image?._id ? image._id : `${image.url}-$${index}`}>
 							<IconButton 
 								onClick={()=> deleteImage(image)}
 								color='error'

@@ -3,9 +3,7 @@ import Grid from './Grid'
 
 const ImageGrid = ({images, deleteImage}:Props) => {
 
-	return (
-		<Grid images={images} deleteImage={deleteImage} />
-	)
+	return (<Grid images={images} deleteImage={deleteImage} />)
 }
 
 interface Props {
