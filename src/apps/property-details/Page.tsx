@@ -23,7 +23,7 @@ const PropertyDetails = () => {
             />
             <KeyFeatures property = { property }/>
             <Divider/>
-            <section className='md:flex lg:flex xl:flex justify-between px-8'>
+            <section className={section}>
                 <PropertyDescription description = {  property.description }/>
                 <ContactLandlord />
             </section>
@@ -32,5 +32,7 @@ const PropertyDetails = () => {
         </>
     )
 }
+
+const section = 'md:flex lg:flex xl:flex justify-between px-8'
 
 export default PropertyDetails
