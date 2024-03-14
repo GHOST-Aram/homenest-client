@@ -22,19 +22,26 @@ const GalleryInputSection = ({ property, setProperty }: Props) => {
         const url = image.url
         const alt = image.alt
 
-        if(id){
-            const images:GalleryItem[] = property.images.filter(
-                element => element._id !== id
-            )
-            setProperty({ ...property, images: images})
-        } else {
-            const images: GalleryItem[] = property.images.filter(
-                element => (element.url!==url && element.alt!==alt)
-            )
+        if(id) removeById(id) 
+        else removeByUrlAndAltText(url, alt)
+}
 
-            setProperty({ ...property, images: images})
-        }
+    const removeById = (id: string) =>{
+        const images:GalleryItem[] = property.images.filter(
+            element => element._id !== id
+        )
+        setProperty({ ...property, images: images})
     }
+
+    const removeByUrlAndAltText = (url:string, alt: string) =>{
+        const images: GalleryItem[] = property.images.filter(
+            element => (element.url!==url && element.alt!==alt)
+        )
+
+        setProperty({ ...property, images: images})
+    }
+
+   
 
     return (
         <>
