@@ -3,6 +3,8 @@ import { IoBedSharp } from "react-icons/io5";
 import { FaMap } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import Box from '@mui/material/Box'
+import Heading1 from "../components/Heading1";
+import Heading2 from "../components/Heading2";
 
 const DetailsHero = ({
     propertyName,
@@ -17,32 +19,30 @@ const DetailsHero = ({
   return (
     <section className='hero' style={{backgroundImage : `url(${backgroundImageUrl})`}}>
         <Box className="w-full bg-slate-400 h-[70vh] py-8 space-y-4 overlay">
-            <h1 className='font-bold text-slate-300 text-4xl text-center'>
-                { propertyName }
-            </h1>
+            <Heading1> { propertyName } </Heading1>
             <Box className="flex flex-row gap-4 justify-center">
                 <GiMoneyStack className='text-slate-300 text-4xl' />
-                <h2 className='font-md text-slate-300 text-3xl text-center'>
+                <Heading2>
                     Ksh { rentPerMonth } per Month | Ksh { rentPerYear } per year
-                </h2>
+                </Heading2>
             </Box>
             <Box className="flex flex-row gap-4 justify-center">
                 <IoBedSharp className='text-slate-300 text-4xl' />
-                <h2 className='font-md text-slate-300 text-3xl text-center'>
+                <Heading2>
                     {bedrooms} bedrooms | { bathrooms } bathrooms
-                </h2>
+                </Heading2>
             </Box>
             <Box className="flex flex-row gap-4 justify-center">
                 <FaMap className='text-slate-300 text-4xl' />
-                <h2 className='font-md text-slate-300 text-3xl text-center'>
+                <Heading2>
                     {   squareFootage  } sq ft
-                </h2>
+                </Heading2>
             </Box>
             <Box className="flex flex-row gap-4 justify-center">
                 <IoLocationSharp className='text-slate-300 text-4xl' />
-                <h2 className='font-md text-slate-300 text-3xl text-center'>
+                <Heading2>
                     { locationAddress }
-                </h2>
+                </Heading2>
             </Box>
         </Box>        
     </section>
