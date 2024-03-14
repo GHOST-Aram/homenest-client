@@ -1,12 +1,12 @@
-import MUITextField from '../../../components/MUITextField'
-import LoginButton from '../../../components/LoginButton'
+import TextField from '@mui/material/TextField'
+import LoginButton from './LoginButton'
 import { LoginProps, Status } from '../../../types'
 import { ChangeEventHandler } from 'react'
 import Form from '../../../components/Form'
 import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useNavigate } from 'react-router-dom'
-import SecondaryButton from '../../../components/SecondaryButton'
+import Button from '@mui/material/Button'
 
 const LoginForm = ( 
     { 
@@ -25,14 +25,14 @@ const LoginForm = (
         <Form submitHandler={authenticateUser} heading='Login to Homenest'>
             {
                 fields.map((field) =>(
-                    <MUITextField
+                    <TextField
                         key={`${field.label.replaceAll(' ', '-')}-field`} 
                         value={field.value} 
                         label={field.label} 
-                        changeHandler={changeHandler}
+                        onChange={changeHandler}
                         type = {field.type}
                         name={field.name}
-                        className='w-full'
+                        fullWidth
                     />
                 ))
 
@@ -59,7 +59,14 @@ const LoginForm = (
                 :''
             }
            <LoginButton processStatus = {processStatus} />
-           <SecondaryButton label='Sign Up' handleClick={() =>navigate('/sign-up')}/>
+           <Button 
+                onClick={() =>navigate('/sign-up')} 
+                variant='contained'
+                size='large'
+                fullWidth
+            >
+                Sign Up
+           </Button>
         </Form>
     )
 }
