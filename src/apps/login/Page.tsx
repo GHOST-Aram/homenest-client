@@ -21,26 +21,7 @@ const Login = () => {
             email: '',  
             password: ''
         }
-        )
-        
-    if(authToken){        
-        try{
-            const decoded:any = decodeAuthToken(authToken)
-            
-            authContext.setUser({
-                email: decoded.email,
-                name: decoded.name,
-                role: decoded.role
-            })
-
-            if(decoded.exp){
-                setAuthenticationCookie(decoded.exp, authToken)
-                navigate('/')
-            }
-        } catch(error){
-            setStatus('error')
-        }
-    }
+    )
 
     const collectLoginDetails = (e: ChangeEvent<HTMLInputElement>) =>{
         const { name, value } = e.target
@@ -68,6 +49,30 @@ const Login = () => {
                 setStatus('error')
             }
         })()
+    }
+
+    const initializeUser = (decodedToken: any) =>{
+        authContext.setUser({
+            email: decodedToken.email,
+            name: decodedToken.name,
+            role: decodedToken.role
+        })
+    }
+
+    const goToHomePage = () =>{
+        navigate('/')
+    }
+
+    if(authToken){        
+        try{
+            const decoded:any = decodeAuthToken(authToken)
+
+            initializeUser(decoded)
+            setAuthenticationCookie(decoded.exp, authToken)
+            goToHomePage()
+        } catch(error){
+            setStatus('error')
+        }
     }
 
     return (
