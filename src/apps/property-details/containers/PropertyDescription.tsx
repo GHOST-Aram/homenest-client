@@ -1,17 +1,17 @@
-import Heading from '../../../components/Heading'
-import Paragraph from '../../../components/Paragraph'
+import Paragraph from '../components/Paragraph'
+import Box from '@mui/material/Box'
 
-const PropertyDescription = ({ description }: {description: string | undefined }) => {
+const PropertyDescription = ({ description }: {description: string }) => {
 
 	return (
-		<div className='w-full md:w-3/5 lg:w-3/5 xlg:w-3/5'>
-
-			<Heading level={3} className='font-bold text-slate-800 text-xl mt-2 py-2'>
-				About the Property
-			</Heading>
+		<Box className={container}>
+			<h2 className={heading}>About the Property</h2>
 			<Paragraph> { description } </Paragraph>
-		</div>
+		</Box>
 	)
 }
+
+const heading = 'font-bold text-slate-800 text-xl mt-2 py-2'
+const container = 'w-full md:w-3/5 lg:w-3/5 xlg:w-3/5'
 
 export default PropertyDescription
