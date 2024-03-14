@@ -16,10 +16,6 @@ export interface UserData{
 export type Status = 'idle'|'loading'|'created'|'error'|'conflict'|'server-error'
     |'invalid-input' | 'authenticated' | 'unauthorised' | 'success'
 
-export type LoginProps = {
-    password: string
-    email:string
-}
 
 export interface User{
     name: string,

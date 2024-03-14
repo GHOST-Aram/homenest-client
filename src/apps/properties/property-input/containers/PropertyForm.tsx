@@ -2,7 +2,7 @@ import { ChangeEventHandler, ReactNode, Dispatch,SetStateAction } from 'react'
 import { SelectChangeEvent } from "@mui/material/Select"
 import Box from "@mui/material/Box"
 import { PropertyData, Status } from '../../../../types'
-import StatusAlert from '../../../login/components/StatusAlert'
+import StatusAlert from '../components/StatusAlert'
 import SubmitButton from '../components/SubmitButton'
 import PropertyProfile from './form-sections/PropertyProfile'
 import PropertyMetrics from './form-sections/PropertyMetrics'
@@ -76,7 +76,7 @@ const PropertyForm = (
                     waterSources={propertyData.waterSources}
                     getSelectedValue={getSelectedValue}
                 />
-                <StatusAlert status = {status}/>
+                <StatusAlert processStatus = {status}/>
                 <SubmitButton disabled = {status === 'loading'}>
                     { status === 'loading' ? 'Loading' : submitButtonName}
                 </SubmitButton>
