@@ -3,8 +3,7 @@ import FormLabel from './FormLabel'
 
 const Form = ({ children, submitHandler, heading }: Props) => {
 
-	const submitForm = (preventDefault:()=>void) => {
-		preventDefault()
+	const submitForm = () => {
 		try {
 			(async() =>{
 				await submitHandler()
@@ -16,7 +15,7 @@ const Form = ({ children, submitHandler, heading }: Props) => {
 
 	return (
 		<form 
-			onSubmit={(e) => {submitForm(e.preventDefault)}}
+			onSubmit={(e) => {e.preventDefault(); submitForm()}}
 			aria-labelledby='form-label' 
 			className='p-8 flex flex-col space-y-4' 
 		>
