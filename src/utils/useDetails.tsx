@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getData } from './fetch'
 import { PropertyData } from '../types'
-import { initialPropertyData } from '../pages/NewProperty'
+
 
 const usePropertyDetails = () => {
     const [property, setProperty] = useState<PropertyData>(initialPropertyData)
@@ -24,6 +24,26 @@ const usePropertyDetails = () => {
     }, [id])
 
     return property
+}
+
+export const initialPropertyData: PropertyData = {
+    propertyName: '',
+    propertyType: '',
+    backgroundImageUrl: '',
+    description: '',
+    rentPerMonth: 0,
+    rentPerYear: 0,
+    locationName: '',
+    bedrooms: 0,
+    bathrooms: 0,
+    landlord: '',
+    squareFootage: 0,
+    isAvailable: true,
+    isFurnished: false,
+    hasParkingSpace: false,
+    energySources: [],
+    waterSources: [],
+    images:[]
 }
 
 export default usePropertyDetails

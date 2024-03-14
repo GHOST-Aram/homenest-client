@@ -1,17 +1,17 @@
-import Footer from './containers/universal/Footer';
-import Home from './pages/Home';
+import Footer from './containers/Footer';
+import Home from './apps/home/Page';
 import { Routes, Route } from 'react-router-dom';
-import Listings from './pages/Listings';
-import PropertyDetails from './pages/PropertyDetails';
-import SignUp from './pages/accounts/SignUp';
-import Login from './pages/accounts/Login';
+import Listings from './apps/properties/listings/Page';
+import PropertyDetails from './apps/property-details/Page';
+import SignUp from './apps/sign-up/Page';
+import Login from './apps/login/Page';
 import { AuthProvider } from './utils/authContext';
-import Profile from './pages/Profile';
-import Header from './containers/universal/Header';
-import PropertyForm from './pages/NewProperty';
+import Profile from './apps/profile/Page';
+import Header from './containers/Header';
+import NewProperty from './apps/properties/property-input/NewProperty'
 import usePropertyData from './utils/useData';
-import LandLordsProperties from './pages/LandLordsProperties';
-import PropertyEditor from './pages/ProperyEditor';
+import LandLordsProperties from './apps/profile/containers/LandLordsProperties';
+import PropertyEditor from './apps/properties/property-input/ProperyEditor';
 
 function App() {
 	const {processStatus, properties } = usePropertyData()
@@ -27,7 +27,7 @@ function App() {
 					<Route path='/listings' element = {
 						<Listings properties={properties} processStatus={processStatus}/>
 					}/>
-					<Route path='/listings/new' element = {<PropertyForm/>}/>
+					<Route path='/listings/new' element = {<NewProperty/>}/>
                     <Route path='/listings/:id/update' element={<PropertyEditor/>}/>
 					<Route path='/listings/landlords/:id' element = {
 						<LandLordsProperties/>
