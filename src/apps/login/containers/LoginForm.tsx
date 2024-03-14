@@ -1,12 +1,12 @@
 import TextField from '@mui/material/TextField'
-import LoginButton from './LoginButton'
+import LoginButton from '../components/LoginButton'
 import { LoginProps, Status } from '../../../types'
 import { ChangeEventHandler } from 'react'
 import Form from '../../../components/Form'
 import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
-import { useNavigate } from 'react-router-dom'
-import Button from '@mui/material/Button'
+import GoToSignUpBtn from '../components/GoToSignUpBtn'
+
 
 const LoginForm = ( 
     { 
@@ -14,8 +14,9 @@ const LoginForm = (
         changeHandler, 
         authenticateUser,
         processStatus 
-    }:formProps ) => {
-    const navigate = useNavigate()
+    }:formProps 
+) => {
+
     const fields = [
         { name:'email',label: 'Email', value: loginDetails.email , type: 'email'},
         {  name:'password',label: 'Password', value: loginDetails.password , type: 'password'}
@@ -59,14 +60,7 @@ const LoginForm = (
                 :''
             }
            <LoginButton processStatus = {processStatus} />
-           <Button 
-                onClick={() =>navigate('/sign-up')} 
-                variant='contained'
-                size='large'
-                fullWidth
-            >
-                Sign Up
-           </Button>
+           <GoToSignUpBtn />
         </Form>
     )
 }

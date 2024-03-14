@@ -3,7 +3,7 @@ import { SelectChangeEvent } from "@mui/material/Select"
 import Box from "@mui/material/Box"
 import Button from '@mui/material/Button'
 import { PropertyData, Status } from '../../../types'
-import StatusAlert from '../../login/containers/StatusAlert'
+import StatusAlert from '../../login/components/StatusAlert'
 import PropertyProfile from './containers/PropertyProfile'
 import PropertyMetrics from './containers/PropertyMetrics'
 import PropertyAvailabilityAndMore from './containers/PropertyAvailabilityAndMore'
