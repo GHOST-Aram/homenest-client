@@ -8,40 +8,33 @@ const PropertyMetrics = ({
     squareFootage,
     getTextFieldValue,
 }: Props) => {
-  return (
-    <>
-        <h1 className={heading}>Property Metrics</h1>
-        <Box className={flexContainer}>
-            <TextField 
-                type="number" 
-                name="bedrooms" 
-                value = {`${bedrooms}`} 
-                onChange={getTextFieldValue} 
-                fullWidth
-                required
-                label={'Bedrooms'} 
-            />  
-            <TextField 
-                type="number" 
-                name="bathrooms" 
-                value = {`${bathrooms}`} 
-                onChange={getTextFieldValue} 
-                fullWidth
-                required
-                label={'Bathrooms'} 
-            />  
-            <TextField 
-                type="number" 
-                name="squareFootage" 
-                value = {`${squareFootage}`} 
-                onChange={getTextFieldValue} 
-                fullWidth
-                required
-                label={'Square Footage'} 
-            />  
-        </Box>
-    </>
-  )
+    const fields = [
+        { name: 'bedrooms',label: 'Bedrooms', value: bedrooms },
+        { name: 'bathrooms',label: 'Bathrooms', value: bathrooms },
+        { name: 'squareFootage',label: 'Square Footage', value: squareFootage },
+    ]
+
+    return (
+        <>
+            <h1 className={heading}>Property Metrics</h1>
+            <Box className={flexContainer}>
+                {
+                    fields.map(field =>(
+                        <TextField 
+                            key={field.name}
+                            type="number" 
+                            name={field.name} 
+                            value = {`${field.value}`} 
+                            onChange={getTextFieldValue} 
+                            fullWidth
+                            required
+                            label={field.label} 
+                        />  
+                    ))
+                }
+            </Box>
+        </>
+    )
 }
 
 const heading = "text-blue-700 text-lg text-center"
