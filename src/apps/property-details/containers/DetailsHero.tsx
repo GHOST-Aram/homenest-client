@@ -26,25 +26,25 @@ const DetailsHero = ({
                 <Heading1> { propertyName } </Heading1>
 
                 <Box className={flexContainer}>
-                    <GiMoneyStack className={iconClassName} />
+                    <GiMoneyStack className={icon} />
                     <Heading2>
                         Ksh { rentPerMonth } per Month | Ksh { rentPerYear } per year
                     </Heading2>
                 </Box>
                 <Box className={flexContainer}>
-                    <IoBedSharp className={iconClassName} />
+                    <IoBedSharp className={icon} />
                     <Heading2>
                         {bedrooms} bedrooms | { bathrooms } bathrooms
                     </Heading2>
                 </Box>
                 <Box className={flexContainer}>
-                    <FaMap className={iconClassName} />
+                    <FaMap className={icon} />
                     <Heading2>
                         {   squareFootage  } sq ft
                     </Heading2>
                 </Box>
                 <Box className={flexContainer}>
-                    <IoLocationSharp className={iconClassName} />
+                    <IoLocationSharp className={icon} />
                     <Heading2>
                         { locationAddress }
                     </Heading2>
@@ -54,7 +54,7 @@ const DetailsHero = ({
     )
 }
 
-const iconClassName = 'text-slate-300 text-4xl'
+const icon = 'text-slate-300 text-4xl'
 const flexContainer = 'flex flex-row gap-4 justify-center'
 const overlayContainer = "w-full bg-slate-400 h-[70vh] py-8 space-y-4 overlay"
 
