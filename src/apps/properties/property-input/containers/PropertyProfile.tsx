@@ -1,5 +1,5 @@
 import { ChangeEventHandler, ReactNode } from 'react'
-import MUITextField from '../../../../components/MUITextField'
+import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import LocationInfo from './LocationInfo'
 import { SelectChangeEvent } from '@mui/material'
@@ -18,50 +18,57 @@ const PropertyProfile = ({
     getTextFieldValue,
     getSelectedValue,
 } : Props ) => {
-  return (
-    <>
-        <h1 className="text-blue-700 font-md text-lg text-center py-2">Property Profile</h1>
-        <Box className="flex flex-col gap-4  lg:flex-row justify-between">
-            <MUITextField 
-                name="propertyName" 
-                type="text" 
-                label="Property Name"
-                value={propertyName} 
-                changeHandler={getTextFieldValue}
-            />
-            <FormControl fullWidth>
-                <InputLabel id='property-type-label'>Property Type</InputLabel>
-                <Select 
+    return (
+        <>
+            <h1 className={heading}>Property Profile</h1>
+            <Box className={flexContainer}>
+                <FormControl fullWidth>
+                    <InputLabel id='property-type-label'>Property Type</InputLabel>
+                    <Select 
+                        fullWidth
+                        labelId='property-type-label'
+                        name="propertyType" 
+                        value={propertyType} 
+                        onChange={getSelectedValue}
+                    >
+                        {
+                            propertyTypes.map(type =>(
+                                <MenuItem key={type} value={type}> { type }</MenuItem>
+                            ))
+                        }
+                    </Select>
+                </FormControl>
+                <TextField 
+                    name="propertyName" 
+                    type="text" 
+                    label="Property Name"
+                    value={propertyName} 
+                    onChange={getTextFieldValue}
+                    required
                     fullWidth
-                    labelId='property-type-label'
-                    name="propertyType" 
-                    value={propertyType} 
-                    onChange={getSelectedValue}
-                >
-                    {
-                        propertyTypes.map(type =>(
-                            <MenuItem key={type} value={type}> { type }</MenuItem>
-                        ))
-                    }
-                </Select>
-            </FormControl>
-            <MUITextField 
-                type="number" 
-                name="rentPerMonth" 
-                value = {`${rentPerMonth}`} 
-                changeHandler={getTextFieldValue} 
-                label={'Rent Per Month'} 
-            />          
-        </Box>
-        <LocationInfo 
-            cityOrTown={ cityOrTown }
-            estate={ estate}
-            locationName={locationName}
-            getTextFieldValue={getTextFieldValue}
-        />
-    </>
-  )
+                />
+                <TextField 
+                    type="number" 
+                    name="rentPerMonth" 
+                    value = {`${rentPerMonth}`} 
+                    onChange={getTextFieldValue} 
+                    required
+                    fullWidth
+                    label={'Rent Per Month'} 
+                />          
+            </Box>
+            <LocationInfo 
+                cityOrTown={ cityOrTown }
+                estate={ estate}
+                locationName={locationName}
+                getTextFieldValue={getTextFieldValue}
+            />
+        </>
+    )
 }
+
+const heading = "text-blue-700 font-md text-lg text-center py-2"
+const flexContainer = "flex flex-col gap-4  lg:flex-row justify-between"
 
 interface Props{
     propertyName: string
