@@ -60,6 +60,7 @@ const LoginForm = (
                 :''
             }
            <LoginButton processStatus = {processStatus} />
+           <p className="font-bold text-center text-slate-800">OR</p>
            <GoToSignUpBtn />
         </Form>
     )

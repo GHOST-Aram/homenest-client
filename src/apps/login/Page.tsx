@@ -52,7 +52,8 @@ const Login = () => {
                     loginDetails={loginDetails}
                     processStatus={status}
                     authenticateUser={() => authenticateUser(setAuthToken, 
-                        setStatus, loginDetails)}
+                        setStatus, loginDetails)
+                    }
                 />
             </Paper>
         </div>

@@ -10,6 +10,7 @@ const GoToSignUpBtn = () => {
         onClick={() =>navigate('/sign-up')} 
         variant='contained'
         size='large'
+		color='success'
         fullWidth
     >
         Sign Up

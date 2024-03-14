@@ -44,6 +44,7 @@ const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps
             <RolesRadioInput value={userData.role} changeHandler={changeHandler} />
             <StatusAlert status={status}/>
             <SignUpButton status={status}/>
+            <p className="font-bold text-center text-slate-800">OR</p>
             <GoToLoginBtn/>
         </Form>
     )
