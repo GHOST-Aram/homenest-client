@@ -3,8 +3,7 @@ import RolesRadioInput from '../components/RolesRadioInput'
 import SignUpButton from '../components/SignUpButton'
 import StatusAlert from '../components/SignUpStatusAlert'
 import { FormProps } from '../../../types'
-import SecondaryButton from '../../../components/SecondaryButton'
-import { useNavigate } from 'react-router-dom'
+import GoToLoginBtn from '../components/GoToLoginBtn'
 import Form from '../../../components/Form'
 
 const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps) => {
@@ -16,7 +15,6 @@ const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps
             type: 'password'}, 
     ]
 
-    const navigate = useNavigate()
 
     const signUp = async() => {
         if(userData.password === userData.confirmPassword){
@@ -46,7 +44,7 @@ const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps
             <RolesRadioInput value={userData.role} changeHandler={changeHandler} />
             <StatusAlert status={status}/>
             <SignUpButton status={status}/>
-            <SecondaryButton label='Log In' handleClick={() =>navigate('/login')}/>
+            <GoToLoginBtn/>
         </Form>
     )
 }

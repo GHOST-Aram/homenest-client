@@ -6,11 +6,11 @@ const GoToLoginBtn = () => {
     return (
         <Button 
             variant='contained' 
-            color='success' 
+            color='primary' 
             size='large'
             className='w-full'
             onClick={() =>{navigate('/login')}}
-        >Go to Login </Button>
+        >Login </Button>
     )
 }
 

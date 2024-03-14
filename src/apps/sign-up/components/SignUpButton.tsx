@@ -5,7 +5,10 @@ const SignUpButton = ({ status }: { status: string }) => {
         <Button  
             size='large'
             disabled = {status === 'loading' }
-            variant='contained' className='w-full' type='submit'>
+            color='success'
+            variant='contained' 
+            className='w-full' 
+            type='submit'>
             {status === 'loading' ? 'Loading' : 'Sign Up' }
         </Button>
     )
