@@ -18,12 +18,17 @@ const PropertyProfile = ({
     getTextFieldValue,
     getSelectedValue,
 } : Props ) => {
+
+    const fields = [
+        {label: 'Property Name' ,name: 'propertyName', value: propertyName, type: 'text'},
+        {label: 'Rent Per Month',name: 'rentPerMonth', value: rentPerMonth, type: 'number'}
+    ]
     return (
         <>
             <h1 className={heading}>Property Profile</h1>
             <Box className={flexContainer}>
                 <FormControl fullWidth>
-                    <InputLabel id='property-type-label'>Property Type</InputLabel>
+                    <InputLabel id='property-type-label'>Property Type</InputLabel>                    
                     <Select 
                         fullWidth
                         labelId='property-type-label'
@@ -38,24 +43,20 @@ const PropertyProfile = ({
                         }
                     </Select>
                 </FormControl>
-                <TextField 
-                    name="propertyName" 
-                    type="text" 
-                    label="Property Name"
-                    value={propertyName} 
-                    onChange={getTextFieldValue}
-                    required
-                    fullWidth
-                />
-                <TextField 
-                    type="number" 
-                    name="rentPerMonth" 
-                    value = {`${rentPerMonth}`} 
-                    onChange={getTextFieldValue} 
-                    required
-                    fullWidth
-                    label={'Rent Per Month'} 
-                />          
+                {
+                    fields.map(field =>(
+                        <TextField 
+                            key={field.name}
+                            name={field.name} 
+                            type={field.type} 
+                            label={field.label}
+                            value={field.value} 
+                            onChange={getTextFieldValue}
+                            required
+                            fullWidth
+                        />                    
+                    ))
+                }        
             </Box>
             <LocationInfo 
                 cityOrTown={ cityOrTown }
