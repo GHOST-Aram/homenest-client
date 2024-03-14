@@ -10,26 +10,36 @@ const AboutAndBackgroud = (
 		getTextFieldValue,
 	}: Props
 ) => {
-
+	const fields =[
+		{
+			label: 'Description', 
+			name: 'description', 
+			multiline: true, 
+			value: description
+		},
+		{
+			label: 'Background Image Url', 
+			name: 'backgroundImageUrl', 
+			multiline: false, 
+			value: backgroundImageUrl
+		}
+	]
 	return (
 		<Box className='space-y-4'>
-			<TextField 
-				name="description" 
-				type="text" 
-				label="Description"
-				value={description} 
-				multiline
-				fullWidth
-				onChange={getTextFieldValue}
-			/>
-				<TextField 
-				name="backgroundImageUrl" 
-				type="text" 
-				label="Background Image URL"
-				fullWidth
-				value={backgroundImageUrl} 
-				onChange={getTextFieldValue}
-			/> 
+			{
+				fields.map(field =>(
+					<TextField 
+						key={field.label}
+						name={field.name} 
+						type="text" 
+						label={field.label}
+						value={field.value} 
+						multiline={field.multiline}
+						fullWidth
+						onChange={getTextFieldValue}
+					/>
+				))
+			}
 		</Box>
 	)
 }
