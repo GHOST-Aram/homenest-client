@@ -1,6 +1,6 @@
-import MUITextField from '../../../components/MUITextField'
+import TextField from '@mui/material/TextField'
 import RolesRadioInput from './RolesRadioInput'
-import SignUpButton from '../../../components/SignUpButton'
+import SignUpButton from './SignUpButton'
 import StatusAlert from './SignUpStatusAlert'
 import { FormProps } from '../../../types'
 import SecondaryButton from '../../../components/SecondaryButton'
@@ -27,14 +27,15 @@ const SignUpForm = ({ userData, registerUser, status, changeHandler }: FormProps
         <Form heading='Welcome to Homenest' submitHandler={ signUp }>
             {
                 fields.map((field) =>(
-                    <MUITextField
+                    <TextField
                         key={`${field.label.replaceAll(' ', '-')}-field`} 
                         value={field.value} 
                         label={field.label} 
-                        changeHandler={changeHandler}
+                        onChange={changeHandler}
                         type = {field.type}
                         name={field.name}
-                        className='w-full'
+                        fullWidth
+                        required
                     />
                 ))
             }
