@@ -35,7 +35,7 @@ const CreateProperty = () => {
                 const createdProperty = body.item
                 const id = createdProperty._id.toString()
 
-                navigate(`/listings/${id}`)
+                navigate(`/listings/${id}`, { replace : true })
             }
 
         } catch (error) {
