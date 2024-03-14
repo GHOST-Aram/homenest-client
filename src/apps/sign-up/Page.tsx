@@ -4,6 +4,7 @@ import { registerUser } from '../../utils/register-user'
 import SignUpForm from './containers/SignUpForm'
 import { UserData, Status } from '../../types'
 import { useNavigate } from 'react-router'
+import Box from '@mui/material/Box'
 
 export const SignUp = () =>{
     const navigate = useNavigate()
@@ -25,12 +26,10 @@ export const SignUp = () =>{
     if(status === 'created'){
         navigate('/login')
     }
+    
     return(
-        <div className="my-8">
-            <Paper 
-                elevation={8}
-                className='m-8 lg:w-2/5 md:w-3/5 md:m-auto lg:m-auto'   
-            >
+        <Box className="my-8">
+            <Paper elevation={8} className={container}>
                 <SignUpForm 
                     status={status} 
                     changeHandler={collectUserInput} 
@@ -38,8 +37,10 @@ export const SignUp = () =>{
                     userData={userData}
                 />            
             </Paper>
-        </div>
+        </Box>
     )
 }
+
+const container = 'm-8 lg:w-2/5 md:w-3/5 md:m-auto lg:m-auto'
 
 export default SignUp
