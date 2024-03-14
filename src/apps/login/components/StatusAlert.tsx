@@ -5,29 +5,32 @@ import CircularProgress from "@mui/material/CircularProgress"
 
 
 
-const StatusAlert = ({ status }: {status: Status}) => {
+const StatusAlert = ({ processStatus }: {processStatus: Status}) => {
   return (
     <Box>
-        {
-            status === 'loading' ?
-            <div className="flex w-full items-center">
-                <CircularProgress  className="m-auto"/>
-            </div>
-            :status === 'unauthorised' ?
-                <Alert severity="warning" variant="filled">Unauthorised </Alert>
-            :status === 'invalid-input' ?
-                <Alert severity="error" variant="filled">Invalid Input</Alert>
-            :status === 'error' ?
-                <Alert severity="error" variant="filled">
-                    Failed to send request. Please try again.
+        {   
+            processStatus === 'loading' ? 
+                <CircularProgress className='text-center'/>
+            :processStatus === 'unauthorised' ? 
+                <Alert variant='filled' severity='error'>
+                    UnAuthorised. Unknown User or Incorrect details.
                 </Alert>
-            :status === 'server-error' ?
-                <Alert severity="error" variant="filled">
-                   Server Error. Please try again.
+            :processStatus === 'invalid-input' ?
+                <Alert variant='filled' severity='warning'>
+                    Invalid details
                 </Alert>
-            : ''
+            :processStatus === 'error' ?
+                <Alert variant='filled' severity='error'>
+                    Error occured. Please try again
+                </Alert>
+            :processStatus === 'authenticated' ?
+                <Alert severity='success' variant='filled'>
+                    Success. Authentication token acquired.
+                </Alert>
+            :''
         }
     </Box>
+    
   )
 }
 
