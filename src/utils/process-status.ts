@@ -18,6 +18,10 @@ export const updateProcessStatus = (
             setStatus('invalid-input')
             break
         }
+        case 409: {
+            setStatus('conflict')
+            break
+        }
         case 500: {
             setStatus('server-error')
             break

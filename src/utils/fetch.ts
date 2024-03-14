@@ -36,7 +36,7 @@ export const deleteDocument = async(url:string ) =>{
     return response
 }
 
-export const createUser = async(url: string, data: any) =>{
+export const sendPostRequest = async(url: string, data: any) =>{
     const response = await fetch(url, {
         method: 'POST',
         redirect: 'follow',
