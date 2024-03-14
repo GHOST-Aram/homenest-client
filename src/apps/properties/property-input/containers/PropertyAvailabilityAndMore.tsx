@@ -10,7 +10,7 @@ const PropertyAvailabilityAndMore = ({
     getCheckboxValue,
 }: Props
 ) => {
-    
+
     return (
         <>
             <h1 className={heading}>Availability and More</h1>
@@ -51,7 +51,7 @@ const PropertyAvailabilityAndMore = ({
 }
 
 const heading = "text-blue-700 text-lg text-center"
-const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8" + 
+const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 " + 
     "border-2 rounded-md"
 
 interface Props{

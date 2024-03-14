@@ -46,7 +46,7 @@ const PropertyFormController = ( {
 
 interface Props{
     propertyData: PropertyData
-    setPropertyData: Dispatch< SetStateAction<PropertyData>>
+    setPropertyData: Dispatch<SetStateAction<PropertyData>>
     status: Status
     submitFormData: () => Promise<void>
 }

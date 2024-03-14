@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import MUITextField from '../../../../components/MUITextField'
+import TextField from '@mui/material/TextField'
 import { ChangeEventHandler } from 'react'
 
 const PropertyMetrics = ({
@@ -10,35 +10,43 @@ const PropertyMetrics = ({
 }: Props) => {
   return (
     <>
-        <h1 className="text-blue-700 text-lg text-center">Property Metrics</h1>
-        <Box className="flex flex-col gap-4 lg:flex-row justify-between p-8 
-            border-2 rounded-md"
-        >
-            <MUITextField 
+        <h1 className={heading}>Property Metrics</h1>
+        <Box className={flexContainer}>
+            <TextField 
                 type="number" 
                 name="bedrooms" 
                 value = {`${bedrooms}`} 
-                changeHandler={getTextFieldValue} 
+                onChange={getTextFieldValue} 
+                fullWidth
+                required
                 label={'Bedrooms'} 
             />  
-            <MUITextField 
+            <TextField 
                 type="number" 
                 name="bathrooms" 
                 value = {`${bathrooms}`} 
-                changeHandler={getTextFieldValue} 
+                onChange={getTextFieldValue} 
+                fullWidth
+                required
                 label={'Bathrooms'} 
             />  
-            <MUITextField 
+            <TextField 
                 type="number" 
                 name="squareFootage" 
                 value = {`${squareFootage}`} 
-                changeHandler={getTextFieldValue} 
+                onChange={getTextFieldValue} 
+                fullWidth
+                required
                 label={'Square Footage'} 
             />  
         </Box>
     </>
   )
 }
+
+const heading = "text-blue-700 text-lg text-center"
+const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 " +
+    "border-2 rounded-md"
 
 interface Props{
     bedrooms: number
