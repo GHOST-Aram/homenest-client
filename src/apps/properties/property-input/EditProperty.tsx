@@ -2,11 +2,12 @@ import { useState } from "react"
 import { PropertyData, Status } from "../../../types"
 import { useNavigate, useParams } from "react-router-dom"
 import { updateProcessStatus } from "../../../utils/process-status"
-import { getData, updateProperty } from "../../../utils/fetch"
+import { getData, sendPutRequest } from "../../../utils/fetch"
 import { useEffect } from "react"
 import PropertyFormController from "./PropertyFormController"
 import { validatePropertyData } from "../../../utils/validator"
 import { ValidationError } from "yup"
+import { getAuthenticationToken } from "../../../utils/cookie"
 
 
 const EditProperty = () => {
@@ -14,7 +15,8 @@ const EditProperty = () => {
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [propertyData, setPropertyData] = useState<PropertyData>(
         initialPropertyData)
-
+    
+    const authToken  = getAuthenticationToken()
     const { id } = useParams()
 
     const navigate = useNavigate()
@@ -26,22 +28,10 @@ const EditProperty = () => {
             try {
                 await validatePropertyData(propertyData)
     
-                const response = await updateProperty(
-                    `http://localhost:8000/properties/${id}`, propertyData)
-    
-                const statusCode = response.status
+                const {statusCode, body} = await updateProperty()
+
+                processResponse({ statusCode, body })
                 updateProcessStatus(setStatus, statusCode)
-                const body = await response.json()
-                if(statusCode === 201 || statusCode === 200){
-    
-                    const createdProperty = body.item
-                    const id = createdProperty._id.toString()
-    
-                    navigate(`/listings/${id}`, { replace: true })
-                } else if(statusCode === 400){
-                    setErrorMsg(body.errors[0].msg)
-                    setStatus('invalid-input')
-                }
     
             } catch (error) {
                 if(error instanceof ValidationError){
@@ -52,6 +42,30 @@ const EditProperty = () => {
                 }
             }
         })()
+    }
+
+    const updateProperty = async():Promise<{ statusCode:number, body:any }> =>{
+        const response = await sendPutRequest(`http://localhost:8000/properties/${id}`, 
+                {data: propertyData, authToken})
+        const body = await response.json()
+        const statusCode = response.status
+    
+        return { statusCode, body }
+    }
+
+    const processResponse = ({statusCode, body}:{ statusCode:number, body:any }) =>{
+        if(statusCode === 201 || statusCode === 200){
+            const id = body.item._id.toString()
+
+           gotToDetailsPage(id)
+        } else if(statusCode === 400){
+            setErrorMsg(body.errors[0].msg)
+        }
+    }
+
+
+    const gotToDetailsPage = (id: string) =>{
+        navigate(`/listings/${id}`, { replace: true })
     }
 
     useEffect(() =>{
@@ -67,7 +81,7 @@ const EditProperty = () => {
                     setPropertyData(data)
                 }
             } catch (error) {
-                console.log(error)
+                setStatus('error')
             }          
         })() 
     }, [id])

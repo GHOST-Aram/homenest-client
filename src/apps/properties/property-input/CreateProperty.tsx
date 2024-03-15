@@ -7,6 +7,7 @@ import { updateProcessStatus } from "../../../utils/process-status"
 import PropertyFormController from "./PropertyFormController"
 import { validatePropertyData } from "../../../utils/validator"
 import { ValidationError } from "yup"
+import { getAuthenticationToken } from "../../../utils/cookie"
 
 
 const CreateProperty = () => {
@@ -15,6 +16,7 @@ const CreateProperty = () => {
     const [propertyData, setPropertyData] = useState<PropertyData>(
          { ...initialPropertyData })
          
+    const authToken = getAuthenticationToken()
     const authContext = useContext(AuthContext)
     const user = authContext.user 
 
@@ -30,8 +32,8 @@ const CreateProperty = () => {
 
                 await validatePropertyData(data)
 
-                const response = await createNewProperty(
-                    'http://localhost:8000/properties', data)
+                const response = await createNewProperty('http://localhost:8000/properties', 
+                    {data, authToken})
     
                 const statusCode = response.status
                 updateProcessStatus(setStatus, statusCode)
