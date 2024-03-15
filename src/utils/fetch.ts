@@ -49,31 +49,41 @@ export const sendPostRequest = async(url: string, data: any) =>{
     return response
 }
 
-export const createNewProperty = async(url: string, propertyData: any) => {
-    const token = getAuthenticationToken()
+export const createNewProperty = async(
+    url: string, 
+    {
+        data, 
+        authToken
+    }:{data: any, authToken: string}
+) => {
     const response = await fetch(url, {
         method: 'POST',
         redirect: 'follow',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : `Bearer ${token}`
+            'Authorization' : `Bearer ${authToken}`
         },
-        body: JSON.stringify(propertyData)
+        body: JSON.stringify(data)
     })
 
     return response
 }
 
-export const updateProperty = async(url: string, propertyData: any) => {
-    const token = getAuthenticationToken()
+export const sendPutRequest = async(
+    url: string, 
+    {
+        data, 
+        authToken
+    }:{data: any, authToken: string}
+) => {
     const response = await fetch(url, {
         method: 'PUT',
         redirect: 'follow',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : `Bearer ${token}`
+            'Authorization' : `Bearer ${authToken}`
         },
-        body: JSON.stringify(propertyData)
+        body: JSON.stringify(data)
     })
 
     return response
