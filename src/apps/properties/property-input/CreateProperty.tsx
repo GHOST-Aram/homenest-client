@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import { AuthContext } from "../../../utils/authContext"
-import { createNewProperty } from "../../../utils/fetch"
+import { sendPostRequest } from "../../../utils/fetch"
 import { PropertyData, Status } from "../../../types"
 import { useNavigate } from "react-router-dom"
 import { updateProcessStatus } from "../../../utils/process-status"
@@ -32,7 +32,7 @@ const CreateProperty = () => {
 
                 await validatePropertyData(data)
 
-                const response = await createNewProperty('http://localhost:8000/properties', 
+                const response = await sendPostRequest('http://localhost:8000/properties', 
                     {data, authToken})
     
                 const statusCode = response.status

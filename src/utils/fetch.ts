@@ -36,26 +36,15 @@ export const deleteDocument = async(url:string ) =>{
     return response
 }
 
-export const sendPostRequest = async(url: string, data: any) =>{
-    const response = await fetch(url, {
-        method: 'POST',
-        redirect: 'follow',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
 
-    return response
-}
-
-export const createNewProperty = async(
+export const sendPostRequest = async(
     url: string, 
     {
         data, 
         authToken
-    }:{data: any, authToken: string}
+    }:{data: any, authToken?: string}
 ) => {
+    
     const response = await fetch(url, {
         method: 'POST',
         redirect: 'follow',

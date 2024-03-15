@@ -65,7 +65,7 @@ export class UserSignUp{
 
     private createUser = async() =>{
         const response = await sendPostRequest('http://localhost:8000/users', 
-        this.userData)
+        {data: this.userData})
 
         const statusCode = response.status
         const body = await response.json()

@@ -81,7 +81,7 @@ export class Login{
 
     private getAuthToken = async() =>{
         const response = await sendPostRequest(
-            'http://localhost:8000/auth', this.loginDetails)
+            'http://localhost:8000/auth', {data: this.loginDetails})
         
         const statusCode = response.status
         const body = await response.json()
