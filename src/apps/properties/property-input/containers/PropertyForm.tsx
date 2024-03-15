@@ -1,7 +1,4 @@
-import { ChangeEventHandler, ReactNode, Dispatch,SetStateAction } from 'react'
-import { SelectChangeEvent } from "@mui/material/Select"
 import Box from "@mui/material/Box"
-import { PropertyData, Status } from '../../../../types'
 import StatusAlert from '../components/StatusAlert'
 import SubmitButton from '../components/SubmitButton'
 import PropertyProfile from './form-sections/PropertyProfile'
@@ -11,19 +8,9 @@ import PropertyResources from './form-sections/PropertyResources'
 import GalleryInput from './form-sections/GalleryInputSection'
 import { useLocation } from 'react-router-dom'
 import DescriptionAndBackgroud from './form-sections/DescriptionAndBackgroud'
+import { PropertyCreator } from '../PropertyCreater'
 
-const PropertyForm = (
-    {
-        propertyData, 
-        status,
-        errorMsg,
-        onSubmit, 
-        getCheckboxValue,
-        getTextFieldValue, 
-        getSelectedValue,
-        setProperty,
-    } : Props
-) => {
+const PropertyForm = ({ propertyCreator } : {propertyCreator: PropertyCreator }) => {
     const location = useLocation()
     const pathname = location.pathname
     const isUpdateForm = pathname.includes('update')
@@ -32,7 +19,10 @@ const PropertyForm = (
 
     return (
         <div>
-            <form onSubmit={async(e) =>{ e.preventDefault(); onSubmit() }}
+            <form onSubmit={async(e) =>{ 
+                e.preventDefault()
+                propertyCreator.submitPropertyData() 
+            }}
                 className={form}
                 aria-labelledby="property-form-title" 
             >
@@ -41,45 +31,51 @@ const PropertyForm = (
                 </h1>
                 <Box className={container}>
                     <PropertyProfile 
-                        locationName={propertyData.locationName}
-                        propertyName={propertyData.propertyName}
-                        propertyType={propertyData.propertyType}
-                        rentPerMonth={propertyData.rentPerMonth}
-                        cityOrTown={propertyData.cityOrTown?propertyData.cityOrTown:''}
-                        estate={propertyData.estate?propertyData.estate:''}
-                        getSelectedValue={getSelectedValue}
-                        getTextFieldValue={getTextFieldValue}
+                        locationName={propertyCreator.propertyData.locationName}
+                        propertyName={propertyCreator.propertyData.propertyName}
+                        propertyType={propertyCreator.propertyData.propertyType}
+                        rentPerMonth={propertyCreator.propertyData.rentPerMonth}
+                        cityOrTown={propertyCreator.propertyData.cityOrTown}
+                        estate={propertyCreator.propertyData.estate}
+                        getSelectedValue={propertyCreator.getSelectedValue}
+                        getTextFieldValue={propertyCreator.getTextFieldValue}
                     />
                     <DescriptionAndBackgroud 
-                        backgroundImageUrl={propertyData.backgroundImageUrl}
-                        description={propertyData.description}
-                        getTextFieldValue={getTextFieldValue}
+                        backgroundImageUrl={propertyCreator.propertyData.backgroundImageUrl}
+                        description={propertyCreator.propertyData.description}
+                        getTextFieldValue={propertyCreator.getTextFieldValue}
                     />
                 </Box>
                 <PropertyMetrics 
-                    bedrooms={propertyData.bedrooms}
-                    bathrooms={propertyData.bathrooms}
-                    squareFootage={propertyData.squareFootage}
-                    getTextFieldValue={getTextFieldValue}
+                    bedrooms={propertyCreator.propertyData.bedrooms}
+                    bathrooms={propertyCreator.propertyData.bathrooms}
+                    squareFootage={propertyCreator.propertyData.squareFootage}
+                    getTextFieldValue={propertyCreator.getTextFieldValue}
                 />
                 <GalleryInput 
-                    property ={propertyData} 
-                    setProperty = {setProperty}
+                    imageData = {propertyCreator.imageData}
+                    images = {propertyCreator.images}
+                    collectImageData ={propertyCreator.collectImageData} 
+                    deleteImageData ={propertyCreator.deleteImage} 
+                    addImageToGallery ={propertyCreator.addToPropertyGallery}
                 />
                 <PropertyAvailabilityAndMore 
-                    isAvailable={propertyData.isAvailable}
-                    hasParkingSpace={propertyData.hasParkingSpace}
-                    isFurnished={propertyData.isFurnished}
-                    getCheckboxValue={getCheckboxValue}
+                    isAvailable={propertyCreator.propertyData.isAvailable}
+                    hasParkingSpace={propertyCreator.propertyData.hasParkingSpace}
+                    isFurnished={propertyCreator.propertyData.isFurnished}
+                    getCheckboxValue={propertyCreator.getCheckboxValue}
                 />
                 <PropertyResources 
-                    energySources={propertyData.energySources}
-                    waterSources={propertyData.waterSources}
-                    getSelectedValue={getSelectedValue}
+                    energySources={propertyCreator.propertyData.energySources}
+                    waterSources={propertyCreator.propertyData.waterSources}
+                    getSelectedValue={propertyCreator.getSelectedValue}
                 />
-                <StatusAlert processStatus = {status} errorMsg={errorMsg}/>
-                <SubmitButton disabled = {status === 'loading'}>
-                    { status === 'loading' ? 'Loading' : submitButtonName}
+                <StatusAlert 
+                    processStatus = {propertyCreator.status} 
+                    errorMsg={propertyCreator.errorMsg}
+                />
+                <SubmitButton disabled = {propertyCreator.status === 'loading'}>
+                    { propertyCreator.status === 'loading' ? 'Loading' : submitButtonName}
                 </SubmitButton>
             </form>
         </div>
@@ -89,16 +85,5 @@ const PropertyForm = (
 const form = "m-auto py-4 space-y-4 w-4/5"
 const heading = "text-center text-lg font-bold text-blue-700"
 const container = "w-full p-8 border-2 rounded-md space-y-4"
-
-interface Props{
-    status : Status
-    propertyData: PropertyData
-    errorMsg: string
-    onSubmit: ()=> void
-    getTextFieldValue: ChangeEventHandler
-    getCheckboxValue: ChangeEventHandler
-    getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void
-    setProperty: Dispatch<SetStateAction<PropertyData>>
-}
 
 export default PropertyForm

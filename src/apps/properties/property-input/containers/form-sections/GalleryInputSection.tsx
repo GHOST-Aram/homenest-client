@@ -1,67 +1,40 @@
-import { GalleryItem, PropertyData } from "../../../../../types"
+import { GalleryItem } from "../../../../../types"
 import ImageInput from "../../components/ImageInput"
 import Grid from "../../../image-grid/Grid"
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
+import { ChangeEventHandler } from "react"
 
-const GalleryInputSection = ({ property, setProperty }: Props) => {
-    const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
-
-    const collectImageData = (e: ChangeEvent<HTMLInputElement>) =>{
-        const { name, value } = e.target
-        setImageData({...imageData, [name]: value })
-    }
-
-    const addToPropertyGallery = () => {
-        if(imageData.url.trim() && imageData.url.trim()){
-            setProperty({...property, images:[...property.images, imageData]})
-        }
-    }
-
-    const deleteImage = (image:GalleryItem) =>{
-        const id = image._id
-        const url = image.url
-        const alt = image.alt
-
-        if(id) removeById(id) 
-        else removeByUrlAndAltText(url, alt)
-}
-
-    const removeById = (id: string) =>{
-        const images:GalleryItem[] = property.images.filter(
-            element => element._id !== id
-        )
-        setProperty({ ...property, images: images})
-    }
-
-    const removeByUrlAndAltText = (url:string, alt: string) =>{
-        const images: GalleryItem[] = property.images.filter(
-            element => (element.url!==url && element.alt!==alt)
-        )
-
-        setProperty({ ...property, images: images})
-    }
-
-   
+const GalleryInputSection = (
+    { 
+        imageData,
+        images,
+        collectImageData, 
+        deleteImageData, 
+        addImageToGallery 
+    }: Props
+) => {
 
     return (
         <>
             <h1 className={heading}>Property Gallery</h1>
             <Grid 
-                images={property.images} 
-                deleteImage={deleteImage}
+                images={ images } 
+                deleteImage={deleteImageData}
             />
             <ImageInput 
                 imageData={imageData}
                 collectImageData={collectImageData}
-                addToPropertyGallery={addToPropertyGallery}
+                addToPropertyGallery={addImageToGallery}
             />
         </>
     )
 }
 
 interface Props{
-    property: PropertyData
-    setProperty: Dispatch<SetStateAction<PropertyData>>
+    imageData: GalleryItem
+    images: GalleryItem[]
+    collectImageData: ChangeEventHandler
+    addImageToGallery: () =>void
+    deleteImageData: (image: GalleryItem) => void
 }
 
 const heading = "text-blue-700 text-lg text-center"

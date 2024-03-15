@@ -13,6 +13,7 @@ export class PropertyCreator{
     public propertyData: PropertyData
     public authToken: string
     public imageData: GalleryItem
+    public images: GalleryItem[]
     public errorMsg: string
     public status: Status
     private navigate: NavigateFunction
@@ -26,6 +27,7 @@ export class PropertyCreator{
             propertyData,
             authToken,
             imageData,
+            images,
             errorMsg,
             status,
             navigate,
@@ -37,6 +39,7 @@ export class PropertyCreator{
             propertyData: PropertyData,
             authToken: string,
             imageData: GalleryItem,
+            images: GalleryItem[]
             errorMsg: string,
             status: Status,
             navigate: NavigateFunction,
@@ -49,6 +52,7 @@ export class PropertyCreator{
             this.propertyData = propertyData
             this.authToken = authToken
             this.imageData = imageData
+            this.images = images
             this.errorMsg = errorMsg
             this.status = status
             this.navigate = navigate
