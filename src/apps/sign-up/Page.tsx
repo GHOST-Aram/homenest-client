@@ -6,11 +6,14 @@ import { useNavigate } from 'react-router'
 import Box from '@mui/material/Box'
 import { sendPostRequest } from '../../utils/fetch'
 import { updateProcessStatus } from '../../utils/process-status'
+import { validateUserData } from '../../utils/validator'
+import { ValidationError } from 'yup'
 
 export const SignUp = () =>{
     const navigate = useNavigate()
 
     const [ status, setStatus] = useState<Status>('idle')
+    const [errorMsg, setErrorMsg] = useState<string>('')
     const [userData, setUserData] = useState<UserData>({
         fullName: '',
         role: 'tenant',
@@ -24,23 +27,51 @@ export const SignUp = () =>{
         setUserData({...userData, [name]: value })
     }
 
-    const createUser = () =>{
-        setStatus('loading')
+    const submitUserData = () =>{
+        
+        (async() =>{
+            setStatus('loading')
 
-        try {
-            (async() =>{
-                const response = await sendPostRequest('http://localhost:8000/users', 
-                userData)
+            try {
+                await validateUserData(userData)
 
-                const statusCode = response.status
-                updateProcessStatus(setStatus, statusCode)
-            })()
-        } catch (error) {
-            setStatus('error')            
+                const{ statusCode, body } = await createUser()
+
+                processResponse( { statusCode, body })
+                
+            } catch (error) {
+                if(error instanceof ValidationError){
+                    setStatus('invalid-input')
+                    setErrorMsg(error.message)
+                } else{
+                    setStatus('error')            
+                }
+            }
+        })()
+    }
+
+    const createUser = async() =>{
+        const response = await sendPostRequest('http://localhost:8000/users', 
+        userData)
+
+        const statusCode = response.status
+        const body = await response.json()
+
+        return {statusCode, body }
+    }
+
+    const processResponse = ({ statusCode, body }: {statusCode: number, body: any }) =>{
+        updateProcessStatus(setStatus, statusCode)
+
+        if(statusCode === 400){
+            setErrorMsg(body.errors[0].msg)
+            console.log(errorMsg)
+        } else if(statusCode === 201){
+            gotToLoginPage()
         }
     }
 
-    if(status === 'created'){
+    const gotToLoginPage = () =>{
         navigate('/login')
     }
     
@@ -50,8 +81,9 @@ export const SignUp = () =>{
                 <SignUpForm 
                     status={status} 
                     changeHandler={collectUserInput} 
-                    onSubmit={createUser}
+                    onSubmit={submitUserData}
                     userData={userData}
+                    errorMsg={errorMsg}
                 />            
             </Paper>
         </Box>

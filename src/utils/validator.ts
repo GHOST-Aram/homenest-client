@@ -15,16 +15,17 @@ export const validateLoginDetails = async(loginDetails: LoginDetails) =>{
 
 export const validateUserData  = async(userData: UserData) =>{
     const userSchema = object<UserData>().shape({
-        fullName: string().min(2, 'Full name must be atleast 2 characters.')
-            .max(200,'Full name must not be longer than 200 characters')
-            .required('Full name is required.'),
+        fullName: string()
+        .required('Full name is required.')
+        .min(2, 'Full name must be atleast 2 characters.')
+            .max(200,'Full name must not be longer than 200 characters'),
 
         email: string().email('Email is Invalid').required('Email is Required'),
         password: string().min(8, 'Password must be atleast 8 characters.')
             .max(24, 'Password must not be longer than 24 characters.')
             .required('Pasword is required.'),
 
-        confirmPassWord: string().oneOf([ref('password')], 'Passwords must match')
+        confirmPassword: string().oneOf([ref('password')], 'Passwords must match')
             .required('confirm Password is required'),
         
         role: string().oneOf(
@@ -33,7 +34,7 @@ export const validateUserData  = async(userData: UserData) =>{
         
     })
 
-    await userSchema.validate(userData)
+    await userSchema.validate(userData, { abortEarly: true })
 }
 
 
