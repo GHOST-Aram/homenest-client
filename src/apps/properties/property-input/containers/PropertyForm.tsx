@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom'
 import DescriptionAndBackgroud from './form-sections/DescriptionAndBackgroud'
 import { PropertyCreator } from '../PropertyCreater'
 
-const PropertyForm = ({ propertyCreator } : {propertyCreator: PropertyCreator }) => {
+const PropertyForm = ({ propertyCreator } : { propertyCreator: PropertyCreator }) =>  {
     const location = useLocation()
     const pathname = location.pathname
     const isUpdateForm = pathname.includes('update')
@@ -31,50 +31,50 @@ const PropertyForm = ({ propertyCreator } : {propertyCreator: PropertyCreator })
                 </h1>
                 <Box className={container}>
                     <PropertyProfile 
-                        locationName={propertyCreator.propertyData.locationName}
-                        propertyName={propertyCreator.propertyData.propertyName}
-                        propertyType={propertyCreator.propertyData.propertyType}
-                        rentPerMonth={propertyCreator.propertyData.rentPerMonth}
-                        cityOrTown={propertyCreator.propertyData.cityOrTown}
-                        estate={propertyCreator.propertyData.estate}
-                        getSelectedValue={propertyCreator.getSelectedValue}
-                        getTextFieldValue={propertyCreator.getTextFieldValue}
+                        locationName={ propertyCreator.propertyData.locationName }
+                        propertyName={ propertyCreator.propertyData.propertyName }
+                        propertyType={ propertyCreator.propertyData.propertyType }
+                        rentPerMonth={ propertyCreator.propertyData.rentPerMonth }
+                        cityOrTown={ propertyCreator.propertyData.cityOrTown }
+                        estate={ propertyCreator.propertyData.estate }
+                        getSelectedValue={ propertyCreator.getSelectedValue }
+                        getTextFieldValue={ propertyCreator.getTextFieldValue }
                     />
                     <DescriptionAndBackgroud 
-                        backgroundImageUrl={propertyCreator.propertyData.backgroundImageUrl}
-                        description={propertyCreator.propertyData.description}
-                        getTextFieldValue={propertyCreator.getTextFieldValue}
+                        backgroundImageUrl={ propertyCreator.propertyData.backgroundImageUrl }
+                        description={ propertyCreator.propertyData.description }
+                        getTextFieldValue={ propertyCreator.getTextFieldValue }
                     />
                 </Box>
                 <PropertyMetrics 
-                    bedrooms={propertyCreator.propertyData.bedrooms}
-                    bathrooms={propertyCreator.propertyData.bathrooms}
-                    squareFootage={propertyCreator.propertyData.squareFootage}
-                    getTextFieldValue={propertyCreator.getTextFieldValue}
+                    bedrooms={ propertyCreator.propertyData.bedrooms }
+                    bathrooms={ propertyCreator.propertyData.bathrooms }
+                    squareFootage={ propertyCreator.propertyData.squareFootage }
+                    getTextFieldValue={ propertyCreator.getTextFieldValue }
                 />
                 <GalleryInput 
-                    imageData = {propertyCreator.imageData}
-                    images = {propertyCreator.propertyData.images}
-                    collectImageData ={propertyCreator.collectImageData} 
-                    deleteImageData ={propertyCreator.deleteImage} 
-                    addImageToGallery ={propertyCreator.addToPropertyGallery}
+                    imageData = { propertyCreator.imageData }
+                    images = { propertyCreator.propertyData.images }
+                    collectImageData ={ propertyCreator.getImageData}  
+                    deleteImageData ={ propertyCreator.deleteImage}  
+                    addImageToGallery ={ propertyCreator.addImageGallery }
                 />
                 <PropertyAvailabilityAndMore 
-                    isAvailable={propertyCreator.propertyData.isAvailable}
-                    hasParkingSpace={propertyCreator.propertyData.hasParkingSpace}
-                    isFurnished={propertyCreator.propertyData.isFurnished}
-                    getCheckboxValue={propertyCreator.getCheckboxValue}
+                    isAvailable={ propertyCreator.propertyData.isAvailable }
+                    hasParkingSpace={ propertyCreator.propertyData.hasParkingSpace }
+                    isFurnished={ propertyCreator.propertyData.isFurnished }
+                    getCheckboxValue={ propertyCreator.getCheckboxValue }
                 />
                 <PropertyResources 
-                    energySources={propertyCreator.propertyData.energySources}
-                    waterSources={propertyCreator.propertyData.waterSources}
-                    getSelectedValue={propertyCreator.getSelectedValue}
+                    energySources={ propertyCreator.propertyData.energySources }
+                    waterSources={ propertyCreator.propertyData.waterSources }
+                    getSelectedValue={ propertyCreator.getSelectedValue }
                 />
                 <StatusAlert 
-                    processStatus = {propertyCreator.status} 
-                    errorMsg={propertyCreator.errorMsg}
+                    processStatus = { propertyCreator.status}  
+                    errorMsg={ propertyCreator.errorMsg }
                 />
-                <SubmitButton disabled = {propertyCreator.status === 'loading'}>
+                <SubmitButton disabled = { propertyCreator.status === 'loading'} >
                     { propertyCreator.status === 'loading' ? 'Loading' : submitButtonName}
                 </SubmitButton>
             </form>

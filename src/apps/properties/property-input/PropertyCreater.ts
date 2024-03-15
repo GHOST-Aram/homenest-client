@@ -76,12 +76,12 @@ export class PropertyCreator{
         this.setPropertyData( { ...this.propertyData, [name]: value})
     }
 
-    public collectImageData = (e: ChangeEvent<HTMLInputElement>) =>{
+    public getImageData = (e: ChangeEvent<HTMLInputElement>) =>{
         const { name, value } = e.target
         this.setImageData({...this.imageData, [name]: value })
     }
 
-    public addToPropertyGallery = () => {
+    public addImageGallery = () => {
         if(this.imageData.url.trim() && this.imageData.url.trim()){
             this.setPropertyData(
                 {
