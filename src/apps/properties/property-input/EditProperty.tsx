@@ -1,13 +1,11 @@
 import { useState } from "react"
 import { PropertyData, Status } from "../../../types"
 import { useNavigate, useParams } from "react-router-dom"
-import { updateProcessStatus } from "../../../utils/process-status"
-import { getData, sendPutRequest } from "../../../utils/fetch"
+import { getData } from "../../../utils/fetch"
 import { useEffect } from "react"
 import PropertyFormController from "./PropertyFormController"
-import { validatePropertyData } from "../../../utils/validator"
-import { ValidationError } from "yup"
 import { getAuthenticationToken } from "../../../utils/cookie"
+import { PropertyUpdater } from "./PropertyUpdater"
 
 
 const EditProperty = () => {
@@ -17,56 +15,19 @@ const EditProperty = () => {
         initialPropertyData)
     
     const authToken  = getAuthenticationToken()
-    const { id } = useParams()
+    const { id }= useParams()
 
     const navigate = useNavigate()
-
-    const submitFormData = () =>{
-        (async() =>{
-            setStatus('loading')
     
-            try {
-                await validatePropertyData(propertyData)
-    
-                const {statusCode, body} = await updateProperty()
-
-                processResponse({ statusCode, body })
-                updateProcessStatus(setStatus, statusCode)
-    
-            } catch (error) {
-                if(error instanceof ValidationError){
-                    setErrorMsg(error.message)
-                    setStatus('invalid-input')
-                } else {
-                    setStatus('error')
-                }
-            }
-        })()
-    }
-
-    const updateProperty = async():Promise<{ statusCode:number, body:any }> =>{
-        const response = await sendPutRequest(`http://localhost:8000/properties/${id}`, 
-                {data: propertyData, authToken})
-        const body = await response.json()
-        const statusCode = response.status
-    
-        return { statusCode, body }
-    }
-
-    const processResponse = ({statusCode, body}:{ statusCode:number, body:any }) =>{
-        if(statusCode === 201 || statusCode === 200){
-            const id = body.item._id.toString()
-
-           gotToDetailsPage(id)
-        } else if(statusCode === 400){
-            setErrorMsg(body.errors[0].msg)
-        }
-    }
-
-
-    const gotToDetailsPage = (id: string) =>{
-        navigate(`/listings/${id}`, { replace: true })
-    }
+    const propertyUpdater = new PropertyUpdater({
+        propertyData,
+        authToken,
+        navigate,
+        setPropertyData,
+        setStatus,
+        setErrorMsg,
+        propertyId: id||''
+    })
 
     useEffect(() =>{
         (async() =>{
@@ -88,9 +49,8 @@ const EditProperty = () => {
 
     return(
         <PropertyFormController 
-            propertyData={propertyData}
+            propertyEditor={propertyUpdater}
             setPropertyData={setPropertyData}
-            onSubmit={submitFormData}
             status={status}
             errorMsg={errorMsg}
         />
