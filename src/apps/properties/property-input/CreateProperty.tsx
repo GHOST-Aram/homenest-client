@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import { AuthContext } from "../../../utils/authContext"
 import { sendPostRequest } from "../../../utils/fetch"
-import { PropertyData, Status } from "../../../types"
+import { PropertyData, Status, User } from "../../../types"
 import { useNavigate } from "react-router-dom"
 import { updateProcessStatus } from "../../../utils/process-status"
 import PropertyFormController from "./PropertyFormController"
@@ -18,7 +18,7 @@ const CreateProperty = () => {
          
     const authToken = getAuthenticationToken()
     const authContext = useContext(AuthContext)
-    const user = authContext.user 
+    const user: User = authContext.user 
 
     const navigate = useNavigate()
 
@@ -32,23 +32,10 @@ const CreateProperty = () => {
 
                 await validatePropertyData(data)
 
-                const response = await sendPostRequest('http://localhost:8000/properties', 
-                    {data, authToken})
-    
-                const statusCode = response.status
+                const { statusCode, body } = await createProperty(data)
+                
+                processResponse({ statusCode, body })
                 updateProcessStatus(setStatus, statusCode)
-    
-                const body = await response.json()
-                if(statusCode === 201){
-                    
-                    const createdProperty = body.item
-                    const id = createdProperty._id.toString()
-    
-                    navigate(`/listings/${id}`, { replace : true })
-                } else if(statusCode === 400){
-                    setErrorMsg(body.errors[0].msg)
-                    setStatus('invalid-input')
-                }
     
             } catch (error) {
                 if(error instanceof ValidationError){
@@ -59,6 +46,30 @@ const CreateProperty = () => {
                 }
             }
         })()
+    }
+
+    const createProperty = async(data: PropertyData): Promise<{statusCode: number, body: any}> =>{
+        const response = await sendPostRequest('http://localhost:8000/properties', 
+            {data , authToken})
+
+        const body = await response.json()
+        const statusCode = response.status
+
+        return { statusCode, body}
+    }
+
+    const processResponse = ({ statusCode, body }: { statusCode: number, body: any}) =>{
+        if(statusCode === 201){
+            const id = body.item._id.toString()
+            gotToDetailsPage(id)
+        } else if(statusCode === 400){
+            setErrorMsg(body.errors[0].msg)
+            setStatus('invalid-input')
+        }
+    }
+
+    const gotToDetailsPage = (id: string) =>{
+        navigate(`/listings/${id}`, { replace : true })
     }
        
     return(
