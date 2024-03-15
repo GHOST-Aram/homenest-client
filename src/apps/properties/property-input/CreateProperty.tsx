@@ -1,13 +1,10 @@
 import { useState, useContext } from "react"
 import { AuthContext } from "../../../utils/authContext"
-import { sendPostRequest } from "../../../utils/fetch"
 import { PropertyData, Status, User } from "../../../types"
-import { useNavigate } from "react-router-dom"
-import { updateProcessStatus } from "../../../utils/process-status"
 import PropertyFormController from "./PropertyFormController"
-import { validatePropertyData } from "../../../utils/validator"
-import { ValidationError } from "yup"
 import { getAuthenticationToken } from "../../../utils/cookie"
+import { useNavigate } from "react-router-dom"
+import { PropertyCreator } from "./PropertyCreater"
 
 
 const CreateProperty = () => {
@@ -22,61 +19,20 @@ const CreateProperty = () => {
 
     const navigate = useNavigate()
 
-    const submitPropertyData = () =>{
-        
-        (async()=>{
-            setStatus('loading')
-            
-            try {
-                const data = { ...propertyData, landlord: user.id }
+    const propertyEditor = new PropertyCreator({
+        propertyData: { ...propertyData, landlord: user.id },
+        authToken,
+        navigate,
+        setPropertyData,
+        setStatus,
+        setErrorMsg,
+    })
 
-                await validatePropertyData(data)
-
-                const { statusCode, body } = await createProperty(data)
-                
-                processResponse({ statusCode, body })
-                updateProcessStatus(setStatus, statusCode)
-    
-            } catch (error) {
-                if(error instanceof ValidationError){
-                    setErrorMsg(error.message)
-                    setStatus('invalid-input')
-                } else {
-                    setStatus('error')
-                }
-            }
-        })()
-    }
-
-    const createProperty = async(data: PropertyData): Promise<{statusCode: number, body: any}> =>{
-        const response = await sendPostRequest('http://localhost:8000/properties', 
-            {data , authToken})
-
-        const body = await response.json()
-        const statusCode = response.status
-
-        return { statusCode, body}
-    }
-
-    const processResponse = ({ statusCode, body }: { statusCode: number, body: any}) =>{
-        if(statusCode === 201){
-            const id = body.item._id.toString()
-            gotToDetailsPage(id)
-        } else if(statusCode === 400){
-            setErrorMsg(body.errors[0].msg)
-            setStatus('invalid-input')
-        }
-    }
-
-    const gotToDetailsPage = (id: string) =>{
-        navigate(`/listings/${id}`, { replace : true })
-    }
        
     return(
         <PropertyFormController 
-            propertyData={propertyData}
+            propertyEditor = {propertyEditor}
             setPropertyData={setPropertyData}
-            onSubmit={submitPropertyData}
             status={status}
             errorMsg={errorMsg}
         />
