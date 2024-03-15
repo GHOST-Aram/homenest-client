@@ -9,12 +9,15 @@ import { AuthContext } from '../../utils/authContext'
 import Box from '@mui/material/Box'
 import { updateProcessStatus } from '../../utils/process-status'
 import { sendPostRequest } from '../../utils/fetch'
+import { validateLoginDetails } from '../../utils/validator'
+import { ValidationError } from 'yup'
 
 const Login = () => {
     const navigate = useNavigate()
     const authContext = useContext(AuthContext)
 
     const [status, setStatus] = useState<Status>('idle')
+    const [errorMsg, setErrorMsg] = useState<string>('')
     const [authToken, setAuthToken] = useState<string>('')
     const [loginDetails, setLoginDetails] = useState<LoginDetails>(
         {
@@ -28,30 +31,67 @@ const Login = () => {
         setLoginDetails({...loginDetails, [name]: value })
     }
 
-    const getAuthenticationToken = () =>{
+    const submitLoginDetails = () =>{
         (async() =>{
+            setStatus('loading')
+
             try {
-                setStatus('loading')
-                const response = await sendPostRequest(
-                    'http://localhost:8000/auth', loginDetails)
-                
-                const statusCode = response.status
-        
-                if(statusCode === 201){
-                    const body = await response.json()
-                    const token = body.token
-    
-                    setAuthToken(token)
-                }
-                updateProcessStatus(setStatus, statusCode)
-        
+                await validateLoginDetails(loginDetails)
+
+                const {statusCode, body } = await getAuthToken()
+
+                processResponse({ statusCode, body })
+                authenticateUser()
             } catch (error) {
-                setStatus('error')
+                if (error instanceof ValidationError){
+                    setErrorMsg(error.message)
+                    setStatus('invalid-input')
+                } else{
+                    setStatus('error')
+                }
             }
         })()
     }
 
-    const initializeUser = (decodedToken: any) =>{
+    const getAuthToken = async() =>{
+        const response = await sendPostRequest(
+            'http://localhost:8000/auth', loginDetails)
+        
+        const statusCode = response.status
+        const body = await response.json()
+
+        return {statusCode, body }
+    }
+
+    const processResponse = ({statusCode, body }:{statusCode: number, body: any}) =>{
+        if(statusCode === 201){
+            const token = body.token
+
+            setAuthToken(token)
+
+        } else if(statusCode === 400){
+            const message = body.errors[0].msg
+            setErrorMsg(message)
+        }
+
+        updateProcessStatus(setStatus, statusCode)
+    }
+
+    const authenticateUser = () =>{
+        if(authToken){        
+            try{
+                const decoded:any = decodeAuthToken(authToken)
+    
+                initializeUser(decoded)
+                setAuthenticationCookie(decoded.exp, authToken)
+                goToHomePage()
+            } catch(error){
+                setStatus('error')
+            }
+        }
+    }
+
+    function initializeUser (decodedToken: any) {
         authContext.setUser({
             email: decodedToken.email,
             name: decodedToken.name,
@@ -59,30 +99,19 @@ const Login = () => {
         })
     }
 
-    const goToHomePage = () =>{
+    function goToHomePage () {
         navigate('/')
-    }
-
-    if(authToken){        
-        try{
-            const decoded:any = decodeAuthToken(authToken)
-
-            initializeUser(decoded)
-            setAuthenticationCookie(decoded.exp, authToken)
-            goToHomePage()
-        } catch(error){
-            setStatus('error')
-        }
     }
 
     return (
         <Box className="my-16">
-            <Paper elevation={8} className=   {container}>
+            <Paper elevation={8} className={container}>
                 <LoginForm 
-                    onChange={collectLoginDetails} 
                     loginDetails={loginDetails}
                     processStatus={status}
-                    onSubmit={getAuthenticationToken}
+                    errorMsg={errorMsg}
+                    onChange={collectLoginDetails} 
+                    onSubmit={submitLoginDetails}
                 />
             </Paper>
         </Box>

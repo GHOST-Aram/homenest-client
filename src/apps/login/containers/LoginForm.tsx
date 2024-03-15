@@ -9,9 +9,10 @@ import GoToSignUpBtn from '../components/GoToSignUpBtn'
 const LoginForm = ( 
     { 
         loginDetails, 
+        processStatus,
+        errorMsg, 
         onChange, 
         onSubmit,
-        processStatus 
     }:FormProps 
 ) => {
 
@@ -34,7 +35,7 @@ const LoginForm = (
                 ))
 
             }
-            <StatusAlert processStatus={processStatus}/>
+            <StatusAlert processStatus={processStatus} errorMsg={errorMsg}/>
            <LoginButton processStatus = {processStatus} />
            <p className={boldText}>OR</p>
            <GoToSignUpBtn />
@@ -61,6 +62,7 @@ const createFieldsWithloginDetails = (loginDetails: LoginDetails) =>{
 interface FormProps{ 
     loginDetails: LoginDetails 
     processStatus: Status
+    errorMsg: string
     onChange: ChangeEventHandler
     onSubmit: ()=>void
 }
