@@ -25,7 +25,6 @@ const PropertyMetrics = (
                             value = {`${field.value}`} 
                             onChange={getTextFieldValue} 
                             fullWidth
-                            required
                             label={field.label} 
                         />  
                     ))

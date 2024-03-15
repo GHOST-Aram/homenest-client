@@ -5,10 +5,13 @@ import { PropertyData, Status } from "../../../types"
 import { useNavigate } from "react-router-dom"
 import { updateProcessStatus } from "../../../utils/process-status"
 import PropertyFormController from "./PropertyFormController"
+import { validatePropertyData } from "../../../utils/validator"
+import { ValidationError } from "yup"
 
 
 const CreateProperty = () => {
     const [status, setStatus] = useState<Status>('idle')
+    const [errorMsg, setErrorMsg] = useState<string>('')
     const [propertyData, setPropertyData] = useState<PropertyData>(
          { ...initialPropertyData })
          
@@ -17,38 +20,52 @@ const CreateProperty = () => {
 
     const navigate = useNavigate()
 
-    const submitFormData = async () =>{
-        const data = { ...propertyData, landlord: user.id }
+    const submitPropertyData = () =>{
+        
+        (async()=>{
+            setStatus('loading')
+            
+            try {
+                const data = { ...propertyData, landlord: user.id }
 
-        setStatus('loading')
+                await validatePropertyData(data)
 
-        try {
-            const response = await createNewProperty(
-                'http://localhost:8000/properties', data)
-
-            const statusCode = response.status
-            updateProcessStatus(setStatus, statusCode)
-
-            if(statusCode === 201){
+                const response = await createNewProperty(
+                    'http://localhost:8000/properties', data)
+    
+                const statusCode = response.status
+                updateProcessStatus(setStatus, statusCode)
+    
                 const body = await response.json()
-                
-                const createdProperty = body.item
-                const id = createdProperty._id.toString()
-
-                navigate(`/listings/${id}`, { replace : true })
+                if(statusCode === 201){
+                    
+                    const createdProperty = body.item
+                    const id = createdProperty._id.toString()
+    
+                    navigate(`/listings/${id}`, { replace : true })
+                } else if(statusCode === 400){
+                    setErrorMsg(body.errors[0].msg)
+                    setStatus('invalid-input')
+                }
+    
+            } catch (error) {
+                if(error instanceof ValidationError){
+                    setErrorMsg(error.message)
+                    setStatus('invalid-input')
+                } else {
+                    setStatus('error')
+                }
             }
-
-        } catch (error) {
-            setStatus('error')
-        }
+        })()
     }
        
     return(
         <PropertyFormController 
             propertyData={propertyData}
             setPropertyData={setPropertyData}
-            onSubmit={submitFormData}
+            onSubmit={submitPropertyData}
             status={status}
+            errorMsg={errorMsg}
         />
     )
 }

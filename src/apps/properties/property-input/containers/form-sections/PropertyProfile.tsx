@@ -22,7 +22,7 @@ const PropertyProfile = (
 ) => {
 
     const fields = createFields({ propertyName, rentPerMonth })
-    
+
     return (
         <>
             <h1 className={heading}>Property Profile</h1>
@@ -52,7 +52,6 @@ const PropertyProfile = (
                             label={field.label}
                             value={field.value} 
                             onChange={getTextFieldValue}
-                            required
                             fullWidth
                         />                    
                     ))

@@ -15,12 +15,13 @@ import DescriptionAndBackgroud from './form-sections/DescriptionAndBackgroud'
 const PropertyForm = (
     {
         propertyData, 
+        status,
+        errorMsg,
         onSubmit, 
         getCheckboxValue,
         getTextFieldValue, 
         getSelectedValue,
         setProperty,
-        status
     } : Props
 ) => {
     const location = useLocation()
@@ -76,7 +77,7 @@ const PropertyForm = (
                     waterSources={propertyData.waterSources}
                     getSelectedValue={getSelectedValue}
                 />
-                <StatusAlert processStatus = {status}/>
+                <StatusAlert processStatus = {status} errorMsg={errorMsg}/>
                 <SubmitButton disabled = {status === 'loading'}>
                     { status === 'loading' ? 'Loading' : submitButtonName}
                 </SubmitButton>
@@ -92,6 +93,7 @@ const container = "w-full p-8 border-2 rounded-md space-y-4"
 interface Props{
     status : Status
     propertyData: PropertyData
+    errorMsg: string
     onSubmit: ()=> void
     getTextFieldValue: ChangeEventHandler
     getCheckboxValue: ChangeEventHandler

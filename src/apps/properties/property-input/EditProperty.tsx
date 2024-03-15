@@ -5,10 +5,13 @@ import { updateProcessStatus } from "../../../utils/process-status"
 import { getData, updateProperty } from "../../../utils/fetch"
 import { useEffect } from "react"
 import PropertyFormController from "./PropertyFormController"
+import { validatePropertyData } from "../../../utils/validator"
+import { ValidationError } from "yup"
 
 
 const EditProperty = () => {
     const [status, setStatus] = useState<Status>('idle')
+    const [errorMsg, setErrorMsg] = useState<string>('')
     const [propertyData, setPropertyData] = useState<PropertyData>(
         initialPropertyData)
 
@@ -16,29 +19,39 @@ const EditProperty = () => {
 
     const navigate = useNavigate()
 
-    const submitFormData = async () =>{
-        const data = { ...propertyData}
-
-        setStatus('loading')
-
-        try {
-            const response = await updateProperty(
-                `http://localhost:8000/properties/${id}`, data)
-
-            const statusCode = response.status
-            if(statusCode === 201 || statusCode === 200){
+    const submitFormData = () =>{
+        (async() =>{
+            setStatus('loading')
+    
+            try {
+                await validatePropertyData(propertyData)
+    
+                const response = await updateProperty(
+                    `http://localhost:8000/properties/${id}`, propertyData)
+    
+                const statusCode = response.status
+                updateProcessStatus(setStatus, statusCode)
                 const body = await response.json()
-
-                const createdProperty = body.item
-                const id = createdProperty._id.toString()
-
-                navigate(`/listings/${id}`, { replace: true })
+                if(statusCode === 201 || statusCode === 200){
+    
+                    const createdProperty = body.item
+                    const id = createdProperty._id.toString()
+    
+                    navigate(`/listings/${id}`, { replace: true })
+                } else if(statusCode === 400){
+                    setErrorMsg(body.errors[0].msg)
+                    setStatus('invalid-input')
+                }
+    
+            } catch (error) {
+                if(error instanceof ValidationError){
+                    setErrorMsg(error.message)
+                    setStatus('invalid-input')
+                } else {
+                    setStatus('error')
+                }
             }
-
-            updateProcessStatus(setStatus, statusCode)
-        } catch (error) {
-            setStatus('error')
-        }
+        })()
     }
 
     useEffect(() =>{
@@ -65,6 +78,7 @@ const EditProperty = () => {
             setPropertyData={setPropertyData}
             onSubmit={submitFormData}
             status={status}
+            errorMsg={errorMsg}
         />
     )
 }

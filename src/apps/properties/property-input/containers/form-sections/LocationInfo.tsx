@@ -23,7 +23,6 @@ const LocationInfo = (
                         value = {field.value} 
                         onChange={getTextFieldValue} 
                         label={field.label} 
-                        required
                         fullWidth
                     />
                 ))

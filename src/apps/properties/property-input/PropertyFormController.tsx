@@ -6,9 +6,10 @@ import PropertyForm from "./containers/PropertyForm"
 const PropertyFormController = ( 
     {
         propertyData,
+        status,
+        errorMsg,
         setPropertyData,
         onSubmit,
-        status,
     }: Props
 ) => {
 
@@ -41,6 +42,7 @@ const PropertyFormController = (
                 getCheckboxValue={getCheckboxValue}
                 setProperty={setPropertyData}
                 status = {status}
+                errorMsg={errorMsg}
             />
         </Box>
     )
@@ -48,8 +50,9 @@ const PropertyFormController = (
 
 interface Props{
     propertyData: PropertyData
-    setPropertyData: Dispatch<SetStateAction<PropertyData>>
     status: Status
+    errorMsg: string
+    setPropertyData: Dispatch<SetStateAction<PropertyData>>
     onSubmit: () => void
 }
 
