@@ -34,6 +34,8 @@ export const initialPropertyData: PropertyData = {
     rentPerMonth: 0,
     rentPerYear: 0,
     locationName: '',
+    cityOrTown:'',
+    estate:'',
     bedrooms: 0,
     bathrooms: 0,
     landlord: '',
