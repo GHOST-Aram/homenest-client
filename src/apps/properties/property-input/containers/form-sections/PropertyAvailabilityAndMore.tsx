@@ -11,45 +11,45 @@ const PropertyAvailabilityAndMore = ({
 }: Props
 ) => {
 
+    const fields = createFields({ isAvailable, isFurnished, hasParkingSpace })
+    
     return (
         <>
             <h1 className={heading}>Availability and More</h1>
             <Box className={flexContainer}>
-                <FormControlLabel 
-                    label='Available' 
-                    control = {
-                        <Checkbox 
-                            onChange={getCheckboxValue} 
-                            checked={isAvailable} 
-                            name="isAvailabe"
-                        /> 
-                    }
-                />
-                <FormControlLabel 
-                    label='Furnished' 
-                    control = {
-                        <Checkbox 
-                            onChange={getCheckboxValue} 
-                            checked={isFurnished}
-                            name="isFurnished"
-                        /> 
-                    }
-                />
-                <FormControlLabel 
-                    label='Parking Space' 
-                    control = {
-                        <Checkbox 
-                            onChange={getCheckboxValue} 
-                            checked={hasParkingSpace}
-                            name="hasParkingSpace"
-                        /> 
-                    }
-                />
+                {
+                    fields.map(field =>(
+                        <FormControlLabel 
+                            key={field.label}
+                            label={field.label} 
+                            control = {
+                                <Checkbox 
+                                    onChange={getCheckboxValue} 
+                                    checked={field.value} 
+                                    name={field.name}
+                                /> 
+                            }
+                        />
+                    ))
+                }
             </Box>
         </>
     )
 }
 
+const createFields = (
+    { 
+        isAvailable, 
+        isFurnished, 
+        hasParkingSpace 
+    }:{ isAvailable: boolean , isFurnished: boolean, hasParkingSpace: boolean }
+) =>{
+    return [
+        {label: 'Currently Vacant', name: 'isAvailable', value: isAvailable,},
+        {label: 'Furnished', name: 'isFurnished', value: isFurnished,},
+        {label: 'Parking Space',name: 'hasParkingSpace', value: hasParkingSpace,},
+    ]
+}
 
 interface Props{
     isAvailable: boolean
