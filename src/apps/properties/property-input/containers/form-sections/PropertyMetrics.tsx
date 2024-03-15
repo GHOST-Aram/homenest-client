@@ -2,17 +2,15 @@ import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { ChangeEventHandler } from 'react'
 
-const PropertyMetrics = ({
-    bedrooms,
-    bathrooms,
-    squareFootage,
-    getTextFieldValue,
-}: Props) => {
-    const fields = [
-        { name: 'bedrooms',label: 'Bedrooms', value: bedrooms },
-        { name: 'bathrooms',label: 'Bathrooms', value: bathrooms },
-        { name: 'squareFootage',label: 'Square Footage', value: squareFootage },
-    ]
+const PropertyMetrics = (
+    {
+        bedrooms,
+        bathrooms,
+        squareFootage,
+        getTextFieldValue,
+    }: Props
+) => {
+    const fields = createFields({ bedrooms, bathrooms, squareFootage })
 
     return (
         <>
@@ -37,9 +35,19 @@ const PropertyMetrics = ({
     )
 }
 
-const heading = "text-blue-700 text-lg text-center"
-const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 " +
-    "border-2 rounded-md"
+const createFields = (
+    { 
+        bedrooms, 
+        bathrooms, 
+        squareFootage 
+    }: { bedrooms: number, bathrooms: number, squareFootage: number }
+) =>{
+    return [
+        { name: 'bedrooms',label: 'Bedrooms', value: bedrooms },
+        { name: 'bathrooms',label: 'Bathrooms', value: bathrooms },
+        { name: 'squareFootage',label: 'Square Footage', value: squareFootage },
+    ]
+}
 
 interface Props{
     bedrooms: number
@@ -48,4 +56,7 @@ interface Props{
     getTextFieldValue: ChangeEventHandler<HTMLInputElement>
 }
 
+const heading = "text-blue-700 text-lg text-center"
+const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 " +
+    "border-2 rounded-md"
 export default PropertyMetrics

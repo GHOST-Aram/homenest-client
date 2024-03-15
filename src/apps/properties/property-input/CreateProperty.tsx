@@ -4,7 +4,7 @@ import { createNewProperty } from "../../../utils/fetch"
 import { PropertyData, Status } from "../../../types"
 import { useNavigate } from "react-router-dom"
 import { updateProcessStatus } from "../../../utils/process-status"
-import PropertyFormController from "./containers/form-sections/PropertyFormController"
+import PropertyFormController from "./PropertyFormController"
 
 
 const CreateProperty = () => {

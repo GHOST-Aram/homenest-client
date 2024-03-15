@@ -10,20 +10,8 @@ const AboutAndBackgroud = (
 		getTextFieldValue,
 	}: Props
 ) => {
-	const fields =[
-		{
-			label: 'Description', 
-			name: 'description', 
-			multiline: true, 
-			value: description
-		},
-		{
-			label: 'Background Image Url', 
-			name: 'backgroundImageUrl', 
-			multiline: false, 
-			value: backgroundImageUrl
-		}
-	]
+	const fields = createFields({ description, backgroundImageUrl })
+	
 	return (
 		<Box className='space-y-4'>
 			{
@@ -44,6 +32,27 @@ const AboutAndBackgroud = (
 	)
 }
 
+const createFields = (
+	{ 
+		description	, 
+		backgroundImageUrl 
+	}: { description: string, backgroundImageUrl: string} 
+) =>{
+	return [
+		{
+			label: 'Description', 
+			name: 'description', 
+			multiline: true, 
+			value: description
+		},
+		{
+			label: 'Background Image Url', 
+			name: 'backgroundImageUrl', 
+			multiline: false, 
+			value: backgroundImageUrl
+		}
+	]
+}
 interface Props{
 	description: string
 	backgroundImageUrl: string

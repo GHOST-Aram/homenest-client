@@ -11,7 +11,7 @@ const GalleryInputSection = ({ property, setProperty }: Props) => {
         setImageData({...imageData, [name]: value })
     }
 
-    const addToPropertyGallery = () =>{
+    const addToPropertyGallery = () => {
         if(imageData.url.trim() && imageData.url.trim()){
             setProperty({...property, images:[...property.images, imageData]})
         }

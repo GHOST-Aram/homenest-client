@@ -10,22 +10,19 @@ const LocationInfo = (
         estate
     }: Props
 ) => {
-    const fields = [
-        {lable: 'City or Town', name: 'cityOrTown', value: cityOrTown },
-        {lable: 'Location Address', name: 'locationName', value: locationName },
-        {lable: 'Estate', name: 'estate', value: estate },
-    ]
+    const fields = createFields({ cityOrTown, locationName, estate })
 
     return (
         <Box className={flexContainer}>
             {
                 fields.map(field =>(
                     <TextField 
+                        key={field.label}
                         type="text" 
                         name={field.name} 
                         value = {field.value} 
                         onChange={getTextFieldValue} 
-                        label={field.lable} 
+                        label={field.label} 
                         required
                         fullWidth
                     />
@@ -35,8 +32,19 @@ const LocationInfo = (
     )
 }
 
-const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between"
-
+const createFields = (
+    {
+        cityOrTown, 
+        locationName, 
+        estate
+    }: {cityOrTown: string, locationName: string, estate: string}
+) =>{
+    return [
+        {label: 'City or Town', name: 'cityOrTown', value: cityOrTown },
+        {label: 'Location Address', name: 'locationName', value: locationName },
+        {label: 'Estate', name: 'estate', value: estate },
+    ]
+}
 interface Props{
     getTextFieldValue: ChangeEventHandler<HTMLInputElement>
     cityOrTown: string
@@ -44,4 +52,6 @@ interface Props{
     locationName: string
 }
 
+
+const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between"
 export default LocationInfo

@@ -13,24 +13,8 @@ const PropertyResources = (
         getSelectedValue,
     }: Props
 ) => {
-    const fields = [
-        {
-            inputLabel: 'Energy Sources', 
-            labelId: 'energyy-sources-label',
-            label: 'Energy Sources', 
-            name: 'energySources',
-            menuItems: energySourcesMenu, 
-            value: energySources,
-        },
-        {
-            inputLabel: 'Water Sources', 
-            labelId: 'water-sources-label',
-            label: 'Water Sources', 
-            name: 'waterSources',
-            menuItems: waterSourcesMenu, 
-            value: waterSources,
-        },
-    ]
+    const fields = createFields({energySources, waterSources })
+    
     return (
         <>
             <h1 className={heading}>Resources</h1>
@@ -62,9 +46,32 @@ const PropertyResources = (
         </>
     )
 }
-const heading = "text-blue-700 text-lg text-center"
-const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 "+
-    "border-2 rounded-md"
+
+const createFields = (
+    { 
+        energySources, 
+        waterSources 
+    }: { energySources: string[], waterSources: string[] }
+) =>{
+    return [
+        {
+            inputLabel: 'Energy Sources', 
+            labelId: 'energyy-sources-label',
+            label: 'Energy Sources', 
+            name: 'energySources',
+            menuItems: energySourcesMenu, 
+            value: energySources,
+        },
+        {
+            inputLabel: 'Water Sources', 
+            labelId: 'water-sources-label',
+            label: 'Water Sources', 
+            name: 'waterSources',
+            menuItems: waterSourcesMenu, 
+            value: waterSources,
+        },
+    ]
+}
 
 interface Props{
     energySources: string[]
@@ -72,6 +79,9 @@ interface Props{
     getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void
 }
 
+const heading = "text-blue-700 text-lg text-center"
+const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 "+
+    "border-2 rounded-md"
 const waterSourcesMenu = [
     'Public Water Supply', 'Private Undergound Water', 'Rain Water', 'Other'
 ]

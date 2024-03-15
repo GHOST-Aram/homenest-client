@@ -50,9 +50,6 @@ const PropertyAvailabilityAndMore = ({
     )
 }
 
-const heading = "text-blue-700 text-lg text-center"
-const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 " + 
-    "border-2 rounded-md"
 
 interface Props{
     isAvailable: boolean
@@ -61,4 +58,7 @@ interface Props{
     getCheckboxValue: ChangeEventHandler<HTMLInputElement>
 }
 
+const heading = "text-blue-700 text-lg text-center"
+const flexContainer = "flex flex-col gap-4 lg:flex-row justify-between p-8 " + 
+    "border-2 rounded-md"
 export default PropertyAvailabilityAndMore

@@ -1,7 +1,7 @@
 import { Box, SelectChangeEvent } from "@mui/material"
 import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from "react"
-import { PropertyData, Status } from "../../../../../types"
-import PropertyForm from "../PropertyForm"
+import { PropertyData, Status } from "../../../types"
+import PropertyForm from "./containers/PropertyForm"
 
 const PropertyFormController = ( {
     propertyData,
