@@ -6,38 +6,48 @@ import { updateProcessStatus } from "../../../utils/process-status"
 import { ValidationError } from "yup"
 import { validatePropertyData } from "../../../utils/validator"
 import { PropertyData, Status } from "../../../types"
+import { GalleryItem } from "../../../types"
 
 export class PropertyCreator{
 
     public propertyData: PropertyData
     public authToken: string
+    private imageData: GalleryItem
     private navigate: NavigateFunction
     private setPropertyData: Dispatch<SetStateAction<PropertyData>>
     private setStatus: Dispatch<SetStateAction<Status>>
     private setErrorMsg: Dispatch<SetStateAction<string>>
+    private setImageData: Dispatch<SetStateAction<GalleryItem>>
 
     constructor(
         {
             propertyData,
             authToken,
+            imageData,
             navigate,
             setPropertyData,
             setStatus,
             setErrorMsg,
+            setImageData,
         }:{
             propertyData: PropertyData,
             authToken: string,
+            imageData: GalleryItem
             navigate: NavigateFunction,
             setPropertyData: Dispatch<SetStateAction<PropertyData>>,
             setStatus: Dispatch<SetStateAction<Status>>,
             setErrorMsg: Dispatch<SetStateAction<string>>,
+            setImageData: Dispatch<SetStateAction<GalleryItem>>
+
         }){
             this.propertyData = propertyData
             this.authToken = authToken
+            this.imageData = imageData
             this.navigate = navigate
             this.setPropertyData = setPropertyData
             this.setStatus = setStatus
             this.setErrorMsg = setErrorMsg
+            this.setImageData = setImageData
         }
 
     public getTextFieldValue = (e: ChangeEvent<HTMLInputElement>) =>{
@@ -56,6 +66,46 @@ export class PropertyCreator{
     ) =>{
         const { value, name } = e.target
         this.setPropertyData( { ...this.propertyData, [name]: value})
+    }
+
+    public collectImageData = (e: ChangeEvent<HTMLInputElement>) =>{
+        const { name, value } = e.target
+        this.setImageData({...this.imageData, [name]: value })
+    }
+
+    public addToPropertyGallery = () => {
+        if(this.imageData.url.trim() && this.imageData.url.trim()){
+            this.setPropertyData(
+                {
+                    ...this.propertyData, 
+                    images:[...this.propertyData.images, this.imageData]
+                }
+            )
+        }
+    }
+
+    public deleteImage = (image:GalleryItem) =>{
+        const id = image._id
+        const url = image.url
+        const alt = image.alt
+
+        if(id) this.removeById(id) 
+        else this.removeByUrlAndAltText(url, alt)
+    }
+
+    private removeById = (id: string) =>{
+        const images:GalleryItem[] = this.propertyData.images.filter(
+            element => element._id !== id
+        )
+        this.setPropertyData({ ...this.propertyData, images: images})
+    }
+
+    private removeByUrlAndAltText = (url:string, alt: string) =>{
+        const images: GalleryItem[] = this.propertyData.images.filter(
+            element => (element.url!==url && element.alt!==alt)
+        )
+
+        this.setPropertyData({ ...this.propertyData, images: images})
     }
 
     public submitPropertyData = () =>{
