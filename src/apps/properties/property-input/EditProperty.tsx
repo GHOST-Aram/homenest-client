@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import { getAuthenticationToken } from "../../../utils/cookie"
 import { PropertyUpdater } from "./PropertyUpdater"
 import PropertyForm from "./containers/PropertyForm"
+import { initialPropertyData } from "../../../utils/useDetails"
 
 
 const EditProperty = () => {
@@ -55,25 +56,4 @@ const EditProperty = () => {
     return( <PropertyForm propertyCreator={propertyUpdater}/>)
 }
 
-export const initialPropertyData: PropertyData = {
-    propertyName: '',
-    propertyType: '',
-    backgroundImageUrl: '',
-    description: '',
-    rentPerMonth: 0,
-    rentPerYear: 0,
-    locationName: '',
-    cityOrTown:'',
-    estate: '',
-    bedrooms: 0,
-    bathrooms: 0,
-    landlord: '',
-    squareFootage: 0,
-    isAvailable: true,
-    isFurnished: false,
-    hasParkingSpace: false,
-    energySources: [],
-    waterSources: [],
-    images:[]
-}
 export default EditProperty
