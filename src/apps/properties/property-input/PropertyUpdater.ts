@@ -11,31 +11,37 @@ export class PropertyUpdater extends PropertyCreator{
     
     constructor(
         {
+            propertyId,
             propertyData,
             authToken,
-            propertyId,
             imageData,
+            errorMsg,
+            status,
             navigate,
             setPropertyData,
             setStatus,
             setErrorMsg,
             setImageData,
         }:{
+            propertyId: string
             propertyData: PropertyData,
             authToken: string,
-            imageData: GalleryItem
+            imageData: GalleryItem,
+            errorMsg: string,
+            status: Status,
             navigate: NavigateFunction,
             setPropertyData: Dispatch<SetStateAction<PropertyData>>,
             setStatus: Dispatch<SetStateAction<Status>>,
             setErrorMsg: Dispatch<SetStateAction<string>>,
             setImageData: Dispatch<SetStateAction<GalleryItem>>
-            propertyId: string
         })
     {
         super({
             propertyData,
             authToken,
             imageData,
+            errorMsg,
+            status,
             navigate,
             setPropertyData,
             setStatus,

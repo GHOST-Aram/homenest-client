@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PropertyData, Status } from "../../../types"
+import { PropertyData, Status, GalleryItem } from "../../../types"
 import { useNavigate, useParams } from "react-router-dom"
 import { getData } from "../../../utils/fetch"
 import { useEffect } from "react"
@@ -13,6 +13,7 @@ const EditProperty = () => {
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [propertyData, setPropertyData] = useState<PropertyData>(
         initialPropertyData)
+    const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
     
     const authToken  = getAuthenticationToken()
     const { id }= useParams()
@@ -20,13 +21,17 @@ const EditProperty = () => {
     const navigate = useNavigate()
     
     const propertyUpdater = new PropertyUpdater({
+        propertyId: id||'',
         propertyData,
         authToken,
+        imageData,
+        errorMsg,
+        status,
         navigate,
         setPropertyData,
         setStatus,
         setErrorMsg,
-        propertyId: id||''
+        setImageData
     })
 
     useEffect(() =>{

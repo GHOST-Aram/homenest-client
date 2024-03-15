@@ -1,31 +1,42 @@
 import { useState, useContext } from "react"
 import { AuthContext } from "../../../utils/authContext"
-import { PropertyData, Status, User } from "../../../types"
 import PropertyFormController from "./PropertyFormController"
 import { getAuthenticationToken } from "../../../utils/cookie"
 import { useNavigate } from "react-router-dom"
 import { PropertyCreator } from "./PropertyCreater"
+import { 
+    PropertyData, 
+    Status, 
+    User, 
+    GalleryItem 
+} from "../../../types"
 
 
 const CreateProperty = () => {
+    const navigate = useNavigate()
     const [status, setStatus] = useState<Status>('idle')
     const [errorMsg, setErrorMsg] = useState<string>('')
     const [propertyData, setPropertyData] = useState<PropertyData>(
          { ...initialPropertyData })
+    const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
+    
          
     const authToken = getAuthenticationToken()
     const authContext = useContext(AuthContext)
     const user: User = authContext.user 
 
-    const navigate = useNavigate()
 
     const propertyEditor = new PropertyCreator({
         propertyData: { ...propertyData, landlord: user.id },
         authToken,
+        imageData,
+        errorMsg,
+        status,
         navigate,
         setPropertyData,
         setStatus,
         setErrorMsg,
+        setImageData,
     })
 
        
