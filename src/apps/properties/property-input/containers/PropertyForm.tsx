@@ -15,7 +15,7 @@ import DescriptionAndBackgroud from './form-sections/DescriptionAndBackgroud'
 const PropertyForm = (
     {
         propertyData, 
-        submitFormData, 
+        onSubmit, 
         getCheckboxValue,
         getTextFieldValue, 
         getSelectedValue,
@@ -31,7 +31,7 @@ const PropertyForm = (
 
     return (
         <div>
-            <form onSubmit={async(e) =>{ e.preventDefault(); await submitFormData() }}
+            <form onSubmit={async(e) =>{ e.preventDefault(); onSubmit() }}
                 className={form}
                 aria-labelledby="property-form-title" 
             >
@@ -92,7 +92,7 @@ const container = "w-full p-8 border-2 rounded-md space-y-4"
 interface Props{
     status : Status
     propertyData: PropertyData
-    submitFormData: ()=>Promise<void>
+    onSubmit: ()=> void
     getTextFieldValue: ChangeEventHandler
     getCheckboxValue: ChangeEventHandler
     getSelectedValue: (e: SelectChangeEvent<string | string[]>, child: ReactNode) => void

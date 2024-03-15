@@ -3,12 +3,14 @@ import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from "react"
 import { PropertyData, Status } from "../../../types"
 import PropertyForm from "./containers/PropertyForm"
 
-const PropertyFormController = ( {
-    propertyData,
-    setPropertyData,
-    submitFormData,
-    status,
-}: Props) => {
+const PropertyFormController = ( 
+    {
+        propertyData,
+        setPropertyData,
+        onSubmit,
+        status,
+    }: Props
+) => {
 
 
     const getTextFieldValue = (e: ChangeEvent<HTMLInputElement>) =>{
@@ -32,7 +34,7 @@ const PropertyFormController = ( {
     return (
         <Box>
             <PropertyForm 
-                submitFormData ={submitFormData} 
+                onSubmit ={onSubmit} 
                 propertyData = {propertyData}
                 getTextFieldValue = {getTextFieldValue} 
                 getSelectedValue = {getSelectedValue}
@@ -48,7 +50,7 @@ interface Props{
     propertyData: PropertyData
     setPropertyData: Dispatch<SetStateAction<PropertyData>>
     status: Status
-    submitFormData: () => Promise<void>
+    onSubmit: () => void
 }
 
 export default PropertyFormController

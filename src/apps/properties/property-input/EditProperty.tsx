@@ -63,7 +63,7 @@ const EditProperty = () => {
         <PropertyFormController 
             propertyData={propertyData}
             setPropertyData={setPropertyData}
-            submitFormData={submitFormData}
+            onSubmit={submitFormData}
             status={status}
         />
     )
