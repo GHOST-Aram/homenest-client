@@ -49,8 +49,8 @@ export interface PropertyData{
     energySources: string[]
     waterSources: string[]
     images: GalleryItem[]
-    cityOrTown?:string
-    estate?:string
+    cityOrTown:string
+    estate:string
 }
 
 export type ListStatus = 'changed' | 'unchanged'

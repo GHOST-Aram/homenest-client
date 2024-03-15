@@ -54,7 +54,7 @@ const PropertyForm = ({ propertyCreator } : {propertyCreator: PropertyCreator })
                 />
                 <GalleryInput 
                     imageData = {propertyCreator.imageData}
-                    images = {propertyCreator.images}
+                    images = {propertyCreator.propertyData.images}
                     collectImageData ={propertyCreator.collectImageData} 
                     deleteImageData ={propertyCreator.deleteImage} 
                     addImageToGallery ={propertyCreator.addToPropertyGallery}

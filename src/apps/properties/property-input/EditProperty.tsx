@@ -3,9 +3,9 @@ import { PropertyData, Status, GalleryItem } from "../../../types"
 import { useNavigate, useParams } from "react-router-dom"
 import { getData } from "../../../utils/fetch"
 import { useEffect } from "react"
-import PropertyFormController from "./PropertyFormController"
 import { getAuthenticationToken } from "../../../utils/cookie"
 import { PropertyUpdater } from "./PropertyUpdater"
+import PropertyForm from "./containers/PropertyForm"
 
 
 const EditProperty = () => {
@@ -52,14 +52,7 @@ const EditProperty = () => {
         })() 
     }, [id])
 
-    return(
-        <PropertyFormController 
-            propertyEditor={propertyUpdater}
-            setPropertyData={setPropertyData}
-            status={status}
-            errorMsg={errorMsg}
-        />
-    )
+    return( <PropertyForm propertyCreator={propertyUpdater}/>)
 }
 
 export const initialPropertyData: PropertyData = {
@@ -70,6 +63,8 @@ export const initialPropertyData: PropertyData = {
     rentPerMonth: 0,
     rentPerYear: 0,
     locationName: '',
+    cityOrTown:'',
+    estate: '',
     bedrooms: 0,
     bathrooms: 0,
     landlord: '',
