@@ -11,6 +11,7 @@ import {
     User, 
     GalleryItem 
 } from "../../../types"
+import { CircularProgress } from "@mui/material"
 
 
 const CreateProperty = () => {
@@ -26,6 +27,9 @@ const CreateProperty = () => {
     const authContext = useContext(AuthContext)
     const user: User = authContext.user 
 
+    if(!user){
+        return ( <CircularProgress/>)
+    }
 
     const propertyCreator = new PropertyCreator({
         propertyData: { ...propertyData, landlord: user.id },
