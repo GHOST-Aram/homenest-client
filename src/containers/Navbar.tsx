@@ -12,10 +12,10 @@ const Navbar = () => {
             <NavLink to={'/listings'} className={navLink}>LISTINGS</NavLink>
             {
                 context && context.user ?
-                 <Link to='/profile' className={profileLink}>
-                     <h1 className={userName}>{context.user.name}</h1>
+                <Link to='/profile' className={profileLink}>
+                    <h1 className={userName}>{context.user.name}</h1>
                     <Avatar />
-                 </Link>
+                </Link>
                  :
                 <>
                     <NavLink to={'/sign-up'} className={navLink}>SIGN UP</NavLink>
@@ -26,8 +26,8 @@ const Navbar = () => {
     )
 }
 
-const container = 'hidden flex-row gap-4 items-center md:justify-center '+
-    'md:flex lg:flex xl:flex'
+const container = 'flex flex-row gap-4 items-center md:justify-center'+
+    'md:flex'
 const navLink = 'p-4 text-slate-300 font-bold'
 const profileLink = "flex items-center gap-4 p-2 bg-blue-800 rounded-md"
 const userName= "text-slate-300 font-bold"
