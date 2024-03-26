@@ -7,6 +7,7 @@ describe('Featured Card Component', () => {
         render(<FeaturedCard id="KI" 
             rentPm = {'12.5k'} location ='Nakuru' 
             bedrooms = {'4 bedrooms'} imageSrc = ''
+            propertyType="xyz" city='xyz'
         />)
 
         const propertyImage = screen.getByRole('img')
@@ -18,6 +19,7 @@ describe('Featured Card Component', () => {
         render(<FeaturedCard id="KI" 
             rentPm = {'12.5k'} location ='Nakuru' 
             bedrooms = {'4 bedrooms'} imageSrc = ''
+            propertyType="xyz" city='xyz'
         />)
 
         const propertyImage = screen.getByAltText('Nakuru 4 bedrooms house')
@@ -29,6 +31,7 @@ describe('Featured Card Component', () => {
         render(<FeaturedCard id="KI" 
             rentPm = {'12.5k'} location ='Nakuru' 
             bedrooms = {'4 bedrooms'} imageSrc = ''
+            propertyType="xyz" city='xyz'
         />)
 
         const rent = screen.getByText(/12\.5K/i)
@@ -44,6 +47,7 @@ describe('Featured Card Component', () => {
         render(<FeaturedCard id="KI" 
             rentPm = {'12.5k'} location ='Nakuru' 
             bedrooms = {'4 bedrooms'} imageSrc = ''
+            propertyType="xyz" city='xyz'
         />)
 
         const readMoreBtn = screen.getByRole('button', { name: /read more/i})

@@ -19,6 +19,8 @@ const FeaturedListings = ({ properties, processStatus} : ListingProps) => {
 									location={property.locationName} 
 									bedrooms={property.bedrooms} 
 									imageSrc={property.backgroundImageUrl}
+									propertyType={property.propertyType}
+									city={property.cityOrTown}
 									key={property._id.toString()}
 								/>
 							)) 

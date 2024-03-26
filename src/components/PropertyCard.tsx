@@ -5,7 +5,17 @@ import { useNavigate } from 'react-router-dom'
 import { IoBedSharp } from "react-icons/io5";
 import { FaMoneyBillWave } from "react-icons/fa";
 
-const FeaturedCard = ({ id, rentPm, location, bedrooms, imageSrc }: FeaturedCardProps) => {
+const FeaturedCard = (
+    { 
+        id, 
+        rentPm, 
+        location, 
+        bedrooms, 
+        imageSrc,
+        propertyType,
+        city 
+    }: FeaturedCardProps
+) => {
     const navigate = useNavigate()
 
     const navigateToDetails = () =>{
@@ -19,7 +29,10 @@ const FeaturedCard = ({ id, rentPm, location, bedrooms, imageSrc }: FeaturedCard
                 alt={`${location} ${bedrooms} bedroom house`}
                 className='rounded-t-md'
             />           
-            <div className=" px-4 w-full rounded-b-md">
+            <div className=" p-4 w-full rounded-b-md">
+                <p className="text-orange-500 text-sm">
+                    { propertyType } in { city || location }
+                </p>
                 <p className='space-x-2 flex items-center'> 
                     <FaMoneyBillWave  className="text-slate-600 font-light text-sm"/>
                     <span className='font-light'>Ksh. {rentPm} per month</span> </p>
@@ -48,6 +61,8 @@ interface FeaturedCardProps{
     location: string
     bedrooms: string
     imageSrc: string
+    propertyType: string
+    city: string
 }
 
 export default FeaturedCard
