@@ -40,7 +40,7 @@ const createFields = (
 ) =>{
     return [
         {label: 'City or Town', name: 'cityOrTown', value: cityOrTown },
-        {label: 'Location Address', name: 'locationName', value: locationName },
+        {label: 'Street Address', name: 'locationName', value: locationName },
         {label: 'Estate', name: 'estate', value: estate },
     ]
 }
