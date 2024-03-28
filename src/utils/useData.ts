@@ -15,7 +15,6 @@ const usePropertyData = () => {
 	
 	useEffect(() =>{
 		(async() =>{
-			console.log(process.env)
 			try {
 
 				const response = await getData(
