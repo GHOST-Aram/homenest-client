@@ -11,7 +11,7 @@ const usePropertyDetails = () => {
     useEffect(() =>{
         (async() =>{
             try {
-                const response = await getData(`http://localhost:8000/properties/${id}`)
+                const response = await getData(`${API_BASE_URL}/properties/${id}`)
                 const statusCode = response.status
                 if(statusCode === 200){
                     const data = await response.json()
@@ -25,6 +25,8 @@ const usePropertyDetails = () => {
 
     return property
 }
+
+const API_BASE_URL = process.env.REACT_APP_API_URL
 
 export const initialPropertyData: PropertyData = {
     propertyName: '',

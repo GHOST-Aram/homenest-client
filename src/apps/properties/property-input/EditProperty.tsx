@@ -39,7 +39,7 @@ const EditProperty = () => {
         (async() =>{
             try {
                 const response = await getData(
-                    `http://localhost:8000/properties/${id}`)
+                    `${API_BASE_URL}/properties/${id}`)
 
                 const statusCode = response.status
                 
@@ -55,5 +55,8 @@ const EditProperty = () => {
 
     return( <PropertyForm propertyCreator={propertyUpdater}/>)
 }
+
+const API_BASE_URL = process.env.REACT_APP_API_URL
+
 
 export default EditProperty

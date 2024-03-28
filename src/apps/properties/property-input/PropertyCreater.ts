@@ -142,7 +142,7 @@ export class PropertyCreator{
     }
 
     public sendRequest = async(): Promise<{statusCode: number, body: any}> =>{
-        const response = await sendPostRequest('http://localhost:8000/properties', 
+        const response = await sendPostRequest(`${API_BASE_URL}/properties`, 
             {data: this.propertyData , authToken: this.authToken})
 
         const body = await response.json()
@@ -165,3 +165,5 @@ export class PropertyCreator{
         this.navigate(`/listings/${id}`, { replace : true })
     }
 }
+
+const API_BASE_URL = process.env.REACT_APP_API_URL

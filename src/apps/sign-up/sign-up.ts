@@ -64,7 +64,7 @@ export class UserSignUp{
     }
 
     private createUser = async() =>{
-        const response = await sendPostRequest('http://localhost:8000/users', 
+        const response = await sendPostRequest(`${API_BASE_URL}/users`, 
         {data: this.userData})
 
         const statusCode = response.status
@@ -87,3 +87,4 @@ export class UserSignUp{
         this.navigate('/login')
     }
 }
+const API_BASE_URL = process.env.REACT_APP_API_URL

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { Divider } from '@mui/material'
 import { getData } from '../../utils/fetch'
 
+
 const LandLordsProperties = () => {
     const {id} = useParams() 
     const [properties, setProperties] = useState<PropertyData[]>([])
@@ -14,7 +15,7 @@ const LandLordsProperties = () => {
         (async() =>{
             try {
                 const response = await getData(
-                    `http://localhost:8000/properties/landlords/${id}`)
+                    `${API_BASE_URL}/properties/landlords/${id}`)
 
                 console.log(response.status)
                 if(response.status === 200){
@@ -49,6 +50,6 @@ const LandLordsProperties = () => {
     )
 }
 
-
+const API_BASE_URL = process.env.REACT_APP_API_URL
 
 export default LandLordsProperties

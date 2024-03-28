@@ -3,6 +3,7 @@ import { Status } from '../types'
 import { useSearchParams } from 'react-router-dom'
 import { getData } from './fetch'
 
+const API_BASE_URL = process.env.REACT_APP_API_URL
 
 const usePropertyData = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
@@ -14,10 +15,11 @@ const usePropertyData = () => {
 	
 	useEffect(() =>{
 		(async() =>{
+			console.log(process.env)
 			try {
-				setProcessStatus('loading')
+
 				const response = await getData(
-					`http://localhost:8000/properties?page=1&&limit=12&&${query}`)
+					`${API_BASE_URL}/properties?page=1&&limit=12&&${query}`)
 	
 				if(response.status === 200){
 					setProcessStatus('success')

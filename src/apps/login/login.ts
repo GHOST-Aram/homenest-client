@@ -81,7 +81,7 @@ export class Login{
 
     private getAuthToken = async() =>{
         const response = await sendPostRequest(
-            'http://localhost:8000/auth', {data: this.loginDetails})
+            `${API_BASE_URL}/auth`, {data: this.loginDetails})
         
         const statusCode = response.status
         const body = await response.json()
@@ -131,6 +131,9 @@ export class Login{
     }
 
 }
+
+const API_BASE_URL = process.env.REACT_APP_API_URL
+
 
 export interface AuthContext{ 
     user: User, 

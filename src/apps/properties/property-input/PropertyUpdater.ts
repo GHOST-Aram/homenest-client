@@ -53,7 +53,7 @@ export class PropertyUpdater extends PropertyCreator{
     }
 
     public sendRequest = async(): Promise<{statusCode: number, body: any}> =>{
-        const response = await sendPutRequest(`http://localhost:8000/properties/${this.id}`, 
+        const response = await sendPutRequest(`${API_BASE_URL}/properties/${this.id}`, 
         {data: this.propertyData, authToken: this.authToken})
 
         const body = await response.json()
@@ -62,3 +62,5 @@ export class PropertyUpdater extends PropertyCreator{
         return { statusCode, body }
     }   
 }
+
+const API_BASE_URL = process.env.REACT_APP_API_URL
