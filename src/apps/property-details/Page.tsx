@@ -5,12 +5,13 @@ import PropertyGallery from './containers/PropertyGallery'
 import KeyFeatures from './containers/KeyFeatures'
 import Divider from '../../components/HorizontalDivider'
 import usePropertyDetails from '../../utils/useDetails'
+import Box from '@mui/material/Box'
 
 const PropertyDetails = () => {
     const property = usePropertyDetails()
 
     return (
-        <>
+        <Box className='property-details'>
             <DetailsHero 
                 propertyName = {  property.propertyName }
                 rentPerMonth = {  property.rentPerMonth }
@@ -29,7 +30,7 @@ const PropertyDetails = () => {
             </section>
             <Divider/>
             <PropertyGallery images={property.images} />
-        </>
+        </Box>
     )
 }
 

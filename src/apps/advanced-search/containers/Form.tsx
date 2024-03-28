@@ -8,7 +8,7 @@ import { propertyTypes } from '../../properties/property-input/containers/form-s
 import MenuItem  from '@mui/material/MenuItem'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-import CloseButton from './CloseButton'
+import CloseButton from '../../../components/CloseButton'
 import { ChangeEvent, ReactNode } from 'react'
 import { SelectChangeEvent } from '@mui/material/Select'
 

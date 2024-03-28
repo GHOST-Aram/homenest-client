@@ -110,8 +110,40 @@ header{
     gap: 1rem;
 }
 
-.overlay{
+.light-title{
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.messenger{
+    padding: 1rem;
+    position: fixed;
+    top: 14rem;
+    left: 1rem;
+    right: 1rem;
+}
+
+.messenger * {
+    margin-bottom: 1rem;
+}
+
+.messenger-overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.overlay, .messenger-overlay{
     background-color: rgba(0, 0, 0, 0.7);
+}
+
+.property-details{
+    position: relative;
 }
 
 .text-light{
@@ -124,4 +156,11 @@ header{
 
 .text-secondary{
     color: var(--secondary-color);
+}
+
+@media (min-width: 750px){
+    .messenger{
+        left: 20%;
+        right: 20%;
+    }
 }

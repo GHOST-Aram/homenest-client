@@ -829,11 +829,6 @@ video {
   padding: 2rem;
 }
 
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -914,6 +909,11 @@ video {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+.text-orange-500 {
+  --tw-text-opacity: 1;
+  color: rgb(249 115 22 / var(--tw-text-opacity));
+}
+
 .text-orange-700 {
   --tw-text-opacity: 1;
   color: rgb(194 65 12 / var(--tw-text-opacity));
@@ -952,31 +952,6 @@ video {
 .text-slate-900 {
   --tw-text-opacity: 1;
   color: rgb(15 23 42 / var(--tw-text-opacity));
-}
-
-.text-blue-500 {
-  --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity));
-}
-
-.text-blue-600 {
-  --tw-text-opacity: 1;
-  color: rgb(37 99 235 / var(--tw-text-opacity));
-}
-
-.text-orange-600 {
-  --tw-text-opacity: 1;
-  color: rgb(234 88 12 / var(--tw-text-opacity));
-}
-
-.text-orange-400 {
-  --tw-text-opacity: 1;
-  color: rgb(251 146 60 / var(--tw-text-opacity));
-}
-
-.text-orange-500 {
-  --tw-text-opacity: 1;
-  color: rgb(249 115 22 / var(--tw-text-opacity));
 }
 
 .filter {
@@ -1096,8 +1071,40 @@ header{
   gap: 1rem;
 }
 
-.overlay{
+.light-title{
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.messenger{
+  padding: 1rem;
+  position: fixed;
+  top: 14rem;
+  left: 1rem;
+  right: 1rem;
+}
+
+.messenger * {
+  margin-bottom: 1rem;
+}
+
+.messenger-overlay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.overlay, .messenger-overlay{
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+.property-details{
+  position: relative;
 }
 
 .text-light{
@@ -1110,6 +1117,13 @@ header{
 
 .text-secondary{
   color: var(--secondary-color);
+}
+
+@media (min-width: 750px){
+  .messenger{
+    left: 20%;
+    right: 20%;
+  }
 }
 
 .hover\:scale-110:hover {
