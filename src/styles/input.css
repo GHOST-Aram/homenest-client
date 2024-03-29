@@ -19,6 +19,28 @@
     font-weight: 500;
     font-size: 2rem;
 }
+
+.accounts-menu{
+    padding: 1rem;
+    background-color: var(--primary-color);
+    font-weight: 700;
+    color: #cbd5e1;
+}
+
+.accounts-menu-item {
+    padding-inline: 1rem;
+    padding-block: .5rem;
+}
+
+.accounts-menu hr{
+    margin-block: .125rem;
+}
+
+.nav-link{
+    font-weight: 700;
+    color: #cbd5e1;
+    padding: 1rem;
+}
 .active{
     background-color: var(--light-color);
     color: var(--primary-color);
