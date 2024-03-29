@@ -22,9 +22,13 @@ const Navbar = () => {
                 </Link>
                  :
                 <>
-                    {/* <NavLink to={'/sign-up'} className={'nav-link'}>SIGN UP</NavLink>
-                    <NavLink to={'/login'} className={'nav-link'}>LOGIN</NavLink> */}
-                    <AccountsMenu />
+                    <div className={"hidden md:flex " + container}>
+                        <NavLink to={'/sign-up'} className={'nav-link'}>SIGN UP</NavLink>
+                        <NavLink to={'/login'} className={'nav-link'}>LOGIN</NavLink>
+                    </div>
+                    <div className="md:hidden">
+                        <AccountsMenu />
+                    </div>
                 </>
             }
         </nav>
@@ -72,9 +76,7 @@ const AccountsMenu = () =>{
 
 
 
-const container = 'flex flex-row gap-4 items-center md:justify-center'+
-    'md:flex'
+const container = 'flex flex-row gap-4 items-center md:justify-center'
 const profileLink = "flex items-center gap-4 p-2 bg-blue-800 rounded-md"
-const userName= "text-slate-300 font-bold"
 
 export default Navbar
