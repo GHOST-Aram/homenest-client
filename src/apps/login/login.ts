@@ -57,26 +57,24 @@ export class Login{
         this.setLoginDetails({...this.loginDetails, [name]: value })
     }
 
-    public submitLoginDetails = () =>{
-        (async() =>{
-            this.setStatus('loading')
+    public submitLoginDetails = async() =>{
+        this.setStatus('loading')
 
-            try {
-                await validateLoginDetails(this.loginDetails)
+        try {
+            await validateLoginDetails(this.loginDetails)
 
-                const {statusCode, body } = await this.getAuthToken()
+            const {statusCode, body } = await this.getAuthToken()
 
-                this.processResponse({ statusCode, body })
-                this.authenticateUser()
-            } catch (error) {
-                if (error instanceof ValidationError){
-                    this.setErrorMsg(error.message)
-                    this.setStatus('invalid-input')
-                } else{
-                    this.setStatus('error')
-                }
+            this.processResponse({ statusCode, body })
+            
+        } catch (error) {
+            if (error instanceof ValidationError){
+                this.setErrorMsg(error.message)
+                this.setStatus('invalid-input')
+            } else{
+                this.setStatus('error')
             }
-        })()
+        }
     }
 
     private getAuthToken = async() =>{
@@ -94,6 +92,7 @@ export class Login{
             const token = body.token
 
             this.setAuthToken(token)
+            this.authenticateUser()
 
         } else if(statusCode === 400){
             const message = body.errors[0].msg
