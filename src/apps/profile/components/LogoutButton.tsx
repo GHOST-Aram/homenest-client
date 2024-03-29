@@ -8,14 +8,16 @@ const LogoutButton = () => {
     const navigate = useNavigate()
 	const authContext = useContext(AuthContext)
 
+	const logout = () =>{
+		authContext.setUser(null)
+		removeAuthenticationToken()
+		navigate('/')
+	}
+
 	return (
 		<Button 
 			variant='contained' color='error' size='large'
-			onClick={() =>{
-				authContext.setUser(null)
-				removeAuthenticationToken()
-				navigate('/')
-			}}
+			onClick={logout}
 		>Logout</Button>
 	)
 }
