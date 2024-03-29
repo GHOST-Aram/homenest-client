@@ -18,7 +18,6 @@ const Navbar = () => {
             {
                 context && context.user ?
                 <Link to='/profile' className={profileLink}>
-                    <h1 className={userName}>{context.user.name}</h1>
                     <Avatar />
                 </Link>
                  :
