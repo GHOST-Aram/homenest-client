@@ -6,7 +6,7 @@ import { Dropdown } from '@mui/base/Dropdown';
 import { MenuButton } from '@mui/base/MenuButton';
 import { Menu } from '@mui/base/Menu';
 import { MenuItem } from '@mui/base/MenuItem';
-import Divider from '@mui/material/Divider'
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const Navbar = () => {
     const context = useContext(AuthContext)
@@ -50,7 +50,10 @@ const AccountsMenu = () =>{
 
     return(
         <Dropdown>
-            <MenuButton className={`nav-link ${accountsIsActive ? 'active': ''}`}>ACCOUNT</MenuButton>
+            <MenuButton className={`menu-btn nav-link ${accountsIsActive ? 'active': ''}`}>
+                <span>ACCOUNT</span>
+                <IoMdArrowDropdown className='dropdown-icon'/>
+            </MenuButton>
             <Menu className='accounts-menu'>
                 <MenuItem onClick={goToSignUp} 
                     className={`accounts-menu-item ${signUpIsActive ? 'active': ''}`}

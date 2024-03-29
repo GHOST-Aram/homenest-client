@@ -135,6 +135,11 @@ header{
     text-align: center;
 }
 
+.menu-btn{
+    display: flex;
+    align-items: center;
+}
+
 .messenger{
     padding: 1rem;
     position: fixed;
