@@ -11,7 +11,7 @@ const LogoutButton = () => {
 	const logout = () =>{
 		authContext.setUser(null)
 		removeAuthenticationToken()
-		navigate('/')
+		navigate('/', {replace: true })
 	}
 
 	return (
