@@ -7,6 +7,7 @@ import { updateProcessStatus } from "../../../utils/process-status"
 import { CircularProgress } from "@mui/material"
 import { MdLocationPin } from "react-icons/md";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL
 
 const PropertyListItem = ({ property, setListStatus }: Props) => {
     const [processStatus, setProcessStatus] = useState<Status>('idle')
@@ -39,7 +40,7 @@ const PropertyListItem = ({ property, setListStatus }: Props) => {
             
             try {
                 (async()=>{
-                    const response = await deleteDocument(`http://localhost:8000/properties/${id}`)
+                    const response = await deleteDocument(`${API_BASE_URL}/properties/${id}`)
                     const statusCode = response.status
 
                     updateProcessStatus(setProcessStatus, statusCode)

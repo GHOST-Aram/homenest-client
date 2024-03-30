@@ -19,7 +19,7 @@ const LoginForm = (
     const fields = createFieldsWithloginDetails(loginDetails)
     
     return (
-        <form className={form} onSubmit={(e) => {e.preventDefault(); onSubmit()} }>
+        <form className={form} onSubmit={async(e) => {e.preventDefault(); await onSubmit()} }>
         <h1 id='form-label' className={heading}>Welcome to Homenest</h1>
             {
                 fields.map((field) =>(
@@ -64,7 +64,7 @@ interface FormProps{
     processStatus: Status
     errorMsg: string
     onChange: ChangeEventHandler
-    onSubmit: ()=>void
+    onSubmit: ()=>Promise<void>
 }
 
 export interface LoginDetails{ 
