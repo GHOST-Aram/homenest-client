@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode"
-import { removeAuthenticationToken } from "./cookie"
+import { cookie } from "./cookie"
 
 export const decodeAuthToken = (token: string) =>{
     const decodedToken = jwtDecode(token)
@@ -7,7 +7,7 @@ export const decodeAuthToken = (token: string) =>{
 }
 
 export const logout = () =>{
-    removeAuthenticationToken('homenestAuthenticationToken')
+    cookie.removeAuthenticationToken('homenestAuthenticationToken')
 }
 
 

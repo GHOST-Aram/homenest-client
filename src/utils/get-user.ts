@@ -1,9 +1,9 @@
-import { getAuthenticationToken } from './cookie'
+import { cookie } from './cookie'
 import { decodeAuthToken } from './auth'
 import { User } from '../types'
 
 const getUser = (): User => {
-    const token = getAuthenticationToken('homenestAuthenticationToken')
+    const token = cookie.getAuthenticationToken('homenestAuthenticationToken')
     
     try {
         const userDetails:any = decodeAuthToken(token)

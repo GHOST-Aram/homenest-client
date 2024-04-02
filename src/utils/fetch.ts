@@ -1,4 +1,4 @@
-import { getAuthenticationToken } from "./cookie"
+import { cookie } from "./cookie"
 
 export const getData = async(url: string) =>{
     const response = await fetch(url)
@@ -6,7 +6,7 @@ export const getData = async(url: string) =>{
 }
 
 export const patchDocument = async(url:string, data: any) =>{
-    const authToken = getAuthenticationToken('homenestAuthenticationToken')
+    const authToken = cookie.getAuthenticationToken('homenestAuthenticationToken')
 
     const response = await fetch(url, {
         method: 'PATCH',
@@ -22,7 +22,7 @@ export const patchDocument = async(url:string, data: any) =>{
 }
 
 export const deleteDocument = async(url:string ) =>{
-    const authToken = getAuthenticationToken('homenestAuthenticationToken')
+    const authToken = cookie.getAuthenticationToken('homenestAuthenticationToken')
 
     const response = await fetch(url, {
         method: 'DELETE',

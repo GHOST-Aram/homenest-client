@@ -1,20 +1,26 @@
 import Cookies from "universal-cookie"
 
-export const setAuthenticationCookie = (tokenExpiry: number, authToken: string) =>{
-    const cookie = new Cookies(null, { path: '/'})
+class Cookie{
+
+   public setAuthenticationCookie = (tokenExpiry: number, authToken: string) =>{
+        const cookie = new Cookies(null, { path: '/'})
+        
+        cookie.set('homenestAuthenticationToken', authToken, {
+            expires: new Date(tokenExpiry * 1000)
+        })
+    }
     
-    cookie.set('homenestAuthenticationToken', authToken, {
-        expires: new Date(tokenExpiry * 1000)
-    })
+   public getAuthenticationToken = (tokenName: string):string =>{
+        const cookies = new Cookies(null, { path : '/'})
+        const token = cookies.get(tokenName)
+        return token
+    }
+    
+   public removeAuthenticationToken = (tokenName: string) =>{
+        const cookies = new Cookies(null, { path : '/'})
+        cookies.remove(tokenName)
+    }
 }
 
-export const getAuthenticationToken = (tokenName: string):string =>{
-    const cookies = new Cookies(null, { path : '/'})
-    const token = cookies.get(tokenName)
-    return token
-}
 
-export const removeAuthenticationToken = (tokenName: string) =>{
-    const cookies = new Cookies(null, { path : '/'})
-    cookies.remove(tokenName)
-}
+export const cookie = new Cookie()

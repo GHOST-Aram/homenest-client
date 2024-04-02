@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import { AuthContext } from "../../../utils/authContext"
 import PropertyForm from "./containers/PropertyForm"
-import { getAuthenticationToken } from "../../../utils/cookie"
+import { cookie } from "../../../utils/cookie"
 import { useNavigate } from "react-router-dom"
 import { PropertyCreator } from "./PropertyCreater"
 import { initialPropertyData } from "../../../utils/useDetails"
@@ -23,7 +23,7 @@ const CreateProperty = () => {
     const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
     
          
-    const authToken = getAuthenticationToken('homenestAuthenticationToken')
+    const authToken = cookie.getAuthenticationToken('homenestAuthenticationToken')
     const authContext = useContext(AuthContext)
     const user: User = authContext.user 
 

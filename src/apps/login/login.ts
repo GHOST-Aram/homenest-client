@@ -3,7 +3,7 @@ import { validateLoginDetails } from "../../utils/validator"
 import { ChangeEvent, Dispatch, SetStateAction } from "react"
 import { updateProcessStatus } from "../../utils/process-status"
 import { decodeAuthToken } from '../../utils/auth'
-import { setAuthenticationCookie } from '../../utils/cookie'
+import { cookie } from '../../utils/cookie'
 import { sendPostRequest } from '../../utils/fetch'
 import { LoginDetails } from "./containers/LoginForm"
 import { Status, User } from "../../types"
@@ -108,7 +108,7 @@ export class Login{
                 const decoded:any = decodeAuthToken(this.authToken)
     
                 this.initializeUser(decoded)
-                setAuthenticationCookie(decoded.exp, this.authToken)
+                cookie.setAuthenticationCookie(decoded.exp, this.authToken)
                 this.goToHomePage()
             } catch(error){
                 this.setStatus('error')

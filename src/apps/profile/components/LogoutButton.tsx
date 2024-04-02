@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button'
 import { useNavigate } from 'react-router'
-import { removeAuthenticationToken } from '../../../utils/cookie'
+import { cookie } from '../../../utils/cookie'
 import { useContext } from 'react'
 import { AuthContext } from '../../../utils/authContext'
 
@@ -10,7 +10,7 @@ const LogoutButton = () => {
 
 	const logout = () =>{
 		authContext.setUser(null)
-		removeAuthenticationToken('homenestAuthenticationToken')
+		cookie.removeAuthenticationToken('homenestAuthenticationToken')
 		navigate('/', {replace: true })
 	}
 

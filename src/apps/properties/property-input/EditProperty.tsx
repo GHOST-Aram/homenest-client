@@ -3,7 +3,7 @@ import { PropertyData, Status, GalleryItem } from "../../../types"
 import { useNavigate, useParams } from "react-router-dom"
 import { getData } from "../../../utils/fetch"
 import { useEffect } from "react"
-import { getAuthenticationToken } from "../../../utils/cookie"
+import { cookie } from "../../../utils/cookie"
 import { PropertyUpdater } from "./PropertyUpdater"
 import PropertyForm from "./containers/PropertyForm"
 import { initialPropertyData } from "../../../utils/useDetails"
@@ -16,7 +16,7 @@ const EditProperty = () => {
         initialPropertyData)
     const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
     
-    const authToken  = getAuthenticationToken('homenestAuthenticationToken')
+    const authToken  = cookie.getAuthenticationToken('homenestAuthenticationToken')
     const { id }= useParams()
 
     const navigate = useNavigate()
