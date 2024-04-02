@@ -3,7 +3,7 @@ import { decodeAuthToken } from './auth'
 import { User } from '../types'
 
 const getUser = (): User => {
-    const token = getAuthenticationToken()
+    const token = getAuthenticationToken('homenestAuthenticationToken')
     
     try {
         const userDetails:any = decodeAuthToken(token)

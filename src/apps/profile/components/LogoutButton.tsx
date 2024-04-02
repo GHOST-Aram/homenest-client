@@ -10,7 +10,7 @@ const LogoutButton = () => {
 
 	const logout = () =>{
 		authContext.setUser(null)
-		removeAuthenticationToken()
+		removeAuthenticationToken('homenestAuthenticationToken')
 		navigate('/', {replace: true })
 	}
 

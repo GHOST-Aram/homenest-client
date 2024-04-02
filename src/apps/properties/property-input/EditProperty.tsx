@@ -16,7 +16,7 @@ const EditProperty = () => {
         initialPropertyData)
     const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
     
-    const authToken  = getAuthenticationToken()
+    const authToken  = getAuthenticationToken('homenestAuthenticationToken')
     const { id }= useParams()
 
     const navigate = useNavigate()

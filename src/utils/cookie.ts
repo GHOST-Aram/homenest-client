@@ -8,13 +8,13 @@ export const setAuthenticationCookie = (tokenExpiry: number, authToken: string) 
     })
 }
 
-export const getAuthenticationToken = ():string =>{
+export const getAuthenticationToken = (tokenName: string):string =>{
     const cookies = new Cookies(null, { path : '/'})
-    const token = cookies.get('homenestAuthenticationToken')
+    const token = cookies.get(tokenName)
     return token
 }
 
-export const removeAuthenticationToken = () =>{
+export const removeAuthenticationToken = (tokenName: string) =>{
     const cookies = new Cookies(null, { path : '/'})
-    cookies.remove('homenestAuthenticationToken')
+    cookies.remove(tokenName)
 }

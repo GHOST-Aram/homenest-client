@@ -23,7 +23,7 @@ const CreateProperty = () => {
     const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
     
          
-    const authToken = getAuthenticationToken()
+    const authToken = getAuthenticationToken('homenestAuthenticationToken')
     const authContext = useContext(AuthContext)
     const user: User = authContext.user 
 

@@ -7,7 +7,7 @@ export const decodeAuthToken = (token: string) =>{
 }
 
 export const logout = () =>{
-    removeAuthenticationToken()
+    removeAuthenticationToken('homenestAuthenticationToken')
 }
 
 
