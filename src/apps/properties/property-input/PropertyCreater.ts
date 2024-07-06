@@ -117,9 +117,8 @@ export class PropertyCreator{
     }
 
     public getBackgroundImageFile = (file: File) =>{
-        this.setPropertyData( { ...this.propertyData, backgroundImageUrl: file})
+        this.setPropertyData( { ...this.propertyData, backgroundImage: file})
     }
-
 
     public submitPropertyData = () =>{
         
@@ -147,13 +146,38 @@ export class PropertyCreator{
     }
 
     public sendRequest = async(): Promise<{statusCode: number, body: any}> =>{
+
+        const formData = this.createFormData(this.propertyData)
+
         const response = await sendPostRequest(`${API_BASE_URL}/properties`, 
-            {data: this.propertyData , authToken: this.authToken})
+            { data: formData , authToken: this.authToken })
 
         const body = await response.json()
         const statusCode = response.status
 
         return { statusCode, body}
+    }
+
+    public createFormData(propertyData: PropertyData): FormData {
+        const formData = new FormData();
+    
+        const dataObj: { [key: string]: any } = propertyData as { [key: string]: any };
+    
+        Object.keys(dataObj).forEach(key => {
+            if (key === '_id') return; // Skip _id
+    
+            if (key === 'backgroundImage' && dataObj[key] instanceof File) {
+                formData.append(key, dataObj[key]);
+            } else if (Array.isArray(dataObj[key])) {
+                // For array properties, append them as JSON strings
+                formData.append(key, JSON.stringify(dataObj[key]));
+            } else {
+                formData.append(key, dataObj[key]);
+            }
+        });
+
+    
+        return formData;
     }
 
     private processResponse = ({ statusCode, body }: { statusCode: number, body: any}) =>{

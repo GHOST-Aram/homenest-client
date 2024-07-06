@@ -37,7 +37,8 @@ export interface PropertyData{
     propertyName: string
     propertyType: string
     description: string
-    backgroundImageUrl: string | File
+    backgroundImageUrl: string
+    backgroundImage?: File
     rentPerMonth: number
     rentPerYear: number
     locationName: string

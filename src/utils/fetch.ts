@@ -28,7 +28,6 @@ export const deleteDocument = async(url:string ) =>{
         method: 'DELETE',
         redirect: 'follow',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': `Bearer ${ authToken }`
         },
     })
@@ -49,10 +48,9 @@ export const sendPostRequest = async(
         method: 'POST',
         redirect: 'follow',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization' : `Bearer ${authToken}`
         },
-        body: JSON.stringify(data)
+        body: data
     })
 
     return response
