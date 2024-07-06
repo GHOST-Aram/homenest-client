@@ -44,6 +44,7 @@ const PropertyForm = ({ propertyCreator } : { propertyCreator: PropertyCreator }
                         backgroundImageUrl={ propertyCreator.propertyData.backgroundImageUrl }
                         description={ propertyCreator.propertyData.description }
                         getTextFieldValue={ propertyCreator.getTextFieldValue }
+                        getBackgroundImageFile={propertyCreator.getBackgroundImageFile}
                     />
                 </Box>
                 <PropertyMetrics 

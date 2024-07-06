@@ -1,3 +1,5 @@
+import { string } from "yup"
+
 export type FormProps = { 
     userData: UserData 
     registerUser: Function, 
@@ -35,7 +37,7 @@ export interface PropertyData{
     propertyName: string
     propertyType: string
     description: string
-    backgroundImageUrl: string
+    backgroundImageUrl: string | File
     rentPerMonth: number
     rentPerYear: number
     locationName: string

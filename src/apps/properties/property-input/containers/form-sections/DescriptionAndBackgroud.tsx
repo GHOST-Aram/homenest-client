@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import { ChangeEventHandler } from 'react'
 import TextField from '@mui/material/TextField'
+import FileSelector from './FileSelector'
 
 
 const AboutAndBackgroud = (
@@ -8,55 +9,32 @@ const AboutAndBackgroud = (
 		description,
 		backgroundImageUrl,
 		getTextFieldValue,
+		getBackgroundImageFile,
 	}: Props
 ) => {
-	const fields = createFields({ description, backgroundImageUrl })
 	
 	return (
 		<Box className='space-y-4'>
-			{
-				fields.map(field =>(
-					<TextField 
-						key={field.label}
-						name={field.name} 
-						type="text" 
-						label={field.label}
-						value={field.value} 
-						multiline={field.multiline}
-						fullWidth
-						onChange={getTextFieldValue}
-					/>
-				))
-			}
+			<TextField 
+				name={'description'} 
+				type="text" 
+				label={'Description'}
+				value={description} 
+				multiline={true}
+				fullWidth
+				onChange={getTextFieldValue}
+			/>
+			<FileSelector onFileChange={getBackgroundImageFile}/>
 		</Box>
 	)
 }
 
-const createFields = (
-	{ 
-		description	, 
-		backgroundImageUrl 
-	}: { description: string, backgroundImageUrl: string} 
-) =>{
-	return [
-		{
-			label: 'Description', 
-			name: 'description', 
-			multiline: true, 
-			value: description
-		},
-		{
-			label: 'Background Image Url', 
-			name: 'backgroundImageUrl', 
-			multiline: false, 
-			value: backgroundImageUrl
-		}
-	]
-}
+
 interface Props{
 	description: string
-	backgroundImageUrl: string
+	backgroundImageUrl: File | string
 	getTextFieldValue: ChangeEventHandler
+	getBackgroundImageFile: (file: File) => void
 }
 
 export default AboutAndBackgroud

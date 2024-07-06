@@ -66,7 +66,7 @@ interface Props{
     bathrooms: string | number
     squareFootage: string | number
     locationAddress: string
-    backgroundImageUrl: string
+    backgroundImageUrl: any
 }
 
 export default DetailsHero
