@@ -10,7 +10,19 @@ import { useLocation } from 'react-router-dom'
 import DescriptionAndBackgroud from './form-sections/DescriptionAndBackgroud'
 import { PropertyCreator } from '../PropertyCreater'
 
-const PropertyForm = ({ propertyCreator } : { propertyCreator: PropertyCreator }) =>  {
+interface Props{
+    propertyCreator: PropertyCreator
+    backgroundPreviewUrl: string
+    previewBackgroundImage: (file: File) => void
+    
+}
+const PropertyForm = (
+    { 
+        propertyCreator,
+        backgroundPreviewUrl,
+        previewBackgroundImage 
+    } : Props
+) =>  {
     const location = useLocation()
     const pathname = location.pathname
     const isUpdateForm = pathname.includes('update')
@@ -41,10 +53,11 @@ const PropertyForm = ({ propertyCreator } : { propertyCreator: PropertyCreator }
                         getTextFieldValue={ propertyCreator.getTextFieldValue }
                     />
                     <DescriptionAndBackgroud 
-                        backgroundImageUrl={ propertyCreator.propertyData.backgroundImageUrl }
+                        backgroundPreviewUrl={backgroundPreviewUrl}
                         description={ propertyCreator.propertyData.description }
                         getTextFieldValue={ propertyCreator.getTextFieldValue }
                         getBackgroundImageFile={propertyCreator.getBackgroundImageFile}
+                        previewBackgroundImage={previewBackgroundImage}
                     />
                 </Box>
                 <PropertyMetrics 

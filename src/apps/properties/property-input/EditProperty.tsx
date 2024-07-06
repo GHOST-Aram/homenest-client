@@ -15,6 +15,9 @@ const EditProperty = () => {
     const [propertyData, setPropertyData] = useState<PropertyData>(
         initialPropertyData)
     const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
+
+    const [backgroundPreview, setBackgroundPreview] = useState<string|ArrayBuffer|null>(null)
+
     
     const authToken  = cookie.getAuthenticationToken('homenestAuthenticationToken')
     const { id }= useParams()
@@ -53,7 +56,23 @@ const EditProperty = () => {
         })() 
     }, [id])
 
-    return( <PropertyForm propertyCreator={propertyUpdater}/>)
+    const previewBackgroundImage = (file: File) =>{
+        const fileReader = new FileReader()
+
+		fileReader.addEventListener('loadend', () =>{
+			setBackgroundPreview(fileReader.result)
+		})
+
+		fileReader.readAsDataURL(file)
+    }
+
+    return( <
+        PropertyForm 
+            propertyCreator={propertyUpdater}
+            previewBackgroundImage={previewBackgroundImage}
+            backgroundPreviewUrl={backgroundPreview as string}
+        />
+    )
 }
 
 const API_BASE_URL = process.env.REACT_APP_API_URL

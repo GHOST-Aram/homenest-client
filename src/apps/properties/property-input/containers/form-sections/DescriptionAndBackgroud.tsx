@@ -7,9 +7,10 @@ import FileSelector from './FileSelector'
 const AboutAndBackgroud = (
 	{
 		description,
-		backgroundImageUrl,
+		backgroundPreviewUrl,
 		getTextFieldValue,
 		getBackgroundImageFile,
+		previewBackgroundImage
 	}: Props
 ) => {
 	
@@ -24,7 +25,14 @@ const AboutAndBackgroud = (
 				fullWidth
 				onChange={getTextFieldValue}
 			/>
-			<FileSelector onFileChange={getBackgroundImageFile}/>
+			{ 
+				backgroundPreviewUrl && 
+				<img src={backgroundPreviewUrl as string } alt="background" />
+			}
+			<FileSelector 
+				onFileChange={getBackgroundImageFile} 
+				previewBackgroundImage={previewBackgroundImage}
+			/>
 		</Box>
 	)
 }
@@ -32,9 +40,10 @@ const AboutAndBackgroud = (
 
 interface Props{
 	description: string
-	backgroundImageUrl: File | string
+	backgroundPreviewUrl: File | string
 	getTextFieldValue: ChangeEventHandler
 	getBackgroundImageFile: (file: File) => void
+	previewBackgroundImage: (file: File) => void
 }
 
 export default AboutAndBackgroud

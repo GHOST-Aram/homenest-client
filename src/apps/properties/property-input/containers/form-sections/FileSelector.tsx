@@ -4,9 +4,10 @@ import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 
 interface FileSelectorProps {
   onFileChange: (file: File) => void;
+  previewBackgroundImage: (file: File) => void
 }
 
-const FileSelector: React.FC<FileSelectorProps> = ({ onFileChange }) => {
+const FileSelector: React.FC<FileSelectorProps> = ({ onFileChange, previewBackgroundImage }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
@@ -17,6 +18,7 @@ const FileSelector: React.FC<FileSelectorProps> = ({ onFileChange }) => {
     const file = event.target.files?.[0];
     if (file) {
       onFileChange(file);
+      previewBackgroundImage(file)
     }
   };
 

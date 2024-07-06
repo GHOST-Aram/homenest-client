@@ -21,6 +21,8 @@ const CreateProperty = () => {
     const [propertyData, setPropertyData] = useState<PropertyData>(
          { ...initialPropertyData })
     const [imageData, setImageData] = useState<GalleryItem>({ url:'', alt: '' })
+
+    const [backgroundPreview, setBackgroundPreview] = useState<string|ArrayBuffer|null>(null)
     
          
     const authToken = cookie.getAuthenticationToken('homenestAuthenticationToken')
@@ -44,9 +46,23 @@ const CreateProperty = () => {
         setImageData,
     })
 
+    const previewBackgroundImage = (file: File) =>{
+        const fileReader = new FileReader()
+
+		fileReader.addEventListener('loadend', () =>{
+			setBackgroundPreview(fileReader.result)
+		})
+
+		fileReader.readAsDataURL(file)
+    }
+
        
     return(
-        <PropertyForm propertyCreator = {propertyCreator}/>
+        <PropertyForm 
+            propertyCreator = {propertyCreator}
+            previewBackgroundImage={previewBackgroundImage}
+            backgroundPreviewUrl={backgroundPreview as string}
+        />
     )
 }
 

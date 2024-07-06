@@ -120,6 +120,7 @@ export class PropertyCreator{
         this.setPropertyData( { ...this.propertyData, backgroundImageUrl: file})
     }
 
+
     public submitPropertyData = () =>{
         
         (async()=>{
