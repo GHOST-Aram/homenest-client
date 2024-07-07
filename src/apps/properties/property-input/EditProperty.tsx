@@ -7,6 +7,7 @@ import { cookie } from "../../../utils/cookie"
 import { PropertyUpdater } from "./PropertyUpdater"
 import PropertyForm from "./containers/PropertyForm"
 import { initialPropertyData } from "../../../utils/useDetails"
+import { createImageUrl } from "../../../utils/useDetails"
 
 
 const EditProperty = () => {
@@ -48,7 +49,19 @@ const EditProperty = () => {
                 
                 if(statusCode === 200){
                     const data = await response.json()
-                    setPropertyData(data)
+
+                    if(data.backgroundImage){
+                        setPropertyData({
+                            ...data,
+                            backgroundImageUrl: createImageUrl(data.backgroundImage)
+                            //Ceate Image Url
+                        })
+
+                        setBackgroundPreview(createImageUrl(data.backgroundImage))
+                    } else{
+                        setPropertyData(data)
+                        setBackgroundPreview(data.backgroundImageUrl)
+                    }
                 }
             } catch (error) {
                 setStatus('error')

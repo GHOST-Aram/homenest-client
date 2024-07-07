@@ -27,7 +27,7 @@ const AboutAndBackgroud = (
 			/>
 			{ 
 				backgroundPreviewUrl && 
-				<img src={backgroundPreviewUrl as string } alt="background" />
+				<img src={backgroundPreviewUrl as string } alt="background" /> 
 			}
 			<FileSelector 
 				onFileChange={getBackgroundImageFile} 
