@@ -38,7 +38,7 @@ const usePropertyDetails = () => {
     return property
 }
 
-const createImageUrl = (image: {data: string, contentType: string }) =>{
+export const createImageUrl = (image: {data: string, contentType: string }) =>{
      // Convert base64 data to a Blob
     const byteCharacters = atob(image.data)
     const byteNumbers = new Array(byteCharacters.length)
