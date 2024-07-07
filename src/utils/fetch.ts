@@ -67,10 +67,9 @@ export const sendPutRequest = async(
         method: 'PUT',
         redirect: 'follow',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization' : `Bearer ${authToken}`
         },
-        body: JSON.stringify(data)
+        body: data
     })
 
     return response

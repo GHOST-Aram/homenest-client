@@ -17,8 +17,6 @@ const usePropertyDetails = () => {
                 if(statusCode === 200){
                     const data = await response.json()
 
-                    console.log('Data: ', data)
-
                     if(data.backgroundImage){
                         setProperty({
                             ...data,

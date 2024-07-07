@@ -53,8 +53,11 @@ export class PropertyUpdater extends PropertyCreator{
     }
 
     public sendRequest = async(): Promise<{statusCode: number, body: any}> =>{
+        
+        const formData = this.createFormData(this.propertyData)
+
         const response = await sendPutRequest(`${API_BASE_URL}/properties/${this.id}`, 
-        {data: this.propertyData, authToken: this.authToken})
+        {data: formData, authToken: this.authToken})
 
         const body = await response.json()
         const statusCode = response.status
