@@ -13,9 +13,21 @@ const usePropertyDetails = () => {
             try {
                 const response = await getData(`${API_BASE_URL}/properties/${id}`)
                 const statusCode = response.status
+
                 if(statusCode === 200){
                     const data = await response.json()
-                    setProperty(data)
+
+                    console.log('Data: ', data)
+
+                    if(data.backgroundImage){
+                        setProperty({
+                            ...data,
+                            backgroundImageUrl: createImageUrl(data.backgroundImage)
+                            //Ceate Image Url
+                        })
+                    } else{
+                        setProperty(data)
+                    }
                 }
             } catch (error) {
                 console.log(error)
@@ -24,6 +36,23 @@ const usePropertyDetails = () => {
     }, [id])
 
     return property
+}
+
+const createImageUrl = (image: {data: string, contentType: string }) =>{
+     // Convert base64 data to a Blob
+    const byteCharacters = atob(image.data)
+    const byteNumbers = new Array(byteCharacters.length)
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i)
+    }
+    const byteArray = new Uint8Array(byteNumbers)
+    const blob = new Blob([byteArray], { type: image.contentType })
+
+    // Create an object URL for the Blob
+    const imageUrl = URL.createObjectURL(blob)
+
+    return imageUrl
 }
 
 const API_BASE_URL = process.env.REACT_APP_API_URL
