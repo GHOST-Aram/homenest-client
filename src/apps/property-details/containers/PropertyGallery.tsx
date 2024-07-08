@@ -1,25 +1,33 @@
-import ImageGrid from '../components/ImageGrid'
-import { GalleryItem } from '../../../types'
 import FileSelector from '../../properties/property-input/containers/form-sections/FileSelector'
 import { FormEvent, useState } from 'react'
 import { Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import { createImageUrlFromBase64 } from '../../../utils/images'
 
-interface Preview{
-    id: string
+interface Gallery{
+    assetId: string,
+    images: {
+        id: string,
+        data: string,
+        name: string,
+        contentType: string
+    }[]
+}
+
+interface ImageMetadata{
+    id: string,
+    alt: string
     url: string| ArrayBuffer | null
 }
 
-const fetchGallery = async() =>{
-        
-}
 
-const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {
+
+const PropertyGallery = () => {
     const { id } = useParams()
-    const [previews, setPreviews] = useState<Preview[]>([])
+    const [previews, setPreviews] = useState<ImageMetadata[]>([])
     const [imageFiles, setImageFiles] = useState<File[]>([])
-    const [gallery, setGallery] = useState(null)
+    const [gallery, setGallery] = useState<Gallery | null>(null)
 
     useEffect(() => {
 
@@ -30,7 +38,8 @@ const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {
                 const data = await response.json()
                 const status = response.status
                 
-                setGallery(data)
+                if(status === 200)
+                    setGallery(data)
 
                 console.log(status, data)
             })() 
@@ -39,14 +48,26 @@ const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {
         }
     }, [id])
 
+    useEffect(() =>{
+        //Create metada from fetched images for display
+        if(gallery)
+        setPreviews(gallery.images.map((image) => ({
+            id: image.id,
+            alt: image.name,
+            url: createImageUrlFromBase64({data: image.data, contentType: image.contentType})
+        })))
+
+    }, [gallery])
+
     const updatePreviews = (file: File) =>{
         const fileReader = new FileReader()
 
 		fileReader.addEventListener('loadend', () =>{
 			setPreviews([...previews, 
                 {
-                    url: fileReader.result,
-                    id: Date.now().toString()
+                    url: fileReader.result as string,
+                    id: Date.now().toString(),
+                    alt: `preview${Date.now().toString()}`
                 }
             ])
 		})
@@ -93,7 +114,6 @@ const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {
     return (
         <section className={ section }>
             <h1 className={heading}>Property Gallery</h1>
-            <ImageGrid images={images}/>
             <div className="grid-auto">
                 {
                     previews.map((preview, index) =>(
