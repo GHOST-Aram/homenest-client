@@ -1,19 +1,43 @@
 import ImageGrid from '../components/ImageGrid'
 import { GalleryItem } from '../../../types'
 import FileSelector from '../../properties/property-input/containers/form-sections/FileSelector'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 interface Preview{
     id: string
     url: string| ArrayBuffer | null
 }
 
+const fetchGallery = async() =>{
+        
+}
+
 const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {
     const { id } = useParams()
     const [previews, setPreviews] = useState<Preview[]>([])
     const [imageFiles, setImageFiles] = useState<File[]>([])
+    const [gallery, setGallery] = useState(null)
+
+    useEffect(() => {
+
+        try {
+            (async() =>{
+                const response = await fetch(`${API_BASE_URL}/gallery/${id}`, {method: 'GET'})
+    
+                const data = await response.json()
+                const status = response.status
+                
+                setGallery(data)
+
+                console.log(status, data)
+            })() 
+        } catch (error) {
+            console.log(error)
+        }
+    }, [id])
 
     const updatePreviews = (file: File) =>{
         const fileReader = new FileReader()
@@ -34,7 +58,9 @@ const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {
         setImageFiles([...imageFiles, file ])
     }
 
-    const submitFiles = async() =>{
+    const submitFiles = async(event: FormEvent<HTMLFormElement>) =>{
+        event.preventDefault()
+
         const formData = new FormData()
 
         formData.append('assetId', id as string)
@@ -77,18 +103,19 @@ const PropertyGallery = ({ images }: {images: GalleryItem[]}) => {
                     ))
                 }
             </div>
-            <div className="flex gap-4">
+            <form action="" onSubmit={submitFiles} className="flex gap-4">
                 <FileSelector previewBackgroundImage={updatePreviews} onFileChange={addFile}/>
                 {   
                     Boolean(imageFiles.length) &&
                     <Button size='large' 
-                    variant='outlined' 
-                    onClick={submitFiles}
+                        variant='contained' 
+                        type='submit'
+                        color='success'
                     >
-                        Save Gallery
+                        SAVE CHANGES
                     </Button>
                 }
-            </div>
+            </form>
         </section>
     )
 }
