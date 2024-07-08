@@ -66,13 +66,6 @@ const PropertyForm = (
                     squareFootage={ propertyCreator.propertyData.squareFootage }
                     getTextFieldValue={ propertyCreator.getTextFieldValue }
                 />
-                <GalleryInput 
-                    imageData = { propertyCreator.imageData }
-                    images = { propertyCreator.propertyData.images }
-                    collectImageData ={ propertyCreator.getImageData}  
-                    deleteImageData ={ propertyCreator.deleteImage}  
-                    addImageToGallery ={ propertyCreator.addImageGallery }
-                />
                 <PropertyAvailabilityAndMore 
                     isAvailable={ propertyCreator.propertyData.isAvailable }
                     hasParkingSpace={ propertyCreator.propertyData.hasParkingSpace }
