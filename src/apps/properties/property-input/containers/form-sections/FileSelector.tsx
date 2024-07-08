@@ -35,7 +35,7 @@ const FileSelector: React.FC<FileSelectorProps> = ({ onFileChange, previewBackgr
 			color="primary" 
 			onClick={handleButtonClick}
 		>
-			<ImageOutlinedIcon /> Background Image
+			<ImageOutlinedIcon /> Select Image
 		</Button>
 		</div>
 	);
