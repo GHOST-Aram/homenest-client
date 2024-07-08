@@ -7,7 +7,8 @@ import { cookie } from "../../../utils/cookie"
 import { PropertyUpdater } from "./PropertyUpdater"
 import PropertyForm from "./containers/PropertyForm"
 import { initialPropertyData } from "../../../utils/useDetails"
-import { createImageUrl } from "../../../utils/useDetails"
+import { createImageUrlFromBase64 } from "../../../utils/images"
+
 
 
 const EditProperty = () => {
@@ -53,11 +54,11 @@ const EditProperty = () => {
                     if(data.backgroundImage){
                         setPropertyData({
                             ...data,
-                            backgroundImageUrl: createImageUrl(data.backgroundImage)
+                            backgroundImageUrl: createImageUrlFromBase64(data.backgroundImage)
                             //Ceate Image Url
                         })
 
-                        setBackgroundPreview(createImageUrl(data.backgroundImage))
+                        setBackgroundPreview(createImageUrlFromBase64(data.backgroundImage))
                     } else{
                         setPropertyData(data)
                         setBackgroundPreview(data.backgroundImageUrl)
