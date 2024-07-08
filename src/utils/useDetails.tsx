@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { PropertyData } from '../types'
 import { getData } from './fetch'
+import { createImageUrlFromBase64 } from './images'
 
 
 const usePropertyDetails = () => {
@@ -20,7 +21,7 @@ const usePropertyDetails = () => {
                     if(data.backgroundImage){
                         setProperty({
                             ...data,
-                            backgroundImageUrl: createImageUrl(data.backgroundImage)
+                            backgroundImageUrl: createImageUrlFromBase64(data.backgroundImage)
                             //Ceate Image Url
                         })
                     } else{
@@ -34,23 +35,6 @@ const usePropertyDetails = () => {
     }, [id])
 
     return property
-}
-
-export const createImageUrl = (image: {data: string, contentType: string }) =>{
-     // Convert base64 data to a Blob
-    const byteCharacters = atob(image.data)
-    const byteNumbers = new Array(byteCharacters.length)
-
-    for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i)
-    }
-    const byteArray = new Uint8Array(byteNumbers)
-    const blob = new Blob([byteArray], { type: image.contentType })
-
-    // Create an object URL for the Blob
-    const imageUrl = URL.createObjectURL(blob)
-
-    return imageUrl
 }
 
 const API_BASE_URL = process.env.REACT_APP_API_URL

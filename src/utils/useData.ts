@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Status } from '../types'
 import { useSearchParams } from 'react-router-dom'
 import { getData } from './fetch'
-import { createImageUrl } from './useDetails'
+import { createImageUrlFromBase64 } from './images'
 
 const API_BASE_URL = process.env.REACT_APP_API_URL
 
@@ -30,7 +30,8 @@ const usePropertyData = () => {
 						{
 							...data,
 							backgroundImageUrl: data.backgroundImage ? 
-								createImageUrl(data.backgroundImage) : data.backgroundImageUrl 
+								createImageUrlFromBase64(data.backgroundImage) 
+								: data.backgroundImageUrl 
 						}
 					))
 					setProperties(propertiesData)
