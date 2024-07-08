@@ -29,7 +29,7 @@ const PropertyDetails = () => {
                 <ContactLandlord />
             </section>
             <Divider/>
-            <PropertyGallery images={property.images} />
+            <PropertyGallery />
         </Box>
     )
 }
