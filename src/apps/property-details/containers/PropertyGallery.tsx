@@ -8,6 +8,7 @@ import { User } from '../../../types'
 import { AuthContext } from '../../../utils/authContext'
 
 
+
 interface Gallery{
     assetId: string,
     images: {
@@ -32,6 +33,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
     const [imageFiles, setImageFiles] = useState<File[]>([])
     const [gallery, setGallery] = useState<Gallery | null>(null)
     const [isEditing, setIsEditing] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     // const authToken = cookie.getAuthenticationToken('homenestAuthenticationToken')
     const authContext = useContext(AuthContext)
@@ -102,11 +104,12 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
             console.log(imageFiles)
 
             try{
+                setIsLoading(true)
                 const response = await fetch(`${API_BASE_URL}/gallery`, {
                     method: 'POST',
                     body: formData
                 })
-    
+                setIsLoading(false)
                 const data = await response.json()
                 const status = response.status
     
@@ -120,9 +123,6 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
         }
     }
 
-    if (user){
-        console.log(user.id, landlordId, landlordId === user.id)
-    }
 
     return (
         <section className={ section }>
@@ -131,10 +131,10 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
                 {
                    user && user.id === landlordId ? 
                     <Button 
-                        size='large' variant='contained' color='secondary'
+                        size='large' variant='contained' color={isEditing? 'error' :'secondary'}
                         onClick={() => setIsEditing(!isEditing)}
                     >
-                        Manage Gallery
+                        { isEditing ? 'Close Editor': 'Edit Gallery'}
                     </Button> 
                     : ''
 
@@ -150,19 +150,23 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
                 }
             </div>
             <form action="" onSubmit={submitFiles} className="flex gap-4">
-                {isEditing && <FileSelector 
-                    previewBackgroundImage={updatePreviews} 
-                    onFileChange={addFile}/>
-                }
-                {   
-                    Boolean(imageFiles.length) &&
-                    <Button size='large' 
-                        variant='contained' 
-                        type='submit'
-                        color='success'
-                    >
-                        SAVE CHANGES
-                    </Button>
+                {isEditing && 
+                <>
+                    <FileSelector 
+                        previewBackgroundImage={updatePreviews} 
+                        onFileChange={addFile}/>
+                    {   
+                        Boolean(imageFiles.length) &&
+                        <Button size='large' 
+                            variant='contained' 
+                            type='submit'
+                            color='success'
+                            disabled={ isLoading }
+                        >
+                            { isLoading? 'Saving ...' : 'SAVE CHANGES' }
+                        </Button>
+                    }
+                </>
                 }
             </form>
         </section>
