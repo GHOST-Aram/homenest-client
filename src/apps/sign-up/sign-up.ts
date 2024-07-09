@@ -45,6 +45,7 @@ export class UserSignUp{
         (async() =>{
             this.setStatus('loading')
 
+            console.log(this.userData)
             try {
                 await validateUserData(this.userData)
 
@@ -64,8 +65,14 @@ export class UserSignUp{
     }
 
     private createUser = async() =>{
-        const response = await sendPostRequest(`${API_BASE_URL}/users`, 
-        {data: this.userData})
+        const response = await fetch(`${API_BASE_URL}/users`, 
+        {   
+            body: JSON.stringify(this.userData),
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        })
 
         const statusCode = response.status
         const body = await response.json()

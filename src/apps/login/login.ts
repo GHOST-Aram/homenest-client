@@ -78,8 +78,14 @@ export class Login{
     }
 
     private getAuthToken = async() =>{
-        const response = await sendPostRequest(
-            `${API_BASE_URL}/auth`, {data: this.loginDetails})
+        const response = await fetch(`${API_BASE_URL}/auth`, 
+            {   
+                body: JSON.stringify(this.loginDetails), 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
         
         const statusCode = response.status
         const body = await response.json()
