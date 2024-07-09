@@ -127,6 +127,10 @@ header{
     gap: 1rem;
 }
 
+.justify-end{
+    justify-content: flex-end;
+}
+
 .light-title{
     font-weight: 300;
     font-size: 1.125rem;
