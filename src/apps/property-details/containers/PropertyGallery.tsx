@@ -136,7 +136,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
 
     return (
         <section className={ section }>
-            <div className="flex justify-end gap-4 w-full">
+            <div className="flex flex-col md:flex-row gap-4 w-full">
                 <h1 className={heading}>Property Gallery</h1>
                 {
                    user && user.id === landlordId ? 
@@ -148,7 +148,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
                     </Button> 
                     : ''
                 }
-                <form action="" onSubmit={submitFiles} className="flex gap-4">
+                <form action="" onSubmit={submitFiles} className="flex flex-col md:flex-row gap-4">
                     {isEditing && 
                     <>
                         <FileSelector 
