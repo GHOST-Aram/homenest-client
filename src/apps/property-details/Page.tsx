@@ -29,7 +29,7 @@ const PropertyDetails = () => {
                 <ContactLandlord />
             </section>
             <Divider/>
-            <PropertyGallery />
+            <PropertyGallery landlordId={property.landlord.toString()} />
         </Box>
     )
 }

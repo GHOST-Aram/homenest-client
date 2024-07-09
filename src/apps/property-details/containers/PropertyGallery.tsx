@@ -2,8 +2,12 @@ import FileSelector from '../../properties/property-input/containers/form-sectio
 import { FormEvent, useState } from 'react'
 import { Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { createImageUrlFromBase64 } from '../../../utils/images'
+import { cookie } from '../../../utils/cookie'
+import { User } from '../../../types'
+import { AuthContext } from '../../../utils/authContext'
+
 
 interface Gallery{
     assetId: string,
@@ -23,11 +27,16 @@ interface ImageMetadata{
 
 
 
-const PropertyGallery = () => {
+const PropertyGallery = ({landlordId}: { landlordId: string}) => {
     const { id } = useParams()
     const [previews, setPreviews] = useState<ImageMetadata[]>([])
     const [imageFiles, setImageFiles] = useState<File[]>([])
     const [gallery, setGallery] = useState<Gallery | null>(null)
+    const [isEditing, setIsEditing] = useState(false)
+
+    // const authToken = cookie.getAuthenticationToken('homenestAuthenticationToken')
+    const authContext = useContext(AuthContext)
+    const user: User = authContext.user 
 
     useEffect(() => {
 
@@ -111,9 +120,27 @@ const PropertyGallery = () => {
 
         }
     }
+
+    if (user){
+        console.log(user.id, landlordId, landlordId === user.id)
+    }
+
     return (
         <section className={ section }>
-            <h1 className={heading}>Property Gallery</h1>
+            <div className="flex justify-between">
+                <h1 className={heading}>Property Gallery</h1>
+                {
+                   user && user.id === landlordId ? 
+                    <Button 
+                        size='large' variant='contained' color='secondary'
+                        onClick={() => setIsEditing(!isEditing)}
+                    >
+                        Manage Gallery
+                    </Button> 
+                    : ''
+
+                }
+            </div>
             <div className="grid-auto">
                 {
                     previews.map((preview, index) =>(
@@ -124,7 +151,10 @@ const PropertyGallery = () => {
                 }
             </div>
             <form action="" onSubmit={submitFiles} className="flex gap-4">
-                <FileSelector previewBackgroundImage={updatePreviews} onFileChange={addFile}/>
+                {isEditing && <FileSelector 
+                    previewBackgroundImage={updatePreviews} 
+                    onFileChange={addFile}/>
+                }
                 {   
                     Boolean(imageFiles.length) &&
                     <Button size='large' 
