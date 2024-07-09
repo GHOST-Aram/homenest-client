@@ -1,5 +1,4 @@
 import { ChangeEvent, Dispatch, SetStateAction } from 'react'
-import { sendPostRequest } from '../../utils/fetch'
 import { updateProcessStatus } from '../../utils/process-status'
 import { validateUserData } from '../../utils/validator'
 import { ValidationError } from 'yup'

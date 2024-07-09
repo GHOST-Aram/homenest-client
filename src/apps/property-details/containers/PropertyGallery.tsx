@@ -4,7 +4,6 @@ import { Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { useEffect, useContext } from 'react'
 import { createImageUrlFromBase64 } from '../../../utils/images'
-import { cookie } from '../../../utils/cookie'
 import { User } from '../../../types'
 import { AuthContext } from '../../../utils/authContext'
 

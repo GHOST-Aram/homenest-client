@@ -4,7 +4,6 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react"
 import { updateProcessStatus } from "../../utils/process-status"
 import { decodeAuthToken } from '../../utils/auth'
 import { cookie } from '../../utils/cookie'
-import { sendPostRequest } from '../../utils/fetch'
 import { LoginDetails } from "./containers/LoginForm"
 import { Status, User } from "../../types"
 import { NavigateFunction } from "react-router-dom"
