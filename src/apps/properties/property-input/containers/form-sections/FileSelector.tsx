@@ -31,8 +31,9 @@ const FileSelector: React.FC<FileSelectorProps> = ({ onFileChange, previewBackgr
 			onChange={handleFileChange}
 		/>
 		<Button 
-			variant="contained" 
+			variant="outlined" 
 			color="primary" 
+            size='large'
 			onClick={handleButtonClick}
 		>
 			<ImageOutlinedIcon /> Select Image
