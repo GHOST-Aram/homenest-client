@@ -199,6 +199,10 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
         }
     }
 
+    const deleteFromPreview = (id: string) =>{
+        setPreviews(previews.filter(preview => preview.id !== id))
+    }
+
     return (
         <section className={ section }>
             <div className="flex flex-col md:flex-row gap-4 w-full">
@@ -240,7 +244,10 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
                     typeof( preview.url === 'string') ?
                     <div className='image-container' key={preview.id}>
                         <div className='image-wrapper'>
-                            {isEditing && <DeleteButton deleteImage={() =>{console.log("ID: ",preview.id)}}/>}
+                            {
+                                isEditing && 
+                                <DeleteButton deleteImage={() =>{deleteFromPreview(preview.id)}}/>
+                            }
                             <img 
                                 src={preview.url as string} 
                                 alt={`gallery-${index}`}
