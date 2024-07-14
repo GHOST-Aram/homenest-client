@@ -25,6 +25,7 @@ interface ImageMetadata{
     id: string,
     alt: string
     url: string| ArrayBuffer | null
+    name: string
 }
 
 
@@ -83,7 +84,8 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
         setPreviews(gallery.images.map((image) => ({
             id: image.id,
             alt: image.name,
-            url: createImageUrlFromBase64({data: image.data, contentType: image.contentType})
+            url: createImageUrlFromBase64({data: image.data, contentType: image.contentType}),
+            name: image.name
         })))
 
     }, [gallery])
@@ -96,7 +98,9 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
                 {
                     url: fileReader.result as string,
                     id: Date.now().toString(),
-                    alt: `preview${Date.now().toString()}`
+                    alt: `preview${Date.now().toString()}`,
+                    name: file.name
+
                 }
             ])
 		})
@@ -199,8 +203,13 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
         }
     }
 
-    const deleteFromPreview = (id: string) =>{
+    const removeFromPreview = (id: string) =>{
         setPreviews(previews.filter(preview => preview.id !== id))
+        // setImageFiles(imageFiles.filter(file => file.id !== id))
+    }
+
+    const removeFromImageFiles = (fileName: string) =>{
+        setImageFiles(imageFiles.filter(file => file.name !== fileName))
     }
 
     return (
@@ -246,7 +255,11 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
                         <div className='image-wrapper'>
                             {
                                 isEditing && 
-                                <DeleteButton deleteImage={() =>{deleteFromPreview(preview.id)}}/>
+                                <DeleteButton deleteImage={() =>{
+                                    removeFromPreview(preview.id)
+                                    removeFromImageFiles(preview.name)
+                                }
+                                }/>
                             }
                             <img 
                                 src={preview.url as string} 
