@@ -55,20 +55,25 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
 
         try {
             (async() =>{
-                const response = await fetch(`${API_BASE_URL}/gallery/${id}`, {method: 'GET'})
-    
-                const data = await response.json()
-                const status = response.status
-                
-                if(status === 200)
-                    setGallery(data)
-
-                console.log(status, data)
+                if(id)
+                    await getGalleryData(id)
             })() 
         } catch (error) {
             console.log(error)
         }
     }, [id])
+
+    const getGalleryData = async(id: string) =>{
+        const response = await fetch(`${API_BASE_URL}/gallery/${id}`, {method: 'GET'})
+    
+        const data = await response.json()
+        const status = response.status
+        
+        if(status === 200)
+            setGallery(data)
+
+        console.log(status, data)
+    }
 
     useEffect(() =>{
         //Create metada from fetched images for display
@@ -112,9 +117,10 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
             formData.append('images', file)
         })
 
-        if(imageFiles.length && gallery === null){
+        if(imageFiles.length && gallery === null && id){
             // POST
             await createNewGallery(formData)
+            await getGalleryData(id) //update gallery to make it not null
         }
         
         if( gallery !== null && imageFiles.length){
@@ -152,7 +158,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
     const addImagesToGallery = async(formData: FormData) =>{
         try{
             setIsLoading(true)
-            const response = await fetch(`${API_BASE_URL}/gallery`, {
+            const response = await fetch(`${API_BASE_URL}/gallery/${id}`, {
                 method: 'PATCH',
                 body: formData
             })
@@ -173,7 +179,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
     const deleteFromGallery = async(deleteList: string[]) =>{
         try{
             setIsLoading(true)
-            const response = await fetch(`${API_BASE_URL}/gallery`, {
+            const response = await fetch(`${API_BASE_URL}/gallery/${id}`, {
                 method: 'PATCH',
                 body: JSON.stringify({ ids: deleteList })
             })
