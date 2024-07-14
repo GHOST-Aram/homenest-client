@@ -75,7 +75,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
         if(status === 200)
             setGallery(data)
 
-        console.log(status, data)
+        // console.log(status, data)
     }
 
     useEffect(() =>{
@@ -123,21 +123,26 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
             formData.append('images', file)
         })
 
-        if(imageFiles.length && gallery === null && id){
-            // POST
-            await createNewGallery(formData)
-            await getGalleryData(id) //update gallery to make it not null
+        try {
+            if(imageFiles.length && gallery === null && id){
+                // POST
+                await createNewGallery(formData)
+                await getGalleryData(id) //update gallery to make it not null
+            }
+            
+            if( gallery !== null && imageFiles.length){
+                // PATCH - add more
+                await addImagesToGallery(formData)
+            } 
+            
+            if(gallery?.images.length && deleteList.length){
+                // PATCH - remove images
+                await deleteFromGallery(deleteList)
+            }
+        } catch (error) {
+            console.log(error)
         }
-        
-        if( gallery !== null && imageFiles.length){
-            // PUT - add more
-            await addImagesToGallery(formData)
-        } 
-        
-        if(gallery?.images.length && deleteList.length){
-            // PUT remove images
-            await deleteFromGallery(deleteList)
-        }
+
     }
 
     const createNewGallery = async (formData: FormData) => {
@@ -153,7 +158,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
 
             closeEditor()
 
-            console.log(status, data)
+            // console.log(status, data)
             debugger
         } catch(error){
             console.log(error)
@@ -174,7 +179,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
 
             closeEditor()
 
-            console.log(status, data)
+            // console.log(status, data)
             debugger
         } catch(error){
             console.log(error)
@@ -185,9 +190,14 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
     const deleteFromGallery = async(deleteList: string[]) =>{
         try{
             setIsLoading(true)
+
+            console.log("DeleteList: ", deleteList)
             const response = await fetch(`${API_BASE_URL}/gallery/${id}`, {
                 method: 'PATCH',
-                body: JSON.stringify({ ids: deleteList })
+                body: JSON.stringify({ imageIds: deleteList }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
             setIsLoading(false)
             const data = await response.json()
@@ -205,7 +215,6 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
 
     const removeFromPreview = (id: string) =>{
         setPreviews(previews.filter(preview => preview.id !== id))
-        // setImageFiles(imageFiles.filter(file => file.id !== id))
     }
 
     const removeFromImageFiles = (fileName: string) =>{
@@ -214,7 +223,6 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
 
     const addToDeleteList = (id: string) =>{
         setDeleteList([...deleteList, id])
-        console.log(deleteList)
     }
 
     return (
