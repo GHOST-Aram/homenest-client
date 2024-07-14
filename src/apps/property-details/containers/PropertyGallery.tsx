@@ -32,6 +32,10 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
     const [previews, setPreviews] = useState<ImageMetadata[]>([])
     const [imageFiles, setImageFiles] = useState<File[]>([])
     const [gallery, setGallery] = useState<Gallery | null>(null)
+
+    // Image ids -hexadecimal ids generated from DB
+    const [deleteList, setDeleteList] = useState<string[]>([])
+
     const [isEditing, setIsEditing] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -108,31 +112,84 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
             formData.append('images', file)
         })
 
-        if(imageFiles.length){
-            console.log(imageFiles)
-
-            try{
-                setIsLoading(true)
-                const response = await fetch(`${API_BASE_URL}/gallery`, {
-                    method: 'POST',
-                    body: formData
-                })
-                setIsLoading(false)
-                const data = await response.json()
-                const status = response.status
-
-                closeEditor()
-    
-                console.log(status, data)
-                debugger
-            } catch(error){
-                console.log(error)
-                debugger
-            }
-
+        if(imageFiles.length && gallery === null){
+            // POST
+            await createNewGallery(formData)
+        }
+        
+        if( gallery !== null && imageFiles.length){
+            // PUT - add more
+            await addImagesToGallery(formData)
+        } 
+        
+        if(gallery?.images.length && deleteList.length){
+            // PUT remove images
+            await deleteFromGallery(deleteList)
         }
     }
 
+    const createNewGallery = async (formData: FormData) => {
+        try{
+            setIsLoading(true)
+            const response = await fetch(`${API_BASE_URL}/gallery`, {
+                method: 'POST',
+                body: formData
+            })
+            setIsLoading(false)
+            const data = await response.json()
+            const status = response.status
+
+            closeEditor()
+
+            console.log(status, data)
+            debugger
+        } catch(error){
+            console.log(error)
+            debugger
+        }
+    }
+
+    const addImagesToGallery = async(formData: FormData) =>{
+        try{
+            setIsLoading(true)
+            const response = await fetch(`${API_BASE_URL}/gallery`, {
+                method: 'PATCH',
+                body: formData
+            })
+            setIsLoading(false)
+            const data = await response.json()
+            const status = response.status
+
+            closeEditor()
+
+            console.log(status, data)
+            debugger
+        } catch(error){
+            console.log(error)
+            debugger
+        }
+    }
+
+    const deleteFromGallery = async(deleteList: string[]) =>{
+        try{
+            setIsLoading(true)
+            const response = await fetch(`${API_BASE_URL}/gallery`, {
+                method: 'PATCH',
+                body: JSON.stringify({ ids: deleteList })
+            })
+            setIsLoading(false)
+            const data = await response.json()
+            const status = response.status
+
+            closeEditor()
+
+            console.log(status, data)
+            debugger
+        } catch(error){
+            console.log(error)
+            debugger
+        }
+    }
 
     return (
         <section className={ section }>
