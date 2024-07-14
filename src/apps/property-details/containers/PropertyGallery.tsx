@@ -36,7 +36,7 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
     const [imageFiles, setImageFiles] = useState<File[]>([])
     const [gallery, setGallery] = useState<Gallery | null>(null)
 
-    // Image ids -hexadecimal ids generated from DB
+    // Image ids -hexadecimal ids generated from DB// For deleting images in the DB
     const [deleteList, setDeleteList] = useState<string[]>([])
 
     const [isEditing, setIsEditing] = useState(false)
@@ -212,6 +212,11 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
         setImageFiles(imageFiles.filter(file => file.name !== fileName))
     }
 
+    const addToDeleteList = (id: string) =>{
+        setDeleteList([...deleteList, id])
+        console.log(deleteList)
+    }
+
     return (
         <section className={ section }>
             <div className="flex flex-col md:flex-row gap-4 w-full">
@@ -233,7 +238,10 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
                             previewBackgroundImage={updatePreviews} 
                             onFileChange={addFile}/>
                         {   
-                            Boolean(imageFiles.length) &&
+
+                            //Display button if either there are images to be uploaded or
+                            // There are images to be deleted from the server
+                            (Boolean(imageFiles.length) || Boolean(deleteList.length) )&&
                             <Button size='large' 
                                 variant='contained' 
                                 type='submit'
@@ -256,8 +264,12 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
                             {
                                 isEditing && 
                                 <DeleteButton deleteImage={() =>{
-                                    removeFromPreview(preview.id)
+                                    const id = preview.id
+                                    removeFromPreview(id)
                                     removeFromImageFiles(preview.name)
+
+                                    if(/^[a-f0-9]{24}$/i.test(id)) //Id matches IDs from DB.
+                                        addToDeleteList(id)
                                 }
                                 }/>
                             }
