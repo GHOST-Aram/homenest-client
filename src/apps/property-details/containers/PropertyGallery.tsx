@@ -6,6 +6,8 @@ import { useEffect, useContext } from 'react'
 import { createImageUrlFromBase64 } from '../../../utils/images'
 import { User } from '../../../types'
 import { AuthContext } from '../../../utils/authContext'
+import DeleteButton from '../components/DeleteButton'
+import '../styles.css'
 
 
 
@@ -234,11 +236,19 @@ const PropertyGallery = ({landlordId}: { landlordId: string}) => {
             </div>
             <div className="grid-auto">
                 {
-                    previews.map((preview, index) =>(
-                        typeof( preview.url === 'string') ?
-                        <img src={preview.url as string} key={preview.id} alt={`gallery-${index}`}/>
-                        :''
-                    ))
+                   previews.map((preview, index) =>(
+                    typeof( preview.url === 'string') ?
+                    <div className='image-container' key={preview.id}>
+                        <div className='image-wrapper'>
+                            {isEditing && <DeleteButton deleteImage={() =>{console.log("ID: ",preview.id)}}/>}
+                            <img 
+                                src={preview.url as string} 
+                                alt={`gallery-${index}`}
+                            />
+                        </div>
+                    </div>
+                    :''
+                ))
                 }
             </div>
         </section>

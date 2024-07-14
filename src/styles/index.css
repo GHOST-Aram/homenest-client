@@ -1,0 +1,26 @@
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 8px; /* Adjust as needed */
+    right: 8px; /* Adjust as needed */
+    background: rgba(255, 255, 255, 0.7); /* Optional: To make the button stand out */
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.delete-btn:hover {
+    background: rgba(255, 255, 255, 1); /* Optional: Change background on hover */
+}
